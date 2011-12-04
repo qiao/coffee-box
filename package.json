@@ -1,0 +1,10 @@
+{
+    "name": "coffee-box"
+  , "version": "0.0.1"
+  , "private": false
+  , "dependencies": {
+      "express": "2.5.1"
+    , "jade": ">= 0.0.1"
+    , "coffee-script": ">= 1.1.3"
+  }
+}
