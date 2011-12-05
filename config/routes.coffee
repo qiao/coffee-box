@@ -1,4 +1,4 @@
-postController = require './controllers/post'
+postController = require '../app/controllers/post'
 
 module.exports = (app) ->
   app.get '/', postController.index
