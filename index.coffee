@@ -1,7 +1,7 @@
 express  = require 'express'
 app = module.exports = express.createServer()
 
-(require './config/environment') app
+(require './config/config') app
 (require './config/routes') app
 
 app.listen 3000
