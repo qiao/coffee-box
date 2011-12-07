@@ -8,6 +8,7 @@ module.exports = (app) ->
   app.configure ->
     app.set 'views', "#{rootdir}/app/views"
     app.set 'view engine', 'jade'
+    app.set 'view options', layout: "#{rootdir}/app/views/layouts/layout"
     app.use stylus.middleware(src: "#{rootdir}/public")
     app.use express.bodyParser()
     app.use express.methodOverride()

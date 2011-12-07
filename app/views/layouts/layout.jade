@@ -5,4 +5,11 @@ html
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    .container!= body
+    .container
+      header#logo
+        hgroup
+          h1
+            a(href='/')= title
+          h2
+            small= subtitle
+      != body
