@@ -1,8 +1,6 @@
 express = require 'express'
 app = module.exports = express.createServer()
 
-require('./config/config') app
-require('./config/routes') app
 require('./loader') app
 
 unless module.parent

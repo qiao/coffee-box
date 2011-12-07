@@ -23,6 +23,4 @@ module.exports = (app) ->
   app.configure 'production', ->
     app.use express.errorHandler()
 
-  console.log 
-
   mongoose.connect 'mongodb://localhost/coffee-box-db'
