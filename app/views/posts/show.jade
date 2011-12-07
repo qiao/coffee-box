@@ -1,7 +1,7 @@
 article.entry.post
   header.entry-header
     h2.entry-title
-      a(href=postPath(post)) #{post.title}
+      a(href=postPath(post))= post.title
     .entry-meta posted on #{postDate(post)}
   .entry-content
-    #{post.body}
+    = post.body
