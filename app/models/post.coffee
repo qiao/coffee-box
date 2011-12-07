@@ -14,11 +14,6 @@ PostSchema = new Schema
 
 Post = mongoose.model 'Post', PostSchema
 
-#(new Post title: 'hello', body: 'world', slug: '123', createdAt: new Date, updatedAt: new Date).save()
-#(new Post title: 'foo', body: 'bar', slug: '234', createdAt: new Date, updatedAt: new Date).save()
-#(new Post title: 'asdf', body: 'zxcv', slug: '235', createdAt: new Date, updatedAt: new Date).save()
-  
-
 module.exports =
   schema: PostSchema
   model:  Post
