@@ -1,6 +1,4 @@
 header
-  h2 Posts
   ul
     each post in posts
-      li 
-        a(href=postPath(post))= post.title
+      li!= partial('show', { locals: { post: post } }) 
