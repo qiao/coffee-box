@@ -16,4 +16,4 @@ loadHelpers = (app) ->
         for k, v of require path.resolve path.join HELPERS_PATH, filename
           helpers[k] = v
 
-    app.dynamicHelpers helpers
+    app.helpers helpers
