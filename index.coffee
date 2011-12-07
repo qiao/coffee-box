@@ -1,9 +1,11 @@
-express  = require 'express'
+express = require 'express'
 app = module.exports = express.createServer()
 
-(require './config/config') app
-(require './config/routes') app
+require('./config/config') app
+require('./config/routes') app
+require('./loader') app
 
-app.listen 3000
-console.log "coffee-box server listening on port #{app.address().port}
- in #{app.settings.env} mode"
+unless module.parent
+  app.listen 3000
+  console.log "coffee-box server listening on port #{app.address().port} " +
+    "in #{app.settings.env} mode"

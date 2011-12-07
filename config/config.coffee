@@ -13,7 +13,6 @@ module.exports = (app) ->
     app.use express.methodOverride()
     app.use express.cookieParser()
     app.use express.session(secret: 'secret token')
-    app.use express.favicon()
     app.use express.logger('dev')
     app.use app.router
     app.use express.static("#{rootdir}/public")
@@ -23,5 +22,7 @@ module.exports = (app) ->
 
   app.configure 'production', ->
     app.use express.errorHandler()
+
+  console.log 
 
   mongoose.connect 'mongodb://localhost/coffee-box-db'

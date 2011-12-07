@@ -1,4 +1,6 @@
 header
   h2 Posts
   ul
-    li= posts[0].body
+    each post in posts
+      li 
+        a(href=postPath(post))= post.title

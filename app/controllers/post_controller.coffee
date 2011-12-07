@@ -1,7 +1,6 @@
-Post = (require '../models/post').model
+Post = require('../models/post').model
 
-module.exports =
-
+PostsController =
   # GET /posts
   index: (req, res, next) ->
     Post.find {}, (err, posts) ->
@@ -34,3 +33,5 @@ module.exports =
 
   # DELETE /posts/:slug
   destroy: (req, res, next) ->
+
+module.exports = PostsController
