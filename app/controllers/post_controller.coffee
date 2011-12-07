@@ -6,7 +6,6 @@ PostsController =
     Post.find {}, (err, posts) ->
       res.render 'posts/index'
         posts: posts
-        title: 'Posts'
 
   # GET /posts/:slug
   show: (req, res, next) ->
@@ -14,7 +13,6 @@ PostsController =
       if post
         res.render 'posts/show'
           post: post
-          title: post.title
       else
         res.send 404
         #res.redirect '/404.html'
