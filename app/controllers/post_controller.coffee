@@ -7,13 +7,18 @@ PostsController =
   index: (req, res, next) ->
     # check pagination param: /posts/?page=2
     pageNo = parseInt(req.query['page'], 10) or 1
-    options =
-      skip: (pageNo - 1) * POSTS_PER_PAGE
-      limit: POSTS_PER_PAGE
-      sort: [['createdAt', 'desc']]
-    Post.find {}, {}, options, (err, posts) ->
-      res.render 'posts/index'
-        posts: posts
+    Post.count (err, totalPosts) ->
+      totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE)
+      options =
+        skip:   (pageNo - 1) * POSTS_PER_PAGE
+        limit:  POSTS_PER_PAGE
+        sort:   [['createdAt', 'desc']]
+      Post.find {}, {}, options, (err, posts) ->
+        res.render 'posts/index'
+          posts:      posts
+          pageNo:     pageNo
+          totalPages: totalPages
+
 
   # GET /posts/:slug
   show: (req, res, next) ->

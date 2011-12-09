@@ -12,7 +12,6 @@ body
   height 190px
   background overlay-color
   padding-top 20px
-  //box-shadow 0 10px 10px rgba(0, 0, 0, 0.3)
   border-bottom overlay-border
 
 #navigator
@@ -24,7 +23,7 @@ body
   font-weight bold
 
 #navigator a
-  color #ccc
+  color #ddd
   text-decoration none
   background none
 
@@ -41,10 +40,10 @@ body
   margin 0 auto
 
 #title a
-  color #ddd
+  color #eee
 
 #title a:hover
-  color #eee
+  color #fff
   text-decoration none
 
 #title h1
@@ -55,7 +54,7 @@ body
 #title h2
   font-size 16px
   line-height 16px
-  color #aaa
+  color #ddd
   text-indent 5px
   
 /// main container
@@ -92,6 +91,29 @@ body
 
 .entry-meta
   font-size 90%
+
+
+/// pagination
+
+.pagination
+  text-align center
+
+.pagination ul
+  float none
+  display inline-block
+  overflow hidden
+  box-shadow none
+  border none
+
+.pagination a, .pagination em
+  color #fff
+  border none
+
+.pagination a:hover, .pagination .active a 
+  background-color #eee
+  color #333
+  border-radius 5px
+  box-shadow 0 10px 15px rgba(0, 0, 0, 0.3)
 
 /// footer
 
