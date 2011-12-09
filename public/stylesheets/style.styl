@@ -1,6 +1,11 @@
+@import "bootstrap.css"
+
 container-width = 840px
 overlay-color = rgba(0, 0, 0, 0.4)
 overlay-border = 1px solid #232323
+
+html
+  overflow hidden
 
 body
   background url('/images/background.png') 
@@ -9,13 +14,13 @@ body
 /// header
 
 #header
-  height 190px
+  height 250px
   background overlay-color
   padding-top 20px
   border-bottom overlay-border
 
 #navigator
-  margin-bottom 20px
+  margin-bottom 25px
 
 #navigator li
   display inline
@@ -60,8 +65,8 @@ body
 /// main container
 
 .container
-  margin-top -80px
-  padding-bottom 60px
+  margin-top -140px
+  padding-bottom 50px
   width container-width
 
 
@@ -81,7 +86,7 @@ body
   border-bottom 1px solid #eee
   border-radius 10px
   margin-bottom 50px
-  box-shadow 0 10px 15px rgba(0, 0, 0, 0.3)
+  box-shadow 0 10px 15px rgba(0, 0, 0, 0.2)
 
 .entry-header
   padding-bottom 10px
@@ -105,9 +110,10 @@ body
   box-shadow none
   border none
 
-.pagination a, .pagination em
+.pagination a
   color #fff
   border none
+  margin 0 3px
 
 .pagination a:hover, .pagination .active a 
   background-color #eee
@@ -115,12 +121,32 @@ body
   border-radius 5px
   box-shadow 0 10px 15px rgba(0, 0, 0, 0.3)
 
+.pagination .disabled
+  display none
+
+/// form
+
+input[type=text], textarea
+  width 100%
+  padding 4px 0
+  resize vertical
+
+.form-stacked .actions 
+  padding-bottom 30px
+  margin-right -20px
+  margin-bottom -40px
+  border-radius 0 0 10px 10px
+
+.form-stacked .actions .btn
+  margin-right 5px
+  
 /// footer
 
 #footer
   height 250px
   background-color overlay-color
   border-top overlay-border
+  margin-top -10px
 
 /// color bars
 

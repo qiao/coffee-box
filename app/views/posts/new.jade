@@ -1,0 +1,23 @@
+form(method='post', action='/posts', accept-charset='utf-8')#new-post.entry.form-stacked
+  //div for csrf
+  fieldset
+    legend New post
+    .clearfix
+      label(for='new-post-title') Title
+      .input
+        input(type='text', name='post[title]')#new-post-title
+    .clearfix
+      label(for='new-post-content') Content
+      .input
+        textarea(id='new-post-content', rows='20', name='post[content]')
+    .clearfix
+      label(for='new-post-tags') Tags
+      .input
+        input(type='text', name='post[tags]')
+    .clearfix
+      label(for='new-post-slug') Slug
+      .input
+        input(type='text', name='post[slug]')
+    .actions
+      input(type='submit', name='commit', value='Submit').btn.primary
+      a(href='/').btn Cancel

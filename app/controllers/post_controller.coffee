@@ -32,6 +32,7 @@ PostsController =
 
   # GET /posts/new
   new: (req, res, next) ->
+    res.render 'posts/new'
 
   # GET /posts/:slug/edit
   edit: (req, res, next) ->
