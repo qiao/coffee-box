@@ -1,9 +1,17 @@
 Post = require('../models/post').model
 
+POSTS_PER_PAGE = 5
+
 PostsController =
   # GET /posts
   index: (req, res, next) ->
-    Post.find {}, (err, posts) ->
+    # check pagination param: /posts/?page=2
+    pageNo = parseInt(req.query['page'], 10) or 1
+    options =
+      skip: (pageNo - 1) * POSTS_PER_PAGE
+      limit: POSTS_PER_PAGE
+      sort: [['createdAt', 'desc']]
+    Post.find {}, {}, options, (err, posts) ->
       res.render 'posts/index'
         posts: posts
 
