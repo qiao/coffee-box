@@ -6,7 +6,6 @@ require('./config/routes') app
 require('./config/site')   app
 require('./app/helpers')   app
 
-unless module.parent
-  app.listen 3000
-  console.log "coffee-box server listening on port #{app.address().port} " +
-    "in #{app.settings.env} mode"
+app.listen 3000
+console.log "coffee-box server listening on port #{app.address().port} " +
+  "in #{app.settings.env} mode"
