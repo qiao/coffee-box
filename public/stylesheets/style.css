@@ -2,31 +2,111 @@ body {
   background: url("/images/background.png");
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-.container {
-  margin-top: 30px;
+#header {
+  height: 190px;
+  background: rgba(0,0,0,0.40);
+  padding-top: 20px;
+  border-bottom: 1px solid #232323;
 }
-#logo h1 {
-  margin: 0;
+#navigator {
+  margin-bottom: 20px;
 }
-#logo a {
+#navigator li {
+  display: inline;
+  margin-right: 20px;
+  font-weight: bold;
+}
+#navigator a {
+  color: #ccc;
+  text-decoration: none;
+  background: none;
+}
+#navigator a:hover {
+  color: #eee;
+}
+.current-page {
+  background: rgba(0,100,200,0.70) !important;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+#title {
+  width: 840px;
+  margin: 0 auto;
+}
+#title a {
   color: #ddd;
 }
-#logo a:hover {
+#title a:hover {
   color: #eee;
   text-decoration: none;
 }
-#logo h2 {
-  margin-top: -10px;
-  margin-bottom: 10px;
+#title h1 {
+  font-size: 60px;
+  line-height: 70px;
+  margin-bottom: 0;
+}
+#title h2 {
+  font-size: 16px;
+  line-height: 16px;
+  color: #aaa;
+  text-indent: 5px;
+}
+.container {
+  margin-top: -80px;
+  padding-bottom: 60px;
+  width: 840px;
+}
+#entry-list {
+  clear: both;
 }
 .entry {
+  background-color: #fff;
   padding: 20px;
-  background: #fff;
   border-bottom: 1px solid #eee;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.30);
 }
 .entry-header {
   padding-bottom: 10px;
 }
+.entry-title a {
+  color: #333;
+}
 .entry-meta {
-  font-size: 75%;
+  font-size: 90%;
+}
+#footer {
+  height: 250px;
+  background-color: rgba(0,0,0,0.40);
+  border-top: 1px solid #232323;
+}
+.colorbar {
+  position: absolute;
+  display: block;
+  width: 30px;
+  left: 50%;
+  top: -1px;
+  border: 1px solid #333;
+  border-radius: 0 0 3px 3px;
+}
+#bar1 {
+  height: 50px;
+  margin-left: 250px;
+  background-color: rgba(255,50,0,0.70);
+}
+#bar2 {
+  height: 65px;
+  margin-left: 281px;
+  background-color: rgba(255,255,0,0.70);
+}
+#bar3 {
+  height: 75px;
+  margin-left: 312px;
+  background-color: rgba(0,200,255,0.70);
+}
+#bar4 {
+  height: 60px;
+  margin-left: 343px;
+  background-color: rgba(0,255,100,0.70);
 }

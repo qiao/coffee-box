@@ -6,4 +6,7 @@ module.exports =
     "/posts/#{date}/#{post.slug}"
 
   postDate: (post) ->
-    moment(post.createdAt).format('YYYY-MM-DD hh:mm')
+    moment(post.createdAt).format('YYYY-MM-DD')
+
+  postTime: (post) ->
+    moment(post.createdAt).format('hh:mm')

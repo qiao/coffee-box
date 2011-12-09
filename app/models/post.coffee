@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
-CommentSchema = (require './comment').schema
+CommentSchema = require('./comment').schema
 
 PostSchema = new Schema
   title:     { type: String, required: true }

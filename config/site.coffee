@@ -1,4 +1,4 @@
 module.exports = (app) ->
   app.helpers
     title:    'CoffeeBox'
-    subtitle: 'Blogging framework for hackers'
+    subtitle: 'Blog engine for fashionable developers'

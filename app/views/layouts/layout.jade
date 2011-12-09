@@ -4,8 +4,15 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/jquery.js')
   body
-    .container
-      != partial('header')
+    != partial('header')
+    .container 
+      nav#navigator
+        ul.unstyled
+          li.current-page
+            a(href='/') Home
+          li
+            a(href='/about') About
       != body
-      != partial('footer')
+    != partial('footer')
