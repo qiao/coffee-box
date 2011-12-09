@@ -1,6 +1,7 @@
 express  = require 'express'
 mongoose = require 'mongoose'
 stylus   = require 'stylus'
+ecoffee  = require 'express-coffee'
 
 rootdir = "#{__dirname}/.."
 
@@ -10,6 +11,7 @@ module.exports = (app) ->
     app.set 'view engine', 'jade'
     app.set 'view options', layout: "#{rootdir}/app/views/layouts/layout"
     app.use stylus.middleware(src: "#{rootdir}/public")
+    app.use ecoffee(path: "#{rootdir}/public", live: !process.env.PRODUCTION, uglify: true)
     app.use express.bodyParser()
     app.use express.methodOverride()
     app.use express.cookieParser()
