@@ -20,7 +20,7 @@ PostsController =
           totalPages: totalPages
 
 
-  # GET /posts/:slug
+  # GET /year/month/day/:slug.:format?
   show: (req, res, next) ->
     Post.findOne slug: req.params.slug, (err, post) ->
       if post
