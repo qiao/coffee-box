@@ -1,7 +1,7 @@
 @import "bootstrap.css"
 
 container-width = 840px
-overlay-color = rgba(0, 0, 0, 0.4)
+overlay-color = rgba(0, 0, 0, 0.3)
 overlay-border = 1px solid #232323
 
 html
@@ -14,31 +14,14 @@ body
 /// header
 
 #header
-  height 250px
-  background overlay-color
+  height 100px
   padding-top 20px
-  border-bottom overlay-border
+  width container-width
+  margin 0 auto
 
 #navigator
-  margin-bottom 25px
-
-#navigator li
-  display inline
-  margin-right 20px
-  font-weight bold
-
-#navigator a
-  color #ddd
-  text-decoration none
-  background none
-
-#navigator a:hover
-  color #eee
-
-.current-page
-  background rgba(0, 100, 200, 0.7) !important
-  padding 5px 15px
-  border-radius 5px
+  margin 30px 0
+  float left 
 
 #title
   width container-width
@@ -65,9 +48,10 @@ body
 /// main container
 
 .container
-  margin-top -140px
   padding-bottom 50px
   width container-width
+  min-height 1000px
+  clear both
 
 
 /// entry
@@ -144,8 +128,9 @@ input[type=text], textarea
 
 #footer
   height 250px
-  background-color overlay-color
-  border-top overlay-border
+  //background-color overlay-color
+  //border-top overlay-border
+  border-top none
   margin-top -10px
 
 /// color bars

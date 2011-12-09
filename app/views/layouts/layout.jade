@@ -8,11 +8,5 @@ html
   body
     != partial('header')
     .container 
-      nav#navigator
-        ul.unstyled
-          li.current-page
-            a(href='/') Home
-          li
-            a(href='/about') About
       != body
     != partial('footer')
