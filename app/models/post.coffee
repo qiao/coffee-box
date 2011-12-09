@@ -5,10 +5,10 @@ CommentSchema = require('./comment').schema
 
 PostSchema = new Schema
   title:     { type: String, required: true }
-  body:      { type: String }
+  content:   { type: String }
   slug:      { type: String, required: true }
-  comments:  [CommentSchema]
-  tags:      [String]
+  comments:  { type: [CommentSchema] }
+  tags:      { type: [String] }
   createdAt: { type: Date,   required: true }
   updatedAt: { type: Date,   required: true }
 

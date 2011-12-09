@@ -4,6 +4,7 @@ stylus   = require 'stylus'
 ecoffee  = require 'express-coffee'
 
 rootdir = "#{__dirname}/.."
+dbpath  = 'mongodb://localhost/coffee-box-db'
 
 module.exports = (app) ->
   app.configure ->
@@ -26,4 +27,5 @@ module.exports = (app) ->
   app.configure 'production', ->
     app.use express.errorHandler()
 
-  mongoose.connect 'mongodb://localhost/coffee-box-db'
+  #require("#{rootdir}/lib/tasks/populate").populate dbpath
+  mongoose.connect dbpath
