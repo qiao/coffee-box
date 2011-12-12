@@ -60,13 +60,17 @@ PostsController =
     query = slug: req.params.slug
     Post.findOne query, (err, post) ->
       if post
-        Post.update query, req.body.post, (err) ->
+        newPost = req.body.post
+        newPost.createdAt = post.createdAt
+        Post.update query, newPost, (err) ->
           if err
             req.flash 'error', err
             res.redirect 'back'
           else
             req.flash 'info', 'successfully updated'
-            res.redirect postPath(post)
+            res.redirect postPath(newPost)
+      else
+        res.redirect '404'
 
   # DELETE /year/month/day/:slug
   destroy: (req, res, next) ->
