@@ -9,7 +9,6 @@ html
 
 body
   background url('/images/background.png') 
-  font 14px "Lucida Grande", Helvetica, Arial, sans-serif
 
 /// header
 
@@ -57,14 +56,10 @@ body
 /// entry
 
 #entry-list
-  //padding 10px
-  //border-radius 10px
   clear both
-  //box-shadow 0 20px 40px rgba(0, 0, 0, 0.3)
-  //background #fff
-  //border 2px solid #333
 
 .entry
+  color #808080
   background-color #fff
   padding 20px
   border-bottom 1px solid #eee
@@ -79,7 +74,10 @@ body
   color #333
 
 .entry-meta
+  line-height 18px
   font-size 90%
+
+
 
 
 /// pagination
@@ -115,6 +113,9 @@ input[type=text], textarea
   padding 4px 0
   resize vertical
 
+.form-stacked
+  padding-left 0
+
 .form-stacked .actions 
   padding-bottom 30px
   margin-right -20px
@@ -133,6 +134,12 @@ input[type=text], textarea
   border-top none
   margin-top -10px
 
+/// error
+
+ul.error > li
+  color #f30
+  font-size 16px
+
 /// color bars
 
 bar-width = 30px
@@ -144,7 +151,7 @@ bar-base-offset = 250px
   width bar-width
   left 50%
   top -1px
-  border 1px solid #333
+  border 1px solid rgba(0, 0, 0, 0.4)
   border-radius 0 0 3px 3px
 
 #bar1

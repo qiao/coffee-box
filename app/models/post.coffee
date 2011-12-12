@@ -9,8 +9,8 @@ PostSchema = new Schema
   slug:      { type: String, required: true }
   comments:  { type: [CommentSchema] }
   tags:      { type: [String] }
-  createdAt: { type: Date,   required: true }
-  updatedAt: { type: Date,   required: true }
+  createdAt: { type: Date,   required: true, default: Date.now }
+  updatedAt: { type: Date,   required: true, default: Date.now }
 
 Post = mongoose.model 'Post', PostSchema
 

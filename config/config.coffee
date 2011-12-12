@@ -20,6 +20,7 @@ module.exports = (app) ->
     app.use express.logger('dev')
     app.use app.router
     app.use express.static("#{rootdir}/public")
+    app.dynamicHelpers messages: require('express-messages')
 
   app.configure 'development', ->
     app.use express.errorHandler(dumpException: true, showStack: true)

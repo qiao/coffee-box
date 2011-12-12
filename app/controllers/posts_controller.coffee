@@ -1,4 +1,5 @@
 Post = require('../models/post').model
+postPath = require('../helpers/posts_helper').postPath
 
 POSTS_PER_PAGE = 5
 
@@ -45,6 +46,14 @@ PostsController =
 
   # POST /posts
   create: (req, res, next) ->
+    post = new Post req.body.post
+    post.save (err) ->
+      if err
+        req.flash 'error', err
+        res.redirect 'back'
+      else
+        req.flash 'info', 'successfully posted'
+        res.redirect postPath(post)
 
   # PUT /year/month/day/:slug
   update: (req, res, next) ->

@@ -1,23 +1,25 @@
-form(method='post', action=(post.title ? postPath(post) : '/posts'), accept-charset='utf-8').entry.form-stacked
-  //div for csrf
-  fieldset
-    legend= (post.title ? 'Edit post' : 'New post')
-    .clearfix
-      label(for='post[title]') Title
-      .input
-        input(type='text', name='post[title]', value=post.title)
-    .clearfix
-      label(for='post[content]') Content
-      .input
-        textarea(rows='20', name='post[content]')= post.content
-    .clearfix
-      label(for='post[tags]') Tags
-      .input
-        input(type='text', name='post[tags]', value=post.tags.join(' '))
-    .clearfix
-      label(for='post[slug]') Slug
-      .input
-        input(type='text', name='post[slug]', value=post.slug)
-    .actions
-      input(type='submit', name='commit', value='Submit').btn.primary
-      a(href='/').btn Cancel
+.entry
+  != messages()
+  form(method='post', action=(post.title ? postPath(post) : '/posts'), accept-charset='utf-8').form-stacked
+    //div for csrf
+    fieldset
+      legend= (post.title ? 'Edit post' : 'New post')
+      .clearfix
+        label(for='post[title]') Title
+        .input
+          input(type='text', name='post[title]', value=post.title)
+      .clearfix
+        label(for='post[content]') Content
+        .input
+          textarea(rows='20', name='post[content]')= post.content
+      .clearfix
+        label(for='post[tags]') Tags
+        .input
+          input(type='text', name='post[tags]', value=post.tags.join(' '))
+      .clearfix
+        label(for='post[slug]') Slug
+        .input
+          input(type='text', name='post[slug]', value=post.slug)
+      .actions
+        input(type='submit', name='commit', value='Submit').btn.primary
+        a(href='/').btn Cancel
