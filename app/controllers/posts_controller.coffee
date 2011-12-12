@@ -74,5 +74,6 @@ PostsController =
 
   # DELETE /year/month/day/:slug
   destroy: (req, res, next) ->
+    Post.remove slug: req.params.slug
 
 module.exports = PostsController

@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+markdown = require 'node-markdown'
 Schema = mongoose.Schema
 
 CommentSchema = require('./comment').schema
