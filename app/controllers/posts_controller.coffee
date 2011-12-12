@@ -27,23 +27,29 @@ PostsController =
         res.render 'posts/show'
           post: post
       else
-        res.send 404
-        #res.redirect '/404.html'
+        res.redirect '404'
 
   # GET /posts/new
   new: (req, res, next) ->
     res.render 'posts/new'
+      post: new Post
 
-  # GET /posts/:slug/edit
+  # GET /year/month/day/:slug/edit
   edit: (req, res, next) ->
+    Post.findOne slug: req.params.slug, (err, post) ->
+      if post
+        res.render 'posts/edit'
+          post: post
+      else
+        res.redirect '404'
 
   # POST /posts
   create: (req, res, next) ->
 
-  # PUT /posts
+  # PUT /year/month/day/:slug
   update: (req, res, next) ->
 
-  # DELETE /posts/:slug
+  # DELETE /year/month/day/:slug
   destroy: (req, res, next) ->
 
 module.exports = PostsController
