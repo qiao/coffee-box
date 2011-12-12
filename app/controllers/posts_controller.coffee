@@ -57,6 +57,16 @@ PostsController =
 
   # PUT /year/month/day/:slug
   update: (req, res, next) ->
+    query = slug: req.params.slug
+    Post.findOne query, (err, post) ->
+      if post
+        Post.update query, req.body.post, (err) ->
+          if err
+            req.flash 'error', err
+            res.redirect 'back'
+          else
+            req.flash 'info', 'successfully updated'
+            res.redirect postPath(post)
 
   # DELETE /year/month/day/:slug
   destroy: (req, res, next) ->

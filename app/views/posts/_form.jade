@@ -1,9 +1,11 @@
 .entry
   != messages()
-  form(method='post', action=(post.title ? postPath(post) : '/posts'), accept-charset='utf-8').form-stacked
+  form(method='post', action=(post.title ? postPath(post) : '/posts'), 
+    accept-charset='utf-8').form-stacked
     //div for csrf
     fieldset
       legend= (post.title ? 'Edit post' : 'New post')
+      input(type='hidden', name='_method', value=(post.title ? 'put' : 'post'))
       .clearfix
         label(for='post[title]') Title
         .input
