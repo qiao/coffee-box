@@ -65,6 +65,10 @@ body {
   line-height: 18px;
   font-size: 90%;
 }
+.entry ul,
+.entry ol {
+  margin: 0 0 18px 25px;
+}
 .pagination {
   text-align: center;
 }
