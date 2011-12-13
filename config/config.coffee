@@ -28,5 +28,4 @@ module.exports = (app) ->
   app.configure 'production', ->
     app.use express.errorHandler()
 
-  #require("#{rootdir}/lib/tasks/populate").populate dbpath
   mongoose.connect dbpath
