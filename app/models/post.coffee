@@ -1,5 +1,4 @@
 mongoose = require 'mongoose'
-markdown = require 'node-markdown'
 Schema = mongoose.Schema
 
 CommentSchema = require('./comment').schema
@@ -9,6 +8,8 @@ PostSchema = new Schema
     type: String
     required: true
   content:
+    type: String
+  raw_content:
     type: String
   slug:
     type: String

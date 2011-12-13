@@ -146,3 +146,6 @@ ul.error > li {
   margin-left: 343px;
   background-color: rgba(0,255,100,0.70);
 }
+code {
+  font-family: monaco, monospace;
+}

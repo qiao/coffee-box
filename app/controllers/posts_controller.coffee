@@ -1,5 +1,6 @@
-Post = require('../models/post').model
+Post     = require('../models/post').model
 postPath = require('../helpers/posts_helper').postPath
+markdown = require('../../lib/markdown_with_highlight').MarkdownWithHighlight
 
 POSTS_PER_PAGE = 5
 
@@ -47,6 +48,7 @@ PostsController =
   # POST /posts
   create: (req, res, next) ->
     post = new Post req.body.post
+    post.content = markdown post.raw_content
     post.save (err) ->
       if err
         req.flash 'error', err
@@ -61,6 +63,7 @@ PostsController =
     Post.findOne query, (err, post) ->
       if post
         newPost = req.body.post
+        newPost.content = markdown newPost.raw_content
         newPost.createdAt = post.createdAt
         Post.update query, newPost, (err) ->
           if err
