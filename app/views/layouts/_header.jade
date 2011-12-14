@@ -1,11 +1,8 @@
-header#header
-  hgroup#title
-    h1
-      a(href='/')= title
-    h2= subtitle
-  nav.pagination#navigator
-    ul.unstyled
-      li.active
-        a(href='/') Home
-      li
-        a(href='/about') About
+.topbar
+  .topbar-inner
+    .container
+      a(href='/').brand= title
+      ul.nav
+        li: a(href='/about') about
+      form(action='/search').pull-left
+        input(type='text', placeholder='Search')
