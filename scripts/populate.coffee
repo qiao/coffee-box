@@ -3,7 +3,7 @@
 
 DB_URL   = 'mongodb://localhost/coffee-box-db'
 
-Post     = require('../../app/models/post').model
+Post     = require('../../app/models/post').Post
 Faker    = require 'Faker'
 mongoose = require 'mongoose'
 markdown = require('../markdown_with_highlight').MarkdownWithHighlight

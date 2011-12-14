@@ -1,4 +1,4 @@
-Post     = require('../models/post').model
+Post     = require('../models/post').Post
 postPath = require('../helpers/posts_helper').postPath
 markdown = require('../../lib/markdown').Markdown
 
@@ -9,13 +9,13 @@ PostsController =
   index: (req, res, next) ->
     # check pagination param: /posts/?page=2
     pageNo = parseInt(req.query['page'], 10) or 1
-    Post.count (err, totalPosts) ->
+    Post.count { public: true }, (err, totalPosts) ->
       totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE)
       options =
         skip:   (pageNo - 1) * POSTS_PER_PAGE
         limit:  POSTS_PER_PAGE
         sort:   [['createdAt', 'desc']]
-      Post.find {}, {}, options, (err, posts) ->
+      Post.find { public: true }, {}, options, (err, posts) ->
         res.render 'posts/index'
           posts:      posts
           pageNo:     pageNo
@@ -60,11 +60,13 @@ PostsController =
   # PUT /year/month/day/:slug
   update: (req, res, next) ->
     query = slug: req.params.slug
+    console.log req.body.post
     Post.findOne query, (err, post) ->
       if post
         newPost = req.body.post
         newPost.content = markdown newPost.raw_content
         newPost.createdAt = post.createdAt
+        newPost.updatedAt = Date.now()
         Post.update query, newPost, (err) ->
           if err
             req.flash 'error', err

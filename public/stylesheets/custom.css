@@ -130,6 +130,9 @@ li {
 .form-stacked .actions .btn {
   margin-right: 5px;
 }
+.inputs-list {
+  margin-left: 0 !important;
+}
 #footer {
   height: 250px;
   border-top: none;

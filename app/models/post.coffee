@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
-CommentSchema = require('./comment').schema
+CommentSchema = require('./comment').CommentSchema
 
 PostSchema = new Schema
   title:
@@ -19,6 +19,12 @@ PostSchema = new Schema
     type: [CommentSchema]
   tags:
     type: [String]
+  public:
+    type: Boolean
+    default: true
+  asPage:
+    type: Boolean
+    default: false
   createdAt:
     type: Date
     required: true
@@ -31,5 +37,5 @@ PostSchema = new Schema
 Post = mongoose.model 'Post', PostSchema
 
 module.exports =
-  schema: PostSchema
-  model:  Post
+  PostSchema: PostSchema
+  Post:       Post

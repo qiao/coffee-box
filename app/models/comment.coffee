@@ -25,5 +25,5 @@ CommentSchema = new Schema
 Comment = mongoose.model 'Comment', CommentSchema
 
 module.exports =
-  schema: CommentSchema
-  model:  Comment
+  CommentSchema: CommentSchema
+  Comment:       Comment
