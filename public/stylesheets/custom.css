@@ -150,6 +150,14 @@ ul.error > li {
   margin-left: 343px;
   background-color: rgba(0,255,100,0.70);
 }
+pre {
+  border-top: 1px solid rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
 code {
   font-family: monaco, monospace;
+  background: #f5f5f5 !important;
 }
