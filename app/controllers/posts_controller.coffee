@@ -1,6 +1,6 @@
 Post     = require('../models/post').model
 postPath = require('../helpers/posts_helper').postPath
-markdown = require('../../lib/markdown_with_highlight').MarkdownWithHighlight
+markdown = require('../../lib/markdown').Markdown
 
 POSTS_PER_PAGE = 5
 

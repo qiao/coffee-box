@@ -1,1 +1,1 @@
-$(function(){})
+$(function(){return $("pre code").each(function(a,b){return hljs.highlightBlock(b,"    ")})})

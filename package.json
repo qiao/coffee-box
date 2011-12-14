@@ -12,6 +12,5 @@
     , "mongoose": ">= 2.4.0"
     , "moment": ">= 1.1.0"
     , "node-markdown": ">= 0.1.0"
-    , "highlight": ">= 0.2.0"
   }
 }
