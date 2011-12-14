@@ -147,7 +147,7 @@ pre {
   border-radius: 0;
 }
 code {
-  font-family: monaco, monospace;
+  font-family: monospace, "consolas", "courier new";
   background: #f5f5f5 !important;
   line-height: 16px;
 }
