@@ -10,3 +10,9 @@ module.exports =
 
   postTime: (post) ->
     moment(post.createdAt).format('hh:mm')
+
+  postDay: (post) ->
+    moment(post.createdAt).format('DD')
+
+  postMonth: (post) ->
+    moment(post.createdAt).format('MMM')

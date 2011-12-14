@@ -1,9 +1,19 @@
-@import "bootstrap.css";
 html {
   overflow: hidden;
 }
 body {
-  background: url("/images/background.png");
+  background: url("/images/fabric_1.png");
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #555;
+}
+li {
+  line-height: 21px;
 }
 #header {
   height: 100px;
@@ -12,18 +22,29 @@ body {
   margin: 0 auto;
 }
 #navigator {
-  margin: 30px 0;
-  float: left;
+  float: right;
+  margin-top: 0px;
+  margin-bottom: -1px;
+  margin-right: 20px;
+}
+#navigator a {
+  height: 35px;
+  background: rgba(0,100,200,0.30);
+  font-weight: bold;
+  color: #fff;
+}
+#navigator a:hover {
+  background: rgba(0,100,200,0.40);
 }
 #title {
   width: 840px;
   margin: 0 auto;
 }
 #title a {
-  color: #eee;
+  color: #555;
 }
 #title a:hover {
-  color: #fff;
+  color: #666;
   text-decoration: none;
 }
 #title h1 {
@@ -34,7 +55,6 @@ body {
 #title h2 {
   font-size: 16px;
   line-height: 16px;
-  color: #ddd;
   text-indent: 5px;
 }
 .container {
@@ -47,27 +67,57 @@ body {
   clear: both;
 }
 .entry {
-  color: #808080;
+  color: #666;
   background-color: #fff;
-  padding: 20px;
+  padding: 30px;
   border-bottom: 1px solid #eee;
-  border-radius: 10px;
   margin-bottom: 50px;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.20);
+  box-shadow: 0 0 3px rgba(0,0,0,0.10);
+  font-size: 14px;
+  line-height: 21px;
+}
+.entry p {
+  font-size: 14px;
+  line-height: 21px;
 }
 .entry-header {
   padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.10);
 }
 .entry-title a {
-  color: #333;
+  color: #555;
+  font-size: 28px;
 }
-.entry-meta {
-  line-height: 18px;
-  font-size: 90%;
+.entry-title a:hover {
+  color: #666;
+  text-decoration: none;
 }
 .entry ul,
 .entry ol {
   margin: 0 0 18px 25px;
+}
+.entry-meta {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(0,100,200,0.30);
+  margin-left: -90px;
+  margin-top: -55px;
+  text-align: center;
+  color: #fff;
+}
+.entry-day {
+  margin-top: 12px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.entry-month {
+  margin-top: 3px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.entry-content {
+  margin-top: 20px;
 }
 .pagination {
   text-align: center;
@@ -80,16 +130,15 @@ body {
   border: none;
 }
 .pagination a {
-  color: #fff;
+  color: #777;
+  background: #fff;
   border: none;
-  margin: 0 3px;
+  margin: 0 5px;
 }
 .pagination a:hover,
 .pagination .active a {
-  background-color: #eee;
-  color: #333;
-  border-radius: 5px;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.30);
+  background-color: #bbb;
+  color: #fff;
 }
 .pagination .disabled {
   display: none;
@@ -121,35 +170,6 @@ ul.error > li {
   color: #f30;
   font-size: 16px;
 }
-.colorbar {
-  position: absolute;
-  display: block;
-  width: 30px;
-  left: 50%;
-  top: -1px;
-  border: 1px solid rgba(0,0,0,0.40);
-  border-radius: 0 0 3px 3px;
-}
-#bar1 {
-  height: 50px;
-  margin-left: 250px;
-  background-color: rgba(255,50,0,0.70);
-}
-#bar2 {
-  height: 65px;
-  margin-left: 281px;
-  background-color: rgba(255,255,0,0.70);
-}
-#bar3 {
-  height: 75px;
-  margin-left: 312px;
-  background-color: rgba(0,200,255,0.70);
-}
-#bar4 {
-  height: 60px;
-  margin-left: 343px;
-  background-color: rgba(0,255,100,0.70);
-}
 pre {
   border-top: 1px solid rgba(0,0,0,0.15);
   border-bottom: 1px solid rgba(0,0,0,0.15);
@@ -160,4 +180,5 @@ pre {
 code {
   font-family: monaco, monospace;
   background: #f5f5f5 !important;
+  line-height: 16px;
 }
