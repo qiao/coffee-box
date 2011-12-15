@@ -3,7 +3,7 @@ gravatar = require 'gravatar'
 
 module.exports =
   gravatarUrl: (comment) ->
-    gravatar.url comment.email, size: '32'
+    gravatar.url comment.email, size: '32', default: 'mm'
 
   commentMeta: (comment) ->
     moment(comment.createdAt).format 'YYYY-MM-DD hh:mm'
