@@ -7,3 +7,5 @@ article.entry.post
       .entry-month= postMonth(post)
   .entry-content
     != post.content
+
+  != partial('comments/comments', { comments: post.comments })
