@@ -3,7 +3,6 @@ app = module.exports = express.createServer()
 
 require('./config/config') app
 require('./config/routes') app
-require('./config/site')   app
 require('./app/helpers')   app
 
 app.listen 3000

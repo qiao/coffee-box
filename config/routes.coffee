@@ -1,5 +1,7 @@
-PostsController    = require '../app/controllers/posts_controller'
-CommentsController = require '../app/controllers/comments_controller'
+PostsController     = require '../app/controllers/posts_controller'
+CommentsController  = require '../app/controllers/comments_controller'
+SessionController   = require '../app/controllers/session_controller'
+DashboardController = require '../app/controllers/dashboard_controller'
 
 # match post against /year/month/day/:slug.:format?
 # it seems to be a bug that expressjs doesn't support the /\d/ regexp.
@@ -29,6 +31,12 @@ module.exports = (app) ->
 
   app.post COMMENT_CREATE_PATTEN               , CommentsController.create
   app.post COMMENT_DELETE_PATTEN               , CommentsController.destroy
+
+  app.get  '/login'              , findPages   , SessionController.new
+  app.post '/login'                            , SessionController.create
+  app.get  '/logout'                           , SessionController.destroy
+
+  app.get  '/admin'              , findPages   , DashboardController.index
 
   app.get  '/:slug.:format?'     , findPages   , PostsController.showPage
 

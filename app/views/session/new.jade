@@ -1,0 +1,5 @@
+form(action='/login', method='post')#login-form
+  != messages()
+  label(for='password') Password
+  input(type='password', name='password')
+  input(type='submit', value='Submit').btn

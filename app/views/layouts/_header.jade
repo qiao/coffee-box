@@ -1,9 +1,11 @@
 .topbar
   .topbar-inner
     .container
-      a(href='/').brand= title
+      a(href='/').brand= app.settings.sitename
       ul.nav
         for page in pages
           li: a(href='/' + page.slug)= page.title
       form(action='/search').pull-left
         input(type='text', placeholder='Search')
+      ul.nav.secondary-nav
+        li: a(href='/login') Login

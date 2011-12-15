@@ -1,4 +1,3 @@
-module.exports = (app) ->
-  app.helpers
-    title:    'CoffeeBox'
-    subtitle: 'Blog engine for fashionable developers'
+module.exports =
+  sitename:  'CoffeeBox'
+  password:  '123456'
