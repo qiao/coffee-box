@@ -15,30 +15,32 @@ POST_EDIT_PATTERN = POST_PATTERN + '/edit/.:format?'
 COMMENT_CREATE_PATTEN = POST_PATTERN + '/comments'
 COMMENT_DELETE_PATTEN = COMMENT_CREATE_PATTEN + '/:id'
 
-# middleware to find all posts published as individual pages
+# middleware for finding all posts published as individual pages
 findPages = PostsController.findPages
+# middleware for requiring login
+requireLogin = SessionController.requireLogin
 
 module.exports = (app) ->
-  app.get '/'                    , findPages   , PostsController.index
+  app.get '/'                    , findPages                , PostsController.index
 
-  app.get  '/posts.:format?'     , findPages   , PostsController.index
-  app.get  POST_SHOW_PATTERN     , findPages   , PostsController.show
-  app.get  '/posts/new.:format?' , findPages   , PostsController.new
-  app.get  POST_EDIT_PATTERN     , findPages   , PostsController.edit
-  app.post '/posts.:format?'                   , PostsController.create
-  app.put  POST_SHOW_PATTERN                   , PostsController.update
-  app.del  POST_SHOW_PATTERN                   , PostsController.delete
+  app.get  '/posts.:format?'     , findPages                , PostsController.index
+  app.get  POST_SHOW_PATTERN     , findPages                , PostsController.show
+  app.get  '/posts/new.:format?' , requireLogin , findPages , PostsController.new
+  app.get  POST_EDIT_PATTERN     , requireLogin , findPages , PostsController.edit
+  app.post '/posts.:format?'     , requireLogin             , PostsController.create
+  app.put  POST_SHOW_PATTERN     , requireLogin             , PostsController.update
+  app.del  POST_SHOW_PATTERN     , requireLogin             , PostsController.delete
 
-  app.post COMMENT_CREATE_PATTEN               , CommentsController.create
-  app.post COMMENT_DELETE_PATTEN               , CommentsController.destroy
+  app.post COMMENT_CREATE_PATTEN                            , CommentsController.create
+  app.post COMMENT_DELETE_PATTEN , requireLogin             , CommentsController.destroy
 
-  app.get  '/login'              , findPages   , SessionController.new
-  app.post '/login'                            , SessionController.create
-  app.get  '/logout'                           , SessionController.destroy
+  app.get  '/login'              , findPages                , SessionController.new
+  app.post '/login'                                         , SessionController.create
+  app.get  '/logout'                                        , SessionController.destroy
 
-  app.get  '/admin'              , findPages   , DashboardController.index
+  app.get  '/admin'              , requireLogin , findPages , DashboardController.index
 
-  app.get  '/:slug.:format?'     , findPages   , PostsController.showPage
+  app.get  '/:slug.:format?'     , findPages                , PostsController.showPage
 
   app.redirect '404'             , '/404.html'
   app.redirect '500'             , '/500.html'
