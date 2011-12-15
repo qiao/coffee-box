@@ -9,13 +9,14 @@ PostsController =
   index: (req, res, next) ->
     # check pagination param: /posts/?page=2
     pageNo = parseInt(req.query['page'], 10) or 1
-    Post.count { public: true }, (err, totalPosts) ->
+    query = public: true, asPage: false
+    Post.count query, (err, totalPosts) ->
       totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE)
       options =
         skip:   (pageNo - 1) * POSTS_PER_PAGE
         limit:  POSTS_PER_PAGE
         sort:   [['createdAt', 'desc']]
-      Post.find { public: true }, {}, options, (err, posts) ->
+      Post.find query, {}, options, (err, posts) ->
         res.render 'posts/index'
           posts:      posts
           pageNo:     pageNo
@@ -60,7 +61,6 @@ PostsController =
   # PUT /year/month/day/:slug
   update: (req, res, next) ->
     query = slug: req.params.slug
-    console.log req.body.post
     Post.findOne query, (err, post) ->
       if post
         newPost = req.body.post or {}
@@ -80,5 +80,21 @@ PostsController =
   # DELETE /year/month/day/:slug
   destroy: (req, res, next) ->
     Post.remove slug: req.params.slug
+
+  # find all posts published as individual pages
+  # this is a middleware to apply before all requests
+  findPages: (req, res, next) ->
+    Post.find { asPage: true }, (err, pages) ->
+      res.locals pages: pages
+      next()
+
+  # GET /:slug
+  showPage: (req, res, next) ->
+    Post.findOne { slug: req.params.slug }, (err, post) ->
+      if post
+        res.render 'posts/show'
+          post: post
+      else
+        res.redirect '404'
 
 module.exports = PostsController

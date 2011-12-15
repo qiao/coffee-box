@@ -3,6 +3,7 @@
     .container
       a(href='/').brand= title
       ul.nav
-        li: a(href='/about') about
+        for page in pages
+          li: a(href='/' + page.slug)= page.title
       form(action='/search').pull-left
         input(type='text', placeholder='Search')
