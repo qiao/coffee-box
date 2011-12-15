@@ -236,8 +236,8 @@ textarea:focus {
   border-top: 1px solid rgba(0,0,0,0.15);
 }
 .comments>li {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   line-height: normal !important;
   border-bottom: 1px solid rgba(0,0,0,0.15);
 }
@@ -252,10 +252,12 @@ textarea:focus {
 }
 .comment-body {
   float: left;
+  width: 650px;
 }
 .comment-meta {
   font-size: 11px;
   margin-top: -3px;
+  margin-bottom: 3px;
 }
 #footer {
   height: 250px;
