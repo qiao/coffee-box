@@ -267,6 +267,10 @@ ul.error > li {
   color: #f30;
   font-size: 16px;
 }
+ul.info > li {
+  color: rgba(0,150,0,0.70);
+  font-size: 16px;
+}
 pre {
   border-top: 1px solid rgba(0,0,0,0.15);
   border-bottom: 1px solid rgba(0,0,0,0.15);
@@ -316,4 +320,18 @@ table caption {
 }
 table caption h3 {
   float: left;
+}
+.post-delete-link {
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  font-weight: bold;
+  font-size: 100%;
+  color: #0069d6;
+  height: 18px !important;
+}
+.post-delete-link:hover {
+  color: #00438a;
+  text-decoration: underline;
 }

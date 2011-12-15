@@ -79,7 +79,8 @@ PostsController =
 
   # DELETE /year/month/day/:slug
   destroy: (req, res, next) ->
-    Post.remove slug: req.params.slug
+    Post.remove slug: req.params.slug, (err) ->
+      res.redirect 'back'
 
   # find all posts published as individual pages
   # this is a middleware to apply before all requests

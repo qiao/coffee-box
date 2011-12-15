@@ -29,7 +29,7 @@ module.exports = (app) ->
   app.get  POST_EDIT_PATTERN     , requireLogin , findPages , PostsController.edit
   app.post '/posts.:format?'     , requireLogin             , PostsController.create
   app.put  POST_SHOW_PATTERN     , requireLogin             , PostsController.update
-  app.del  POST_SHOW_PATTERN     , requireLogin             , PostsController.delete
+  app.del  POST_SHOW_PATTERN     , requireLogin             , PostsController.destroy
 
   app.post COMMENT_CREATE_PATTEN                            , CommentsController.create
   app.post COMMENT_DELETE_PATTEN , requireLogin             , CommentsController.destroy

@@ -278,10 +278,14 @@ textarea:focus
   border-top none
   margin-top -10px
 
-/// error
+/// messages
 
 ul.error > li
   color #f30
+  font-size 16px
+
+ul.info > li
+  color rgba(0, 150, 0, 0.7)
   font-size 16px
 
 /// code
@@ -340,3 +344,16 @@ table caption
 table caption h3
   float left
 
+.post-delete-link
+  padding 0
+  background none
+  border none
+  box-shadow none
+  font-weight bold
+  font-size 100%
+  color #0069d6
+  height 18px !important
+
+.post-delete-link:hover
+  color #00438a
+  text-decoration underline

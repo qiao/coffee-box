@@ -21,4 +21,7 @@
           th= post.public
           th= postDate(post)
           th: a(href=postPath(post) + '/edit') Edit
-          th  Del
+          th
+            form(action=postPath(post), method='post')
+              input(type='hidden', name='_method', value='delete')
+              input(type='submit', value='Del').post-delete-link
