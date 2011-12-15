@@ -20,4 +20,12 @@ CommentsController =
       else
         res.redirect '404'
 
+  # DEL /year/month/day/:slug/comments/:id
+  destroy: (req, res, next) ->
+    post = Post.findOne slug: req.params.slug, (err, post) ->
+      if post
+        post.comments.id(id).remove()
+        post.save (err) ->
+          # comment removed
+    
 module.exports = CommentsController

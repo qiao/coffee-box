@@ -11,6 +11,7 @@ POST_PATTERN =
 POST_SHOW_PATTERN = POST_PATTERN + '.:format?'
 POST_EDIT_PATTERN = POST_PATTERN + '/edit/.:format?'
 COMMENT_CREATE_PATTEN = POST_PATTERN + '/comments'
+COMMENT_DELETE_PATTERN = COMMENT_CREATE_PATTEN + '/:id'
 
 
 module.exports = (app) ->
@@ -25,6 +26,7 @@ module.exports = (app) ->
   app.del  POST_SHOW_PATTERN,       PostsController.delete
 
   app.post COMMENT_CREATE_PATTEN,   CommentsController.create
+  app.post COMMENT_DELETE_PATTEN,   CommentsController.destroy
 
 
   app.redirect '404', '/404.html'
