@@ -3,10 +3,10 @@
 
 DB_URL   = 'mongodb://localhost/coffee-box-db'
 
-Post     = require('../../app/models/post').Post
+Post     = require('../app/models/post').Post
 Faker    = require 'Faker'
 mongoose = require 'mongoose'
-markdown = require('../markdown_with_highlight').MarkdownWithHighlight
+markdown = require('../lib/markdown').Markdown
 
 mongoose.connect DB_URL
 console.log 'connected to db'
@@ -22,8 +22,6 @@ for i in [1..20]
     raw_content  : raw_content
     content      : content
     slug         : slug
-    createdAt    : new Date
-    updatedAt    : new Date
   ).save()
 
 console.log 'done'
