@@ -9,8 +9,8 @@ mongoose = require 'mongoose'
 markdown = require('../lib/markdown').Markdown
 
 mongoose.connect DB_URL
-console.log 'connected to db'
 
+savedNum = 0
 
 for i in [1..20]
   post = {}
@@ -18,7 +18,9 @@ for i in [1..20]
   post.slug        = Faker.Lorem.words(3).join '-'
   post.raw_content = Faker.Lorem.paragraphs(4)
   post.content     = markdown post.raw_content
-  post.asPage      = i > 19
+  post.asPage      = i > 17
+  if post.asPage
+    post.title = post.title.slice(0, 5)
 
   comments = []
   numComments = Math.round(Math.random() * 5)
@@ -31,9 +33,9 @@ for i in [1..20]
     comment.content     = markdown comment.raw_content
     comments.push comment
   post.comments = comments
-  (new Post(post)).save()
 
-
-console.log 'done'
-mongoose.disconnect()
-console.log 'dis'
+  (new Post(post)).save ->
+    savedNum += 1
+    if savedNum is 20
+      mongoose.disconnect()
+      process.exit()
