@@ -12,5 +12,6 @@
     , "mongoose": ">= 2.4.0"
     , "moment": ">= 1.1.0"
     , "node-markdown": ">= 0.1.0"
+    , "gravatar": ">= 1.0.3"
   }
 }

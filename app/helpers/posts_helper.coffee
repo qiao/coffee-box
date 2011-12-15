@@ -2,17 +2,17 @@ moment = require 'moment'
 
 module.exports =
   postPath: (post) ->
-    date = moment(post.createdAt).format('YYYY/MM/DD')
+    date = moment(post.createdAt).format 'YYYY/MM/DD'
     "/#{date}/#{post.slug}"
 
   postDate: (post) ->
-    moment(post.createdAt).format('YYYY-MM-DD')
+    moment(post.createdAt).format 'YYYY-MM-DD'
 
   postTime: (post) ->
-    moment(post.createdAt).format('hh:mm')
+    moment(post.createdAt).format 'hh:mm'
 
   postDay: (post) ->
-    moment(post.createdAt).format('DD')
+    moment(post.createdAt).format 'DD'
 
   postMonth: (post) ->
-    moment(post.createdAt).format('MMM')
+    moment(post.createdAt).format 'MMM'

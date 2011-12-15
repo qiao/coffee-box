@@ -2,7 +2,7 @@ mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
 CommentSchema = new Schema
-  author:
+  name:
     type: String
     required: true
   email:
@@ -10,9 +10,11 @@ CommentSchema = new Schema
     required: true
   website:
     type: String
-  content:
+  raw_content:
     type: String
     required: true
+  content:
+    type: String
   createdAt:
     type: Date
     required: true
