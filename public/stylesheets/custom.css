@@ -62,7 +62,7 @@ li {
   position: absolute;
   width: 60px;
   height: 60px;
-  background: rgba(0,100,200,0.30);
+  background: rgba(0,100,200,0.60);
   margin-left: -90px;
   margin-top: -50px;
   text-align: center;
@@ -113,7 +113,7 @@ li {
 }
 .btn {
   border: none;
-  background: rgba(0,100,200,0.90);
+  background: rgba(0,100,200,0.70);
   border-radius: 0;
   -moz-transition: none;
   color: #fff;
@@ -122,11 +122,17 @@ li {
 }
 .btn:hover {
   color: #fff;
-  background: #0064c8;
+  background: rgba(0,100,200,0.80);
 }
 .btn:focus,
 .btn:active {
   box-shadow: none;
+}
+.btn.cancel {
+  background: rgba(200,20,0,0.70);
+}
+.btn.cancel:hover {
+  background: rgba(200,20,0,0.80);
 }
 .entry input[type=text],
 .entry textarea {
@@ -179,7 +185,7 @@ textarea:focus {
 .comment-form textarea {
   float: left;
   width: 540px;
-  height: 100px;
+  height: 95px;
   margin-right: 10px;
 }
 .comment-form-meta {
@@ -196,6 +202,7 @@ textarea:focus {
   color: #777;
 }
 .keep-notify {
+  opacity: 0;
   line-height: 21px;
   margin-left: 0 !important;
 }

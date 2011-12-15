@@ -68,7 +68,7 @@ li
   position absolute
   width 60px
   height 60px
-  background rgba(0, 100, 200, 0.3)
+  background rgba(0, 100, 200, 0.6)
   margin-left -90px
   margin-top -50px
   text-align center
@@ -122,7 +122,7 @@ li
 
 .btn
   border none
-  background rgba(0, 100, 200, 0.9)
+  background rgba(0, 100, 200, 0.7)
   border-radius 0
   -moz-transition none
   color #fff
@@ -131,11 +131,17 @@ li
 
 .btn:hover
   color #fff
-  background rgba(0, 100, 200, 1)
+  background rgba(0, 100, 200, 0.8)
 
 .btn:focus,
 .btn:active
   box-shadow none
+
+.btn.cancel
+  background rgba(200, 20, 0, 0.7)
+
+.btn.cancel:hover
+  background rgba(200, 20, 0, 0.8)
 
 
 .entry input[type=text], .entry textarea
@@ -188,7 +194,7 @@ textarea:focus
 .comment-form textarea
   float left
   width 540px
-  height 100px
+  height 95px
   margin-right 10px
 
 
@@ -207,6 +213,7 @@ textarea:focus
   color #777
 
 .keep-notify
+  opacity 0
   line-height 21px
   margin-left 0 !important
   

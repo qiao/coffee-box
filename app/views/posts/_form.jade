@@ -29,5 +29,5 @@ form(method='post', action=(post.title ? postPath(post) : '/posts'),
           input(type='checkbox', name='post[asPage]', checked=post.asPage)
           span As individual page
     .actions
-      input(type='submit', name='commit', value='Submit').btn.primary
-      a(href='/').btn Cancel
+      input(type='submit', name='commit', value='Submit').btn
+      a(href='/').btn.cancel Cancel
