@@ -1,35 +1,33 @@
-.entry
-  != messages()
-  form(method='post', action=(post.title ? postPath(post) : '/posts'), 
-    accept-charset='utf-8').form-stacked
-    //div for csrf
-    fieldset
-      legend= (post.title ? 'Edit post' : 'New post')
-      input(type='hidden', name='_method', value=(post.title ? 'put' : 'post'))
-      .clearfix
-        label(for='post[title]') Title
-        .input
-          input(type='text', name='post[title]', value=post.title)
-      .clearfix
-        label(for='post[content]') Content
-        .input
-          textarea(rows='20', name='post[raw_content]')= post.raw_content
-      .clearfix
-        label(for='post[tags]') Tags
-        .input
-          input(type='text', name='post[tags]', value=post.tags.join(' '))
-      .clearfix
-        label(for='post[slug]') Slug
-        .input
-          input(type='text', name='post[slug]', value=post.slug)
-      .clearfix
-        ul.inputs-list
-          li: label
-            input(type='checkbox', name='post[public]', checked=post.public)
-            span Public
-          li: label
-            input(type='checkbox', name='post[asPage]', checked=post.asPage)
-            span As individual page
-      .actions
-        input(type='submit', name='commit', value='Submit').btn.primary
-        a(href='/').btn Cancel
+form(method='post', action=(post.title ? postPath(post) : '/posts'), 
+  accept-charset='utf-8').form-stacked
+  //div for csrf
+  fieldset
+    legend= (post.title ? 'Edit post' : 'New post')
+    input(type='hidden', name='_method', value=(post.title ? 'put' : 'post'))
+    .clearfix
+      label(for='post[title]') Title
+      .input
+        input(type='text', name='post[title]', value=post.title)
+    .clearfix
+      label(for='post[content]') Content
+      .input
+        textarea(rows='20', name='post[raw_content]')= post.raw_content
+    .clearfix
+      label(for='post[tags]') Tags
+      .input
+        input(type='text', name='post[tags]', value=post.tags.join(' '))
+    .clearfix
+      label(for='post[slug]') Slug
+      .input
+        input(type='text', name='post[slug]', value=post.slug)
+    .clearfix
+      ul.inputs-list
+        li: label
+          input(type='checkbox', name='post[public]', checked=post.public)
+          span Public
+        li: label
+          input(type='checkbox', name='post[asPage]', checked=post.asPage)
+          span As individual page
+    .actions
+      input(type='submit', name='commit', value='Submit').btn.primary
+      a(href='/').btn Cancel
