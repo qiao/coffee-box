@@ -226,13 +226,14 @@ textarea:focus {
 .comments {
   margin-top: 40px !important;
   margin-left: 0 !important;
-  border-top: 1px solid rgba(0,0,0,0.10);
+  margin-bottom: 0 !important;
+  border-top: 1px solid rgba(0,0,0,0.15);
 }
 .comments>li {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   line-height: normal !important;
-  border-bottom: 1px solid rgba(0,0,0,0.10);
+  border-bottom: 1px solid rgba(0,0,0,0.15);
 }
 .comment-author {
   float: left;
@@ -248,7 +249,7 @@ textarea:focus {
 }
 .comment-meta {
   font-size: 11px;
-  margin-top: -10px;
+  margin-top: -3px;
 }
 #footer {
   height: 250px;
