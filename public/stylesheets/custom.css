@@ -111,10 +111,29 @@ li {
 .pagination .disabled {
   display: none;
 }
+.btn {
+  border: none;
+  background: rgba(0,100,200,0.90);
+  border-radius: 0;
+  -moz-transition: none;
+  color: #fff;
+  text-shadow: none;
+  font-weight: bold;
+}
+.btn:hover {
+  color: #fff;
+  background: #0064c8;
+}
+.btn:focus,
+.btn:active {
+  box-shadow: none;
+}
 .entry input[type=text],
 .entry textarea {
   width: 100%;
   padding: 4px 0;
+}
+.entry textarea {
   resize: vertical;
 }
 .form-stacked {
@@ -132,6 +151,64 @@ li {
 }
 .inputs-list {
   margin-left: 0 !important;
+}
+input[type=text],
+input[type=email],
+input[type=url] {
+  margin-bottom: 5px;
+  border-radius: 0;
+  border: 1px solid rgba(0,0,0,0.20);
+  box-shadow: none;
+  height: 12px;
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=url]:focus {
+  border-color: rgba(82,168,236,0.80);
+  box-shadow: 0 0 5px rgba(82,168,236,0.30);
+}
+textarea {
+  border-radius: 0;
+  border: 1px solid rgba(0,0,0,0.20);
+  box-shadow: none;
+}
+textarea:focus {
+  border-color: rgba(82,168,236,0.80);
+  box-shadow: 0 0 5px rgba(82,168,236,0.30);
+}
+.comment-form textarea {
+  float: left;
+  width: 540px;
+  height: 100px;
+  margin-right: 10px;
+}
+.comment-form-meta {
+  float: left;
+}
+.comment-form input[type=text] {
+  padding: 4px;
+  width: 210px;
+}
+.comment-form label {
+  margin-left: 10px;
+  float: none;
+  font-size: 12px;
+  color: #777;
+}
+.keep-notify {
+  line-height: 21px;
+  margin-left: 0 !important;
+}
+.keep-notify input {
+  margin-right: 5px;
+  vertical-align: bottom;
+  margin-bottom: 5px;
+}
+.keep-notify span {
+  line-height: 20px;
+}
+.comment-form input[type=submit] {
+  float: right;
 }
 #footer {
   height: 250px;

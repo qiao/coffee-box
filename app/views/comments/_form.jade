@@ -1,15 +1,15 @@
 .form(method='post', action=(postPath(post) + '/comments'), 
-  accept-charset='utf-8')
+  accept-charset='utf-8').comment-form
   fieldset
-    .clearfix
-      input(type='text', name='comment[name]')
-      label(for='comment[name]')
-    .clearfix
-      input(type='email', name='comment[email]')
-      label(for='comment[email]')
-    .clearfix
-      input(type='url', name='comment[website]')
-      label(for='comment[website]')
-    .clearfix
-      textarea
-    input(type='submit')
+    textarea
+    .comment-form-meta
+      .clearfix
+        input(type='text', name='comment[name]', placeholder='Name')
+      .clearfix
+        input(type='email', name='comment[email]', placeholder='Email')
+      .clearfix
+        input(type='url', name='comment[website]', placeholder='Website')
+      label.keep-notify
+        input(type='checkbox', name='comment[notify]', checked)
+        span Keep notified
+      input(type='submit', value='Submit').btn
