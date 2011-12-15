@@ -191,6 +191,9 @@ textarea:focus
   border-color rgba(82, 168, 236, 0.8)
   box-shadow 0 0 5px rgba(82, 168, 236, 0.3)
 
+.comment-form
+  clear both
+
 .comment-form textarea
   float left
   width 540px
@@ -231,6 +234,35 @@ textarea:focus
 .comment-form input[type=submit]
   float right
 
+/// comments
+
+.comments
+  margin-top 40px !important
+  margin-left 0 !important
+  border-top 1px solid rgba(0, 0, 0, 0.1)
+
+.comments>li
+  padding-top 20px
+  padding-bottom 20px
+  line-height normal !important
+  border-bottom 1px solid rgba(0, 0, 0, 0.1)
+
+.comment-author
+  float left
+  display block
+  width 100px
+  text-align center
+  
+.comment-name
+  font-size 13px
+
+.comment-body
+  float left
+
+.comment-meta
+  font-size 11px
+  margin-top -10px
+
 /// footer
 
 #footer
@@ -255,3 +287,6 @@ code
   font-family monospace, "consolas", "courier new"
   background #f5f5f5 !important
   line-height 16px
+
+.clearfix
+  clear both

@@ -1,13 +1,13 @@
-ol.comments
+ul.comments.unstyled
   for comment in comments
     li
       article.comment
-        header.comment-meta
-          .comment-author
-            img(src=gravatarUrl(comment)).gravatar
-            .comment-name= comment.name
+        .comment-author
+          img(src=gravatarUrl(comment)).gravatar
+          .comment-name= comment.name
         .comment-body
           .comment-meta= commentMeta(comment)
           .comment-content!= comment.content
+      .clearfix
 
 != partial('form')
