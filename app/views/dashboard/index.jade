@@ -1,2 +1,24 @@
-.entry
-  hello
+.entry#dashboard
+  h2 Dashboard
+  table.zebra-striped
+    caption
+      h3 Posts
+      a(href='/posts/new').new-post-link New
+      .clearfix
+    thead
+      tr
+        th Title
+        th Comments
+        th Public
+        th Date
+        th // Edit
+        th // Del
+    tbody
+      for post in posts
+        tr
+          th= post.title
+          th= post.comments.length
+          th= post.public
+          th= postDate(post)
+          th: a(href=postPath(post) + '/edit') Edit
+          th  Del

@@ -16,6 +16,7 @@ SessionController =
 
   # GET /logout
   destroy: (req, res, next) ->
-    req.session.loggedIn = false
+    req.session.destroy (err) ->
+      res.redirect 'home'
 
 module.exports = SessionController
