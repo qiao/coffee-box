@@ -191,6 +191,9 @@ textarea:focus {
 .comment-form-meta {
   float: left;
 }
+.comment-form .clearfix {
+  margin: 0;
+}
 .comment-form input[type=text] {
   padding: 4px;
   width: 210px;
