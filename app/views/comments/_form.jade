@@ -1,7 +1,7 @@
 form(method='post', action=(postPath(post) + '/comments'), 
   accept-charset='utf-8').comment-form
   fieldset
-    textarea
+    textarea(name='comment[raw_content]')
     .comment-form-meta
       .clearfix
         input(type='text', name='comment[name]', placeholder='Name')

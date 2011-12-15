@@ -7,15 +7,17 @@ CommentsController =
   create: (req, res, next) ->
     post = Post.findOne slug: req.params.slug, (err, post) ->
       if post
-        comment = req.body.comment
-        comment.content = markdown comment.raw_comment
+        comment = req.body.comment or {}
+        comment.content = markdown(comment.raw_content or '')
         post.comments.push comment
         post.save (err) ->
           if err
-            req.flash err
+            req.flash 'error', err
             res.redirect 'back'
           else
-            req.info 'successfully posted'
+            req.flash 'info', 'successfully posted'
             res.redirect postPath(post)
       else
         res.redirect '404'
+
+module.exports = CommentsController

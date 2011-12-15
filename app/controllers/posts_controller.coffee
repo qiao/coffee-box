@@ -47,8 +47,8 @@ PostsController =
 
   # POST /posts
   create: (req, res, next) ->
-    post = new Post req.body.post
-    post.content = markdown post.raw_content
+    post = new Post(req.body.post or {})
+    post.content = markdown(post.raw_content or '')
     post.save (err) ->
       if err
         req.flash 'error', err
@@ -63,8 +63,8 @@ PostsController =
     console.log req.body.post
     Post.findOne query, (err, post) ->
       if post
-        newPost = req.body.post
-        newPost.content = markdown newPost.raw_content
+        newPost = req.body.post or {}
+        newPost.content = markdown(newPost.raw_content or '')
         newPost.createdAt = post.createdAt
         newPost.updatedAt = Date.now()
         Post.update query, newPost, (err) ->
