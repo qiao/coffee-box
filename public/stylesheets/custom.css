@@ -12,6 +12,9 @@ h6 {
 li {
   line-height: 21px;
 }
+blockquote p {
+  font-style: italic;
+}
 .topbar {
   position: absolute;
 }
