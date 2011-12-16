@@ -31,3 +31,29 @@ $ ->
   # highlight codes
   $('pre code').each (i, e) ->
     hljs.highlightBlock e, '    '
+
+  # submit comments form via ajax
+  $('.comment-form').submit (evt) ->
+    # find form
+    $form = $(this)
+    # disable submit button
+    $button = $form.find('input[type=submit]')
+    $button.attr
+      disabled : true
+      value    : 'Submitting'
+    # send form
+    $.ajax
+      type     : 'post'
+      url      : $form.attr('action')
+      data     : $form.serializeArray()
+      success  : (data) ->
+                   $data = $(data).hide()
+                   $form.prev('.comments-list').append $data
+                   $data.slideDown()
+      complete : ->
+                   # restore button status
+                   $button.attr
+                     disabled : false
+                     value    : 'Submit'
+    # prevent default, stop propogate
+    false

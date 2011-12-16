@@ -6,17 +6,24 @@ CommentsController =
   # POST /year/month/day/:slug/comments
   create: (req, res, next) ->
     post = Post.findOne slug: req.params.slug, (err, post) ->
+      console.log req.body
       if post
         comment = req.body.comment or {}
         comment.content = markdown(comment.raw_content or '')
         post.comments.push comment
         post.save (err) ->
           if err
-            req.flash 'error', err
-            res.redirect 'back'
+            if req.xhr
+              res.json err, 400
+            else
+              req.flash 'error', err
+              res.redirect 'back'
           else
-            req.flash 'info', 'successfully posted'
-            res.redirect postPath(post)
+            if req.xhr
+              res.partial 'comments/comment', comment: comment
+            else
+              req.flash 'info', 'successfully posted'
+              res.redirect postPath(post)
       else
         res.redirect '404'
 
