@@ -247,6 +247,9 @@ textarea:focus {
   line-height: normal !important;
   border-top: 1px solid rgba(0,0,0,0.15);
 }
+.comments-list>li:hover {
+  background: rgba(0,0,0,0.02);
+}
 .comment-author {
   float: left;
   display: block;
