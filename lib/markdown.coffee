@@ -3,8 +3,8 @@ markdown  = require('node-markdown').Markdown
 autolink = (html) ->
   # Auto-link URLs and emails (modified based on github-flavored-markdown)
   html = html.replace /https?\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!]/g, (wholeMatch,matchIndex) ->
-    left = text.slice(0, matchIndex)
-    right = text.slice(matchIndex)
+    left = html.slice(0, matchIndex)
+    right = html.slice(matchIndex)
 
     if left.match(/<[^>]+$/) and right.match(/^[^>]*>/)
       return wholeMatch
@@ -15,5 +15,5 @@ autolink = (html) ->
 
 
 exports.Markdown = (raw) ->
-  text = markdown raw, true # filter html tags
-  autolink text
+  html = markdown raw, true # filter html tags
+  autolink html
