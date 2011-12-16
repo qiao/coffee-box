@@ -1,1 +1,1 @@
-$(function(){return $("pre code").each(function(a,b){return hljs.highlightBlock(b,"    ")})})
+$(function(){$("pre code").each(function(a,b){return hljs.highlightBlock(b,"    ")});if(window.location.pathname==="/")return $(".comments").hide(),$(".comments-info").toggle(function(){return $(this).data("original-text",$(this).text()).hide().text("hide comments").fadeIn().next().slideDown(),!1},function(){return $(this).hide().text($(this).data("original-text")).fadeIn().next().slideUp(),!1})})

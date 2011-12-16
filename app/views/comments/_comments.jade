@@ -1,13 +1,20 @@
-ul.comments.unstyled
-  for comment in comments
-    li
-      article.comment
-        .comment-author
-          img(src=gravatarUrl(comment)).gravatar
-          .comment-name= comment.name
-        .comment-body
-          .comment-meta= commentMeta(comment)
-          .comment-content!= comment.content
-      .clearfix
+a(href='#').comments-info
+  if comments.length == 0
+    = 'Leave a comment'
+  else
+    #{comments.length + (comments.length == 1 ? ' comment' : ' comments')}
 
-!= partial('form')
+.comments
+  ul.comments-list.unstyled
+    for comment in comments
+      li
+        article.comment
+          .comment-author
+            img(src=gravatarUrl(comment)).gravatar
+            .comment-name= comment.name
+          .comment-body
+            .comment-meta= commentMeta(comment)
+            .comment-content!= comment.content
+        .clearfix
+
+  != partial('form')
