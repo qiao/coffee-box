@@ -23,3 +23,7 @@ $ ->
         .next()
         .slideUp()
       false)
+
+  # open external links in new tabs
+  $('a').attr 'target', ->
+    @host is location.host ? '_self' : '_blank'
