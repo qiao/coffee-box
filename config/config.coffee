@@ -18,8 +18,8 @@ module.exports = (app) ->
     app.use express.cookieParser()
     app.use express.session(secret: 'secret token')
     app.use express.logger('dev')
-    app.use app.router
     app.use express.static("#{rootdir}/public")
+    app.use app.router
     app.set k, v for k, v of require('./site')
     app.dynamicHelpers messages: require('express-messages')
     app.dynamicHelpers session: (req, res) -> req.session
