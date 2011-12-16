@@ -9,4 +9,4 @@ article.entry.post
   .entry-content
     != post.content
 
-  != partial('comments/comments', { comments: post.comments })
+  != partial('comments/comments', { post: post, comments: post.comments })
