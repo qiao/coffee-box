@@ -28,6 +28,10 @@ $ ->
   $('a').attr 'target', ->
     if @host is location.host then '_self' else '_blank'
 
+  # navigate back on clicking cancel button
+  $('.btn.cancel').click ->
+    window.history.back()
+
   # highlight codes
   $('pre code').each (i, e) ->
     hljs.highlightBlock e, '    '
