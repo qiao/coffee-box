@@ -3,10 +3,12 @@ html
   head
     meta(charset='utf-8')
     title= app.settings.sitename
-    link(rel='stylesheet', href='/stylesheets/bundle.css')
-    script(src='/javascripts/jquery.js')
-    script(src='/javascripts/highlight.js')
-    script(src='/javascripts/main.js')
+    != css('bundle')
+    != js('bundle')
+    //link(rel='stylesheet', href='/stylesheets/bundle.css')
+    //script(src='/javascripts/jquery.js')
+    //script(src='/javascripts/highlight.js')
+    //script(src='/javascripts/main.js')
   body
     != partial('header')
     .body-container 
