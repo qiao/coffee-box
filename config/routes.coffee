@@ -40,6 +40,8 @@ module.exports = (app) ->
 
   app.get  '/admin'              , requireLogin , findPages , DashboardController.index
 
+  app.get  '/feed'                                          , PostsController.feed
+
   app.get  '/:slug.:format?'     , findPages                , PostsController.showPage
 
   app.redirect '404'             , '/404.html'

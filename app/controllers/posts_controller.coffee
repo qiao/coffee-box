@@ -1,6 +1,8 @@
 Post     = require('../models/post').Post
 postPath = require('../helpers/posts_helper').postPath
 markdown = require('../../lib/markdown').Markdown
+site     = require('../../config/site')
+RSS      = require('rss')
 
 POSTS_PER_PAGE = 5
 
@@ -97,5 +99,23 @@ PostsController =
           post: post
       else
         res.redirect '404'
+
+  # GET /feed
+  feed: (req, res, next) ->
+    Post.find {}, {}, sort: [['createdAt', 'desc']], (err, posts) ->
+      feed = new RSS
+        title:       site.sitename
+        description: site.description
+        feed_url:    site.url + '/feed'
+        author:      site.author
+
+      for post in posts
+        feed.item
+          title:       post.title
+          description: post.content
+          url:         site.url + postPath(post)
+          date:        post.createdAt
+
+      res.send feed.xml()
 
 module.exports = PostsController
