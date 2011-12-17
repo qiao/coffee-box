@@ -15,7 +15,7 @@ module.exports = (app) ->
     app.use express.cookieParser()
     app.use express.session(secret: 'secret token')
     app.use express.logger('dev')
-    app.use assets(build: true, detectChanges: false, buildDir: false)
+    app.use assets(src: 'app/assets', build: true, detectChanges: false, buildDir: false)
     app.use express.static("#{ROOT_DIR}/public")
     app.use app.router
     app.set k, v for k, v of require('./site')
