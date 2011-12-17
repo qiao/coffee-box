@@ -6,7 +6,6 @@ CommentsController =
   # POST /year/month/day/:slug/comments
   create: (req, res, next) ->
     post = Post.findOne slug: req.params.slug, (err, post) ->
-      console.log req.body
       if post
         comment = req.body.comment or {}
         comment.content = markdown(comment.raw_content or '')
