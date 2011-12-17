@@ -9,6 +9,9 @@ h5,
 h6 {
   color: #555;
 }
+a:focus {
+  outline: none;
+}
 li {
   line-height: 21px;
 }
