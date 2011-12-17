@@ -1,24 +1,33 @@
-express  = require 'express'
-mongoose = require 'mongoose'
-stylus   = require 'stylus'
-ecoffee  = require 'express-coffee'
+express   = require 'express'
+mongoose  = require 'mongoose'
+stylus    = require 'stylus'
+ecoffee   = require 'express-coffee'
+bootstrap = require 'bootstrap-stylus'
 
-rootdir = "#{__dirname}/.."
-dbpath  = 'mongodb://localhost/coffee-box-db'
+ROOT_DIR = "#{__dirname}/.."
+DB_PATH  = 'mongodb://localhost/coffee-box-db'
+
+stylusMid = stylus.middleware
+  src     : "#{ROOT_DIR}/public"
+  compile : (str, path) ->
+              stylus(str)
+                .set('filename', path)
+                .set('compress', true)
+                .use(bootstrap())
 
 module.exports = (app) ->
   app.configure ->
-    app.set 'views', "#{rootdir}/app/views"
+    app.set 'views', "#{ROOT_DIR}/app/views"
     app.set 'view engine', 'jade'
-    app.set 'view options', layout: "#{rootdir}/app/views/layouts/layout"
-    app.use stylus.middleware(src: "#{rootdir}/public")
-    app.use ecoffee(path: "#{rootdir}/public", live: !process.env.PRODUCTION, uglify: true)
+    app.set 'view options', layout: "#{ROOT_DIR}/app/views/layouts/layout"
+    app.use stylusMid
+    app.use ecoffee(path: "#{ROOT_DIR}/public", live: !process.env.PRODUCTION, uglify: true)
     app.use express.bodyParser()
     app.use express.methodOverride()
     app.use express.cookieParser()
     app.use express.session(secret: 'secret token')
     app.use express.logger('dev')
-    app.use express.static("#{rootdir}/public")
+    app.use express.static("#{ROOT_DIR}/public")
     app.use app.router
     app.set k, v for k, v of require('./site')
     app.dynamicHelpers messages: require('express-messages')
@@ -30,4 +39,4 @@ module.exports = (app) ->
   app.configure 'production', ->
     app.use express.errorHandler()
 
-  mongoose.connect dbpath
+  mongoose.connect DB_PATH
