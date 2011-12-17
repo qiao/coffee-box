@@ -19,7 +19,7 @@ module.exports = (app) ->
     app.use express.static("#{ROOT_DIR}/public")
     app.use app.router
     app.set k, v for k, v of require('./site')
-    app.set 'version', 'v0.0.1'
+    app.set 'version', 'v0.0.2'
     app.dynamicHelpers messages: require('express-messages')
     app.dynamicHelpers session: (req, res) -> req.session
 
