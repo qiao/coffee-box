@@ -2,7 +2,7 @@ Post = require('../models/post').Post
 
 DashboardController =
   index: (req, res, next) ->
-    Post.find {}, (err, posts) ->
+    Post.find {}, {}, sort: [['createdAt', 'desc']], (err, posts) ->
       res.render 'dashboard/index'
         posts: posts
 
