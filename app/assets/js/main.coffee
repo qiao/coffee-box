@@ -70,3 +70,11 @@ $ ->
   $('textarea')
     .elastic()
     .tabby()
+
+  # show comment delete links only on comment hover
+  $('.comment-delete-link').css opacity: 0
+  $('.comment')
+    .mouseover ->
+      $(this).find('.comment-delete-link').css opacity: 1
+    .mouseout ->
+      $(this).find('.comment-delete-link').css opacity: 0

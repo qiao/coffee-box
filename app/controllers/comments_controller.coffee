@@ -13,7 +13,7 @@ CommentsController =
         post.save (err) ->
           if err
             if req.xhr
-              res.json err, 400
+              res.send err, 400
             else
               req.flash 'error', err
               res.redirect 'back'
@@ -22,16 +22,24 @@ CommentsController =
               res.partial 'comments/comment', comment: comment
             else
               req.flash 'info', 'successfully posted'
-              res.redirect postPath(post)
+              res.redirect postPath(post) + '#comments'
       else
-        res.redirect '404'
+        res.send 'Requested post doesn\'t exist', 400
 
   # DEL /year/month/day/:slug/comments/:id
   destroy: (req, res, next) ->
     post = Post.findOne slug: req.params.slug, (err, post) ->
       if post
-        post.comments.id(id).remove()
+        post.comments.id(req.params.id).remove()
         post.save (err) ->
-          # comment removed
+          if err
+            res.send err, 400
+          else
+            if req.xhr
+              res.send 'ok', 200
+            else
+              res.redirect postPath(post) + '#comments'
+      else
+        res.send 'Requested post doesn\'t exist', 400
     
 module.exports = CommentsController

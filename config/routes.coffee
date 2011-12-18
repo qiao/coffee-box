@@ -32,7 +32,7 @@ module.exports = (app) ->
   app.del  POST_SHOW_PATTERN     , requireLogin             , PostsController.destroy
 
   app.post COMMENT_CREATE_PATTEN                            , CommentsController.create
-  app.post COMMENT_DELETE_PATTEN , requireLogin             , CommentsController.destroy
+  app.del  COMMENT_DELETE_PATTEN , requireLogin             , CommentsController.destroy
 
   app.get  '/login'              , findPages                , SessionController.new
   app.post '/login'                                         , SessionController.create
