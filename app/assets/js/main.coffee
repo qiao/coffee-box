@@ -3,6 +3,7 @@ highlightCodes = ->
   $('pre code').each (i, e) ->
     hljs.highlightBlock e, '    '
 
+
 $ ->
   # hide comments in index page
   if window.location.pathname is '/'
@@ -39,7 +40,20 @@ $ ->
 
   highlightCodes()
 
-  # submit comments form via ajax
+  # elastic and tabby textarea
+  $('textarea')
+    .elastic()
+    .tabby()
+
+  # show comment delete links only on comment hover
+  $('.comment-delete-link').css opacity: 0
+  $('.comment')
+    .mouseover ->
+      $(this).find('.comment-delete-link').css opacity: 1
+    .mouseout ->
+      $(this).find('.comment-delete-link').css opacity: 0
+
+  # submit comments via ajax
   $('.comment-form').submit (evt) ->
     # find form
     $form = $(this)
@@ -66,15 +80,14 @@ $ ->
     # prevent default, stop propogate
     false
 
-  # elastic and tabby textarea
-  $('textarea')
-    .elastic()
-    .tabby()
-
-  # show comment delete links only on comment hover
-  $('.comment-delete-link').css opacity: 0
-  $('.comment')
-    .mouseover ->
-      $(this).find('.comment-delete-link').css opacity: 1
-    .mouseout ->
-      $(this).find('.comment-delete-link').css opacity: 0
+  # delete comments via ajax
+  $('.comment').each ->
+    $comment = $(this)
+    $comment.find('.comment-delete-form').submit ->
+      $form = $(this)
+      $.ajax
+        type      : 'post'
+        url       : $form.attr('action')
+        data      : $form.serializeArray()
+        success   : -> $comment.slideUp()
+      false

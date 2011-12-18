@@ -6,7 +6,8 @@ li.comment
     .comment-body
       .comment-meta= commentMeta(comment)
       .comment-content!= comment.content
-    form(action=postPath(post) + '/comments/' + comment._id, method='post')
-      input(type='hidden', name='_method', value='delete')
-      input(type='submit', value='&times;', data-confirm='true').comment-delete-link
+    if session.loggedIn
+      form(action=postPath(post) + '/comments/' + comment._id, method='post').comment-delete-form
+        input(type='hidden', name='_method', value='delete')
+        input(type='submit', value='&times;', data-confirm='true').comment-delete-link
   .clearfix
