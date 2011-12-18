@@ -1,6 +1,6 @@
 # highlight codes
-highlightCodes = ->
-  $('pre code').each (i, e) ->
+highlightCodes = ($container)->
+  $container.find('pre code').each (i, e) ->
     hljs.highlightBlock e, '    '
 
 
@@ -38,7 +38,7 @@ $ ->
   $('.btn.cancel').click ->
     window.history.back()
 
-  highlightCodes()
+  highlightCodes $('.entry')
 
   # elastic and tabby textarea
   $('textarea')
@@ -69,9 +69,9 @@ $ ->
       data     : $form.serializeArray()
       success  : (data) ->
                    $data = $(data).hide()
+                   highlightCodes $data
                    $form.prev('.comments-list').append $data
                    $data.slideDown()
-                   highlightCodes()
       complete : ->
                    # restore button status
                    $button.attr
