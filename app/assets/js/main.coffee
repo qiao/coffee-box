@@ -61,3 +61,6 @@ $ ->
                      value    : 'Submit'
     # prevent default, stop propogate
     false
+
+  # elastic textarea
+  $('textarea').elastic()
