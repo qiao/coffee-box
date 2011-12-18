@@ -1,3 +1,8 @@
+# highlight codes
+highlightCodes = ->
+  $('pre code').each (i, e) ->
+    hljs.highlightBlock e, '    '
+
 $ ->
   # hide comments in index page
   if window.location.pathname is '/'
@@ -32,9 +37,7 @@ $ ->
   $('.btn.cancel').click ->
     window.history.back()
 
-  # highlight codes
-  $('pre code').each (i, e) ->
-    hljs.highlightBlock e, '    '
+  highlightCodes()
 
   # submit comments form via ajax
   $('.comment-form').submit (evt) ->
@@ -54,6 +57,7 @@ $ ->
                    $data = $(data).hide()
                    $form.prev('.comments-list').append $data
                    $data.slideDown()
+                   highlightCodes()
       complete : ->
                    # restore button status
                    $button.attr
