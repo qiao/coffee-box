@@ -62,5 +62,7 @@ $ ->
     # prevent default, stop propogate
     false
 
-  # elastic textarea
-  $('textarea').elastic()
+  # elastic and tabby textarea
+  $('textarea')
+    .elastic()
+    .tabby()
