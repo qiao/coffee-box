@@ -19,7 +19,9 @@ CommentsController =
               res.redirect 'back'
           else
             if req.xhr
-              res.partial 'comments/comment', comment: comment
+              res.partial 'comments/comment'
+                post: post
+                comment: comment
             else
               req.flash 'info', 'successfully posted'
               res.redirect postPath(post) + '#comments'
