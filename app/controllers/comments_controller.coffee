@@ -1,5 +1,6 @@
 Post = require('../models/post').Post
-postPath = require('../helpers/posts_helper').postPath
+postsHelper = require('../helpers/posts_helper')
+commentsHelper = require('../helpers/comments_helper')
 markdown = require('../../lib/markdown').Markdown
 
 CommentsController =
@@ -24,7 +25,8 @@ CommentsController =
                 comment: comment
             else
               req.flash 'info', 'successfully posted'
-              res.redirect postPath(post) + '#comments'
+              res.redirect postsHelper.postPath(post) +
+                           commentsHelper.commentsAnchor(post)
       else
         res.send 'Requested post doesn\'t exist', 400
 
@@ -40,7 +42,8 @@ CommentsController =
             if req.xhr
               res.send 'ok', 200
             else
-              res.redirect postPath(post) + '#comments'
+              res.redirect postsHelper.postPath(post) +
+                           commentsHelper.commentsAnchor(post)
       else
         res.send 'Requested post doesn\'t exist', 400
     

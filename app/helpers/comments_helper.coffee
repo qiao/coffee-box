@@ -7,3 +7,6 @@ module.exports =
 
   commentMeta: (comment) ->
     moment(comment.createdAt).format 'YYYY-MM-DD hh:mm'
+
+  commentsAnchor: (post) ->
+    "#comments-#{post._id}"

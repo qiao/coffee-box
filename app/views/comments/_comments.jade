@@ -4,7 +4,7 @@ a(href=postPath(post) + '#comments').comments-info
   else
     #{comments.length + (comments.length == 1 ? ' comment' : ' comments')}
 
-.comments
+div(id='comments-#{post._id}').comments
   ul.comments-list.unstyled
     != partial('comment', comments)
 
