@@ -118,8 +118,7 @@ $ ->
                         .html(data)
                         .addClass('preview')
                         .css
-                          width  : $textarea.width()
-                          height : $textarea.height()
+                          width: $textarea.width()
                       $textarea
                         .hide()
                         .after($previewDiv)
