@@ -14,7 +14,7 @@ CommentsController =
         post.save (err) ->
           if err
             if req.xhr
-              res.send err, 400
+              res.send 400
             else
               req.flash 'error', err
               res.redirect 'back'
@@ -28,7 +28,7 @@ CommentsController =
               res.redirect postsHelper.postPath(post) +
                            commentsHelper.commentsAnchor(post)
       else
-        res.send 'Requested post doesn\'t exist', 400
+        res.send 400
 
   # DEL /year/month/day/:slug/comments/:id
   destroy: (req, res, next) ->
@@ -37,14 +37,21 @@ CommentsController =
         post.comments.id(req.params.id).remove()
         post.save (err) ->
           if err
-            res.send err, 400
+            res.send 400
           else
             if req.xhr
-              res.send 'ok', 200
+              res.send 200
             else
               res.redirect postsHelper.postPath(post) +
                            commentsHelper.commentsAnchor(post)
       else
-        res.send 'Requested post doesn\'t exist', 400
-    
+        res.send 400
+ 
+  # POST /comments/preview
+  preview: (req, res, next) ->
+    try
+      res.send markdown(req.body.raw_content), 200
+    catch error
+      res.send 400
+
 module.exports = CommentsController

@@ -1,3 +1,8 @@
+div(id='toolbar-#{post._id}').form-toolbar
+  ul.toolbar-list.unstyled
+    li.active: a(href='#').toolbar-edit Edit
+    li: a(href='#').toolbar-preview Preview
+    
 form(method='post', action=(postPath(post) + '/comments'), 
   accept-charset='utf-8').comment-form
   fieldset

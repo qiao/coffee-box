@@ -69,8 +69,11 @@ $ ->
       data     : $form.serializeArray()
       success  : (data) ->
                    $data = $(data).hide()
-                   highlightCodes $data
-                   $form.prev('.comments-list').append $data
+                   highlightCodes($data)
+                   $form
+                     .siblings()
+                     .filter('.comments-list')
+                     .append($data)
                    $data.slideDown()
       complete : ->
                    # restore button status
@@ -90,4 +93,45 @@ $ ->
         url       : $form.attr('action')
         data      : $form.serializeArray()
         success   : -> $comment.slideUp()
+      false
+
+  # preview
+  $('.form-toolbar').each ->
+    $toolbar  = $(this)
+    $edit     = $toolbar.find('.toolbar-edit')
+    $preview  = $toolbar.find('.toolbar-preview')
+    $textarea = $toolbar.next().find('textarea')
+    
+    $preview.click ->
+      return false if $textarea.next().hasClass('preview')
+      $edit.parent().removeClass('active')
+      $preview.parent().addClass('active')
+      $.ajax
+        type      : 'post'
+        url       : '/comments/preview'
+        data      : { raw_content: $textarea.val() }
+        success   : (data) ->
+                      $previewDiv = $('<div>')
+                        .html(data)
+                        .addClass('preview')
+                        .css
+                          width  : $textarea.width()
+                          height : $textarea.height()
+                      $textarea
+                        .hide()
+                        .after($previewDiv)
+                      highlightCodes($previewDiv)
+      false
+
+    $edit.click ->
+      return false unless $textarea.next().hasClass('preview')
+      $textarea
+        .show()
+        .next()
+        .remove()
+      $edit
+        .parent()
+        .addClass('active')
+        .next()
+        .removeClass('active')
       false
