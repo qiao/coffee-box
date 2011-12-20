@@ -4,7 +4,7 @@
   , "homepage"           : "https://github.com/qiao/coffee-box"
   , "keywords"           : ["blog", "express", "mongodb", "coffee"]
   , "author"             : "Xueqiao Xu <xueqiaoxu@gmail.com>"
-  , "version"            : "0.0.2"
+  , "version"            : "0.0.3"
   , "main"               : "index.js"
   , "dependencies"       : {
       "express"          : "2.5.1"
