@@ -103,7 +103,7 @@ $ ->
     $textarea = $toolbar.next().find('textarea')
     
     $preview.click ->
-      return false if $textarea.next().hasClass('preview')
+      return false if $preview.parent().hasClass('active')
       $edit.parent().removeClass('active')
       $preview.parent().addClass('active')
       $.ajax
@@ -124,7 +124,7 @@ $ ->
       false
 
     $edit.click ->
-      return false unless $textarea.next().hasClass('preview')
+      return false if $edit.parent().hasClass('active')
       $textarea
         .show()
         .next()
