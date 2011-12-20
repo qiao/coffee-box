@@ -118,7 +118,7 @@ PostsController =
 
       res.send feed.xml()
 
-  # POST /comments/preview
+  # POST /posts/preview
   preview: (req, res, next) ->
     try
       res.send markdown(req.body.raw_content), 200
