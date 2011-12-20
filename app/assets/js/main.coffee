@@ -101,6 +101,9 @@ $ ->
     $edit     = $toolbar.find('.toolbar-edit')
     $preview  = $toolbar.find('.toolbar-preview')
     $textarea = $toolbar.next().find('textarea')
+
+    # determine which url to send
+    url = if $('.comment-form').length then '/comments/preview' else '/posts/preview'
     
     $preview.click ->
       return false if $preview.parent().hasClass('active')
@@ -108,7 +111,7 @@ $ ->
       $preview.parent().addClass('active')
       $.ajax
         type      : 'post'
-        url       : '/comments/preview'
+        url       : url
         data      : { raw_content: $textarea.val() }
         success   : (data) ->
                       $previewDiv = $('<div>')

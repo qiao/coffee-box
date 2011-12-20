@@ -30,6 +30,7 @@ module.exports = (app) ->
   app.post '/posts.:format?'     , requireLogin             , PostsController.create
   app.put  POST_SHOW_PATTERN     , requireLogin             , PostsController.update
   app.del  POST_SHOW_PATTERN     , requireLogin             , PostsController.destroy
+  app.post '/posts/preview'                                 , PostsController.preview
 
   app.post COMMENT_CREATE_PATTEN                            , CommentsController.create
   app.del  COMMENT_DELETE_PATTEN , requireLogin             , CommentsController.destroy

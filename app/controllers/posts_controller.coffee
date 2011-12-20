@@ -118,4 +118,11 @@ PostsController =
 
       res.send feed.xml()
 
+  # POST /comments/preview
+  preview: (req, res, next) ->
+    try
+      res.send markdown(req.body.raw_content), 200
+    catch error
+      res.send 400
+
 module.exports = PostsController
