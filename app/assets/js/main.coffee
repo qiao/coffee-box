@@ -117,8 +117,6 @@ $ ->
                       $previewDiv = $('<div>')
                         .html(data)
                         .addClass('preview')
-                        .css
-                          width: $textarea.width()
                       $textarea
                         .hide()
                         .after($previewDiv)
