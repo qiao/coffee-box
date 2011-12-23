@@ -39,6 +39,7 @@ module.exports = (app) ->
   app.get  '/login'              , findPages                , SessionController.new
   app.post '/login'                                         , SessionController.create
   app.get  '/logout'                                        , SessionController.destroy
+  app.get  '/verify'                                        , SessionController.verify
 
   app.get  '/admin'              , requireLogin , findPages , DashboardController.index
 

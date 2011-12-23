@@ -1,6 +1,6 @@
 module.exports =
   sitename:    'CoffeeBox'
   description: 'Blog engine for fashionable developers'
-  url:         'https://github.com/qiao/coffee-box'
+  url:         'http://localhost:3000'
   author:      'Xueqiao Xu'
-  password:    '123456'
+  openIds:     ['http://xueqiaoxu.myopenid.com']
