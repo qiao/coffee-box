@@ -8,14 +8,15 @@ You may check out http://66.228.62.171:3000 for a demo page. Note that this proj
 Features
 --------
 
-1. Markdown is your best friend on easy formatting.
-2. Every developer loves syntax highlighting.
-3. Previews on posts and comments rest the minds of you and your visitors.
-4. Embrace HTML5, embrace the future.
-5. Ajax contributes a lot to smooth interaction.
-6. Wow, Node.js is lightning fast!
-7. Asset pipeline should be a standard component.
-8. CoffeeScript === Javascript, The Good Parts.
+* Markdown is your best friend on easy formatting.
+* Every developer loves syntax highlighting.
+* Previews on posts and comments rest the minds of you and your visitors.
+* Login with OpenID, leave the dirty work to the professionals.
+* Embrace HTML5, embrace the future.
+* Ajax contributes a lot to smooth interaction.
+* Wow, Node.js is lightning fast!
+* Asset pipeline should be a standard component.
+* CoffeeScript === Javascript, The Good Parts.
 
 Getting Started
 ---------------
