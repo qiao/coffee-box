@@ -16,7 +16,7 @@
     tbody
       for post in posts
         tr
-          td= post.title
+          td: a(href=postPath(post))= post.title
           td= post.comments.length
           td= post.public
           td= postDate(post)
