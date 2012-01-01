@@ -75,6 +75,7 @@ $ ->
                      .filter('.comments-list')
                      .append($data)
                    $data.slideDown()
+                   $form.find('textarea').val('')
       complete : ->
                    # restore button status
                    $button.attr
