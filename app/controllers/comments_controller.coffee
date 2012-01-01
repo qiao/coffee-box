@@ -22,7 +22,7 @@ CommentsController =
             if req.xhr
               res.partial 'comments/comment'
                 post: post
-                comment: comment
+                comment: post.comments[post.comments.length - 1]
             else
               req.flash 'info', 'successfully posted'
               res.redirect postsHelper.postPath(post) +
