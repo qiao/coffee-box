@@ -16,12 +16,12 @@
     tbody
       for post in posts
         tr
-          th= post.title
-          th= post.comments.length
-          th= post.public
-          th= postDate(post)
-          th: a(href=postPath(post) + '/edit') Edit
-          th
+          td= post.title
+          td= post.comments.length
+          td= post.public
+          td= postDate(post)
+          td: a(href=postPath(post) + '/edit') Edit
+          td
             form(action=postPath(post), method='post')
               input(type='hidden', name='_method', value='delete')
               input(type='submit', value='Del', data-confirm='true').post-delete-link
