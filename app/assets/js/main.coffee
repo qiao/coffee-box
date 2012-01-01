@@ -135,3 +135,11 @@ $ ->
         .next()
         .removeClass('active')
       false
+
+  # login form submit button
+  $('#login-form').submit ->
+    $(this)
+      .find('input[type=submit]')
+      .attr
+        disabled: true
+        value: 'Redirecting'
