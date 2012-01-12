@@ -9,7 +9,7 @@ PostSchema = new Schema
     required: true
   content:
     type: String
-  raw_content:
+  rawContent:
     type: String
   slug:
     type: String

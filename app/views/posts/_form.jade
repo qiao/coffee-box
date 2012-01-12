@@ -14,7 +14,7 @@ form(method='post', action=(post.title ? postPath(post) : '/posts'),
     .clearfix
       label(for='post[content]') Content
       .input
-        textarea(rows='20', name='post[raw_content]')= post.raw_content
+        textarea(rows='20', name='post[rawContent]')= post.rawContent
     .clearfix
       label(for='post[tags]') Tags
       .input

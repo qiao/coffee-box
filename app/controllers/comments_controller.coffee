@@ -1,15 +1,15 @@
-Post = require('../models/post').Post
-postsHelper = require('../helpers/posts_helper')
+Post           = require('../models/post').Post
+postsHelper    = require('../helpers/posts_helper')
 commentsHelper = require('../helpers/comments_helper')
-markdown = require('../../lib/markdown').Markdown
+markdown       = require('../../lib/markdown').Markdown
 
-CommentsController =
+module.exports = CommentsController =
   # POST /year/month/day/:slug/comments
   create: (req, res, next) ->
     post = Post.findOne slug: req.params.slug, (err, post) ->
       if post
         comment = req.body.comment or {}
-        comment.content = markdown(comment.raw_content or '')
+        comment.content = markdown(comment.rawContent or '')
         post.comments.push comment
         post.save (err) ->
           if err
@@ -50,8 +50,6 @@ CommentsController =
   # POST /comments/preview
   preview: (req, res, next) ->
     try
-      res.send markdown(req.body.raw_content), 200
+      res.send markdown(req.body.rawContent), 200
     catch error
       res.send 400
-
-module.exports = CommentsController

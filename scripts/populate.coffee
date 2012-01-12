@@ -16,8 +16,8 @@ for i in [1..20]
   post = {}
   post.title       = Faker.Lorem.sentence()
   post.slug        = Faker.Lorem.words(3).join '-'
-  post.raw_content = Faker.Lorem.paragraphs(4)
-  post.content     = markdown post.raw_content
+  post.rawContent = Faker.Lorem.paragraphs(4)
+  post.content     = markdown post.rawContent
   post.asPage      = i > 17
   if post.asPage
     post.title = post.title.slice(0, 5)
@@ -29,8 +29,8 @@ for i in [1..20]
     comment.name        = Faker.Name.firstName()
     comment.email       = Faker.Internet.email()
     comment.website     = Faker.Internet.domainName()
-    comment.raw_content = Faker.Lorem.paragraphs(2)
-    comment.content     = markdown comment.raw_content
+    comment.rawContent = Faker.Lorem.paragraphs(2)
+    comment.content     = markdown comment.rawContent
     comments.push comment
   post.comments = comments
 

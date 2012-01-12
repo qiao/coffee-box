@@ -10,7 +10,7 @@ CommentSchema = new Schema
     required: true
   website:
     type: String
-  raw_content:
+  rawContent:
     type: String
     required: true
   content:

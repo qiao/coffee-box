@@ -6,7 +6,7 @@ RSS      = require('rss')
 
 POSTS_PER_PAGE = 5
 
-PostsController =
+module.exports = PostsController =
   # GET /posts
   index: (req, res, next) ->
     # check pagination param: /posts/?page=2
@@ -51,7 +51,7 @@ PostsController =
   # POST /posts
   create: (req, res, next) ->
     post = new Post(req.body.post or {})
-    post.content = markdown(post.raw_content or '')
+    post.content = markdown(post.rawContent or '')
     post.save (err) ->
       if err
         req.flash 'error', err
@@ -66,7 +66,7 @@ PostsController =
     Post.findOne query, (err, post) ->
       if post
         newPost = req.body.post or {}
-        newPost.content = markdown(newPost.raw_content or '')
+        newPost.content = markdown(newPost.rawContent or '')
         newPost.createdAt = post.createdAt
         newPost.updatedAt = Date.now()
         Post.update query, newPost, (err) ->
@@ -121,8 +121,6 @@ PostsController =
   # POST /posts/preview
   preview: (req, res, next) ->
     try
-      res.send markdown(req.body.raw_content), 200
+      res.send markdown(req.body.rawContent), 200
     catch error
       res.send 400
-
-module.exports = PostsController

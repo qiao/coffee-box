@@ -8,7 +8,7 @@ relyingParty = new openid.RelyingParty(
   , []                   # extensions
   )
 
-SessionController =
+module.exports = SessionController =
   # GET /login
   new: (req, res, next) ->
     res.render 'session/new'
@@ -51,5 +51,3 @@ SessionController =
       next()
     else
       res.redirect '/login'
-
-module.exports = SessionController

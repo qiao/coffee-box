@@ -113,7 +113,7 @@ $ ->
       $.ajax
         type      : 'post'
         url       : url
-        data      : { raw_content: $textarea.val() }
+        data      : { rawContent: $textarea.val() }
         success   : (data) ->
                       $previewDiv = $('<div>')
                         .html(data)

@@ -6,7 +6,7 @@ div(id='toolbar-#{post._id}').form-toolbar
 form(method='post', action=(postPath(post) + '/comments'), 
   accept-charset='utf-8').comment-form
   fieldset
-    textarea(name='comment[raw_content]')
+    textarea(name='comment[rawContent]')
     .comment-form-meta
       .clearfix
         input(type='text', name='comment[name]', placeholder='Name')
