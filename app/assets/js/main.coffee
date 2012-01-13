@@ -144,3 +144,6 @@ $ ->
       .attr
         disabled: true
         value: 'Redirecting'
+
+  # tabs
+  $('.tabs').tabs()
