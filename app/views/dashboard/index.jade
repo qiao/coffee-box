@@ -2,10 +2,12 @@
   ul.tabs(data-tabs='tabs')
     li.active: a(href='#dashboard-posts') Posts
     li: a(href='#dashboard-comments') Comments
-    li: a(href='/posts/new') New Post
+    li: a(href='#dashboard-new-post') New Post
 
   .tab-content
     #dashboard-posts.active.tab-pane
       != partial('posts', { posts: posts })
     #dashboard-comments.tab-pane
       != partial('comments')
+    #dashboard-new-post.tab-pane
+      != partial('posts/form', { post: newPost })

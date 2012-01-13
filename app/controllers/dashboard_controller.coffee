@@ -5,3 +5,4 @@ module.exports = DashboardController =
     Post.find {}, {}, sort: [['createdAt', 'desc']], (err, posts) ->
       res.render 'dashboard/index'
         posts: posts
+        newPost: new Post
