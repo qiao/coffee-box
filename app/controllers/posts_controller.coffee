@@ -102,7 +102,7 @@ module.exports = PostsController =
 
   # GET /feed
   feed: (req, res, next) ->
-    Post.find {}, {}, sort: [['createdAt', 'desc']], (err, posts) ->
+    Post.find { public: true }, {}, { sort: [['createdAt', 'desc']] }, (err, posts) ->
       feed = new RSS
         title:       site.sitename
         description: site.description
