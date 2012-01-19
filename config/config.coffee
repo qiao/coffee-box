@@ -1,3 +1,4 @@
+fs        = require 'fs'
 express   = require 'express'
 assets    = require 'connect-assets'
 mongoose  = require 'mongoose'
@@ -18,8 +19,8 @@ module.exports = (app) ->
     app.use assets(src: 'app/assets', build: true, detectChanges: false, buildDir: false)
     app.use express.static("#{ROOT_DIR}/public")
     app.use app.router
-    app.set k, v for k, v of require('./site')
-    app.set 'version', 'v0.0.5'
+    app.set 'version', JSON.parse(fs.readFileSync("#{ROOT_DIR}/package.json")).version
+    app.set k, v for k, v of JSON.parse(fs.readFileSync("#{ROOT_DIR}/config/site.json"))
     app.dynamicHelpers messages: require('express-messages')
     app.dynamicHelpers session: (req, res) -> req.session
 
