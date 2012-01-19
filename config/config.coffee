@@ -29,4 +29,7 @@ module.exports = (app) ->
   app.configure 'production', ->
     app.use express.errorHandler()
 
-  mongoose.connect DB_PATH
+  mongoose.connect DB_PATH, (err) ->
+    if err
+      console.log err
+      process.exit()
