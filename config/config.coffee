@@ -4,7 +4,6 @@ assets    = require 'connect-assets'
 mongoose  = require 'mongoose'
 
 ROOT_DIR = "#{__dirname}/.."
-DB_PATH  = 'mongodb://localhost/coffee-box-db'
 
 module.exports = (app) ->
   app.configure ->
@@ -30,7 +29,7 @@ module.exports = (app) ->
   app.configure 'production', ->
     app.use express.errorHandler()
 
-  mongoose.connect DB_PATH, (err) ->
+  mongoose.connect app.settings.dbpath, (err) ->
     if err
       console.log err
       process.exit()
