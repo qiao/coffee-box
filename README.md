@@ -29,7 +29,7 @@ Then clone this project and install the dependecies.
     cd coffee-box
     npm install
 
-The site configuration file is `config/site.coffee`, modify it to meet your need and then start the server.
+The site configuration file is `config/site.json`, modify it to meet your need and then start the server.
 
     NODE_ENV=production node index.js
 
