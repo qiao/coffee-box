@@ -1,7 +1,6 @@
-openid = require('openid')
-
 exports.SessionController = (app) ->
 
+  openid = require('openid')
   relyingParty = new openid.RelyingParty(
       app.settings.url + '/verify' # verification url
     , null                         # realm

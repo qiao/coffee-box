@@ -1,7 +1,3 @@
-#akismet = require('akismet').client
-  #blog:   site.url
-  #apiKey: site.akismetKey
-
 exports.CommentsController = (app) ->
 
   {Post} = app.settings.models

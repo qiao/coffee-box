@@ -29,7 +29,6 @@ module.exports = (app) ->
     app.helpers app.settings.helpers
     app.dynamicHelpers messages: require('express-messages')
     app.dynamicHelpers session: (req, res) -> req.session
-    console.log app.settings
 
   app.configure 'development', ->
     app.use express.errorHandler(dumpException: true, showStack: true)
