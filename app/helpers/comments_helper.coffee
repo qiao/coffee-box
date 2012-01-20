@@ -8,7 +8,10 @@ module.exports =
   commentMeta: (comment) ->
     moment(comment.createdAt).format 'YYYY-MM-DD hh:mm'
 
-  commentsAnchor: (post) ->
+  commentAnchor: (comment) ->
+    "#{comment._id}"
+
+  commentsAnchor: (posts) ->
     "#comments-#{post._id}"
 
   commentDate: (comment) ->
