@@ -1,4 +1,3 @@
-fs           = require 'fs'
 express      = require 'express'
 assets       = require 'connect-assets'
 mongoose     = require 'mongoose'
