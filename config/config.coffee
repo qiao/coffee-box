@@ -7,6 +7,8 @@ ROOT_DIR = "#{__dirname}/.."
 
 module.exports = (app) ->
   app.configure ->
+    app.set 'version', JSON.parse(fs.readFileSync("#{ROOT_DIR}/package.json")).version
+    app.set k, v for k, v of JSON.parse(fs.readFileSync("#{ROOT_DIR}/config/site.json"))
     app.set 'views', "#{ROOT_DIR}/app/views"
     app.set 'view engine', 'jade'
     app.set 'view options', layout: "#{ROOT_DIR}/app/views/layouts/layout"
@@ -14,12 +16,10 @@ module.exports = (app) ->
     app.use express.bodyParser()
     app.use express.methodOverride()
     app.use express.cookieParser()
-    app.use express.session(secret: 'secret token')
+    app.use express.session(secret: app.settings.secretKey)
     app.use assets(src: 'app/assets', build: true, detectChanges: false, buildDir: false)
     app.use express.static("#{ROOT_DIR}/public")
     app.use app.router
-    app.set 'version', JSON.parse(fs.readFileSync("#{ROOT_DIR}/package.json")).version
-    app.set k, v for k, v of JSON.parse(fs.readFileSync("#{ROOT_DIR}/config/site.json"))
     app.dynamicHelpers messages: require('express-messages')
     app.dynamicHelpers session: (req, res) -> req.session
 

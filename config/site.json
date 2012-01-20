@@ -6,4 +6,5 @@
   , "openIds"     : ["http://xueqiaoxu.myopenid.com"]
   , "akismetKey"  : "6ab73533ef87"
   , "dbpath"      : "mongodb://localhost/coffee-box-db"
+  , "secretKey"   : "Please replace this string with a random one and keep it secret"
 }
