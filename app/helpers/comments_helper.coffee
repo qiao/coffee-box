@@ -10,3 +10,6 @@ module.exports =
 
   commentsAnchor: (post) ->
     "#comments-#{post._id}"
+
+  commentDate: (comment) ->
+    moment(comment.createdAt).format 'YYYY-MM-DD'

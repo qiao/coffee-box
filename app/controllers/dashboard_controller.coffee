@@ -1,8 +1,13 @@
-Post = require('../models/post').Post
+exports.DashboardController = (app) ->
 
-module.exports = DashboardController =
-  index: (req, res, next) ->
-    Post.find {}, {}, sort: [['createdAt', 'desc']], (err, posts) ->
-      res.render 'dashboard/index'
-        posts: posts
-        newPost: new Post
+  {Post} = app.settings.models
+
+  return {
+
+    index: (req, res, next) ->
+      Post.find {}, {}, sort: [['createdAt', 'desc']], (err, posts) ->
+        res.render 'dashboard/index'
+          posts: posts
+          newPost: new Post
+
+  }

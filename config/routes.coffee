@@ -1,8 +1,3 @@
-PostsController     = require '../app/controllers/posts_controller'
-CommentsController  = require '../app/controllers/comments_controller'
-SessionController   = require '../app/controllers/session_controller'
-DashboardController = require '../app/controllers/dashboard_controller'
-
 # match post against /year/month/day/:slug.:format?
 # it seems to be a bug that expressjs doesn't support the /\d/ regexp.
 POST_PATTERN =
@@ -15,12 +10,20 @@ POST_EDIT_PATTERN = POST_PATTERN + '/edit/.:format?'
 COMMENT_CREATE_PATTEN = POST_PATTERN + '/comments'
 COMMENT_DELETE_PATTEN = COMMENT_CREATE_PATTEN + '/:id'
 
-# middleware for finding all posts published as individual pages
-findPages = PostsController.findPages
-# middleware for requiring login
-requireLogin = SessionController.requireLogin
 
 module.exports = (app) ->
+  
+  # get controllers from app settings
+  PostsController      = app.settings.controllers.PostsController     app
+  CommentsController   = app.settings.controllers.CommentsController  app
+  SessionController    = app.settings.controllers.SessionController   app
+  DashboardController  = app.settings.controllers.DashboardController app
+
+  # middleware for finding all posts published as individual pages
+  findPages = PostsController.findPages
+  # middleware for requiring login
+  requireLogin = SessionController.requireLogin
+
   app.get '/'                    , findPages                , PostsController.index
 
   app.get  '/posts.:format?'     , findPages                , PostsController.index

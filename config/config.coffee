@@ -1,14 +1,20 @@
-fs        = require 'fs'
-express   = require 'express'
-assets    = require 'connect-assets'
-mongoose  = require 'mongoose'
+fs           = require 'fs'
+express      = require 'express'
+assets       = require 'connect-assets'
+mongoose     = require 'mongoose'
+{requireDir} = require '../lib/require_dir'
+{readJson}   = require '../lib/read_json'
 
 ROOT_DIR = "#{__dirname}/.."
 
 module.exports = (app) ->
   app.configure ->
-    app.set 'version', JSON.parse(fs.readFileSync("#{ROOT_DIR}/package.json")).version
-    app.set k, v for k, v of JSON.parse(fs.readFileSync("#{ROOT_DIR}/config/site.json"))
+    app.set 'version', readJson("#{ROOT_DIR}/package.json").version
+    app.set k, v for k, v of readJson("#{ROOT_DIR}/config/site.json")
+    app.set 'utils', requireDir("#{ROOT_DIR}/lib")
+    app.set 'helpers', requireDir("#{ROOT_DIR}/app/helpers")
+    app.set 'models', requireDir("#{ROOT_DIR}/app/models")
+    app.set 'controllers', requireDir("#{ROOT_DIR}/app/controllers")
     app.set 'views', "#{ROOT_DIR}/app/views"
     app.set 'view engine', 'jade'
     app.set 'view options', layout: "#{ROOT_DIR}/app/views/layouts/layout"
@@ -20,8 +26,10 @@ module.exports = (app) ->
     app.use assets(src: 'app/assets', build: true, detectChanges: false, buildDir: false)
     app.use express.static("#{ROOT_DIR}/public")
     app.use app.router
+    app.helpers app.settings.helpers
     app.dynamicHelpers messages: require('express-messages')
     app.dynamicHelpers session: (req, res) -> req.session
+    console.log app.settings
 
   app.configure 'development', ->
     app.use express.errorHandler(dumpException: true, showStack: true)
@@ -31,5 +39,5 @@ module.exports = (app) ->
 
   mongoose.connect app.settings.dbpath, (err) ->
     if err
-      console.log err
+      console.error err
       process.exit()

@@ -1,12 +1,12 @@
 #!/usr/bin/env coffee
 # Populate database with faked data
 
-DB_URL   = 'mongodb://localhost/coffee-box-db'
+DB_URL     = 'mongodb://localhost/coffee-box-db'
 
-Post     = require('../app/models/post').Post
-Faker    = require 'Faker'
-mongoose = require 'mongoose'
-markdown = require('../lib/markdown').Markdown
+mongoose   = require 'mongoose'
+Faker      = require 'Faker'
+{Post}     = require('../app/models/post')
+{markdown} = require('../lib/markdown')
 
 mongoose.connect DB_URL
 

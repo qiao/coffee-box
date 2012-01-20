@@ -1,4 +1,4 @@
-markdown  = require('node-markdown').Markdown
+markdown = require('node-markdown').Markdown
 
 autolink = (html) ->
   # Auto-link URLs and emails (modified based on github-flavored-markdown)
@@ -14,6 +14,6 @@ autolink = (html) ->
     '<a href="mailto:' + wholeMatch + '">' + wholeMatch + '</a>'
 
 
-exports.Markdown = (raw) ->
+exports.markdown = (raw) ->
   html = markdown raw, true # filter html tags
   autolink html

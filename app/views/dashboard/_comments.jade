@@ -1,0 +1,16 @@
+table.zebra-striped
+  thead
+    tr
+      th Name
+      th Email
+      th Content
+      th Date
+      th Edit
+  tbody
+    //-for comment in comments
+      //-tr
+        //-td= comment.name
+        //-td= comment.email
+        //-td!= comment.content
+        //-td= commentDate(comment)
+        //-td

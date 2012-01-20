@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
-CommentSchema = require('./comment').CommentSchema
+{CommentSchema} = require('./comment')
 
 PostSchema = new Schema
   title:
