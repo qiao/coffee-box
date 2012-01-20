@@ -1,4 +1,4 @@
-exports.DashboardController = (app) ->
+exports.getDashboardController = (app) ->
 
   {Post} = app.settings.models
 

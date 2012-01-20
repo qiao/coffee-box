@@ -1,6 +1,6 @@
 RSS = require('rss')
 
-exports.PostsController = (app) ->
+exports.getPostsController = (app) ->
 
   POSTS_PER_PAGE = 5
 

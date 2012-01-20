@@ -1,4 +1,4 @@
-exports.SessionController = (app) ->
+exports.getSessionController = (app) ->
 
   openid = require('openid')
   relyingParty = new openid.RelyingParty(

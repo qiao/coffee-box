@@ -14,7 +14,7 @@ module.exports = (app) ->
     app.set 'utils', requireDir("#{ROOT_DIR}/lib")
     app.set 'helpers', requireDir("#{ROOT_DIR}/app/helpers")
     app.set 'models', requireDir("#{ROOT_DIR}/app/models")
-    app.set 'controllers', requireDir("#{ROOT_DIR}/app/controllers")
+    app.set 'controllersGetter', requireDir("#{ROOT_DIR}/app/controllers")
     app.set 'views', "#{ROOT_DIR}/app/views"
     app.set 'view engine', 'jade'
     app.set 'view options', layout: "#{ROOT_DIR}/app/views/layouts/layout"

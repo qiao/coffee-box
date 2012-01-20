@@ -14,10 +14,11 @@ COMMENT_DELETE_PATTEN = COMMENT_CREATE_PATTEN + '/:id'
 module.exports = (app) ->
   
   # get controllers from app settings
-  PostsController      = app.settings.controllers.PostsController     app
-  CommentsController   = app.settings.controllers.CommentsController  app
-  SessionController    = app.settings.controllers.SessionController   app
-  DashboardController  = app.settings.controllers.DashboardController app
+  controllersGetter    = app.settings.controllersGetter
+  PostsController      = controllersGetter.getPostsController     app
+  CommentsController   = controllersGetter.getCommentsController  app
+  SessionController    = controllersGetter.getSessionController   app
+  DashboardController  = controllersGetter.getDashboardController app
 
   # middleware for finding all posts published as individual pages
   findPages = PostsController.findPages

@@ -1,4 +1,4 @@
-exports.CommentsController = (app) ->
+exports.getCommentsController = (app) ->
 
   {Post} = app.settings.models
   {postPath, commentsAnchor} = app.settings.helpers
