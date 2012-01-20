@@ -45,13 +45,13 @@ exports.getCommentsController = (app) ->
         # helper function for creating comment without xhr
         createNormal = ->
           if err
-            res.flash 'error', err
+            req.flash 'error', err
             res.redirect 'back'
           else
             if spam
-              res.flash 'info', 'successfully posted'
+              req.flash 'info', 'successfully posted'
             else
-              res.flash 'error', 'your comment is pending for review'
+              req.flash 'error', 'your comment is pending for review'
             res.redirect postsHelper.postPath(post) +
                          commentsHelper.commentsAnchor(post)
 
