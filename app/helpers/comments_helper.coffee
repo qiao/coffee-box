@@ -11,7 +11,7 @@ module.exports =
   commentAnchor: (comment) ->
     "#{comment._id}"
 
-  commentsAnchor: (posts) ->
+  commentsAnchor: (post) ->
     "#comments-#{post._id}"
 
   commentDate: (comment) ->
