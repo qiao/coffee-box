@@ -4,9 +4,9 @@ exports.getPostsController = (app) ->
 
   POSTS_PER_PAGE = 5
 
-  {Post}     = app.settings.models
-  {postPath} = app.settings.helpers
-  {markdown} = app.settings.utils
+  {Post}                  = app.settings.models
+  {postPath}              = app.settings.helpers
+  {markdown, makeTagList} = app.settings.utils
 
   return {
 
@@ -55,6 +55,7 @@ exports.getPostsController = (app) ->
     create: (req, res, next) ->
       post = new Post(req.body.post or {})
       post.content = markdown(post.rawContent or '')
+      post.tags = makeTagList post.tags
       post.save (err) ->
         if err
           req.flash 'error', err
@@ -72,6 +73,7 @@ exports.getPostsController = (app) ->
           newPost.content = markdown(newPost.rawContent or '')
           newPost.createdAt = post.createdAt
           newPost.updatedAt = Date.now()
+          newPost.tags = makeTagList newPost.tags
           Post.update query, newPost, (err) ->
             if err
               req.flash 'error', err
