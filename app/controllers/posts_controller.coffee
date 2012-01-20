@@ -109,16 +109,16 @@ exports.getPostsController = (app) ->
     feed: (req, res, next) ->
       Post.find { public: true }, {}, { sort: [['createdAt', 'desc']] }, (err, posts) ->
         feed = new RSS
-          title:       site.sitename
-          description: site.description
-          feed_url:    site.url + '/feed'
-          author:      site.author
+          title:       app.settings.sitename
+          description: app.settings.description
+          feed_url:    app.settings.url + '/feed'
+          author:      app.settings.author
 
         for post in posts
           feed.item
             title:       post.title
             description: post.content
-            url:         site.url + postPath(post)
+            url:         app.settings.url + postPath(post)
             date:        post.createdAt
 
         res.send feed.xml()
