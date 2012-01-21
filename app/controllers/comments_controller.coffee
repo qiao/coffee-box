@@ -49,10 +49,10 @@ exports.getCommentsController = (app) ->
             res.redirect 'back'
           else
             if spam
-              req.flash 'info', 'successfully posted'
-            else
               req.flash 'error', 'your comment is pending for review'
-            res.redirect postPath(post) + commentsAnchor(post)
+            else
+              req.flash 'info', 'successfully posted'
+            res.redirect postPath(post)
 
     # DEL /year/month/day/:slug/comments/:id
     destroy: (req, res, next) ->
