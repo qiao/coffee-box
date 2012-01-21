@@ -52,8 +52,7 @@ exports.getCommentsController = (app) ->
               req.flash 'info', 'successfully posted'
             else
               req.flash 'error', 'your comment is pending for review'
-            res.redirect postsHelper.postPath(post) +
-                         commentsHelper.commentsAnchor(post)
+            res.redirect postPath(post) + commentsAnchor(post)
 
     # DEL /year/month/day/:slug/comments/:id
     destroy: (req, res, next) ->
@@ -67,8 +66,7 @@ exports.getCommentsController = (app) ->
               if req.xhr
                 res.send 200
               else
-                res.redirect postsHelper.postPath(post) +
-                             commentsHelper.commentsAnchor(post)
+                res.redirect postPath(post) + commentsAnchor(post)
         else
           res.send 400
    
