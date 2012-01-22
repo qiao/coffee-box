@@ -53,9 +53,15 @@ exports.getPostsController = (app) ->
 
     # POST /posts
     create: (req, res, next) ->
-      post = new Post(req.body.post or {})
-      post.content = markdown(post.rawContent or '')
-      post.tags = makeTagList post.tags
+      unless req.body.post
+        res.flash 'error', 'bad request'
+        res.redirect 'back'
+        return
+
+      rawPost = req.body.post
+      rawPost.tags = makeTagList rawPost.tags
+      rawPost.content = markdown rawPost.rawContent
+      post = new Post rawPost
       post.save (err) ->
         if err
           req.flash 'error', err
@@ -66,12 +72,17 @@ exports.getPostsController = (app) ->
 
     # PUT /year/month/day/:slug
     update: (req, res, next) ->
+
+      unless req.body.post
+        req.flash 'error', 'bad request'
+        res.redirect 'back'
+        return
+
       query = slug: req.params.slug
       Post.findOne query, (err, post) ->
         if post
-          newPost = req.body.post or {}
-          newPost.content = markdown(newPost.rawContent or '')
-          newPost.createdAt = post.createdAt
+          newPost = req.body.post
+          newPost.content = markdown newPost.rawContent
           newPost.updatedAt = Date.now()
           newPost.tags = makeTagList newPost.tags
           Post.update query, newPost, (err) ->
