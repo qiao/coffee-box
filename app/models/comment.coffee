@@ -15,10 +15,6 @@ CommentSchema = new Schema
     required: true
   content:
     type: String
-  pending:
-    type: Boolean
-    require: true
-    default: true
   spam:
     type: Boolean
     required: true
