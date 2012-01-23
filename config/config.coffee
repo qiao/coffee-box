@@ -2,14 +2,13 @@ express      = require 'express'
 assets       = require 'connect-assets'
 mongoose     = require 'mongoose'
 {requireDir} = require '../lib/require_dir'
-{readJson}   = require '../lib/read_json'
 
 ROOT_DIR = "#{__dirname}/.."
 
 module.exports = (app) ->
   app.configure ->
-    app.set 'version', readJson("#{ROOT_DIR}/package.json").version
-    app.set k, v for k, v of readJson("#{ROOT_DIR}/config/site.json")
+    app.set 'version', require("#{ROOT_DIR}/package.json").version
+    app.set k, v for k, v of require("#{ROOT_DIR}/config/site.json")
     app.set 'utils', requireDir("#{ROOT_DIR}/lib")
     app.set 'helpers', requireDir("#{ROOT_DIR}/app/helpers")
     app.set 'models', requireDir("#{ROOT_DIR}/app/models")
