@@ -1,9 +1,3 @@
-# highlight codes
-highlightCodes = ($container)->
-  $container.find('pre code').each (i, e) ->
-    hljs.highlightBlock e, '    '
-
-
 $ ->
   # hide comments in index page
   if window.location.pathname is '/'
@@ -38,8 +32,6 @@ $ ->
   $('.btn.cancel').click ->
     window.history.back()
 
-  highlightCodes $('.entry')
-
   # elastic and tabby textarea
   $('textarea')
     .elastic()
@@ -69,7 +61,6 @@ $ ->
       data     : $form.serializeArray()
       success  : (data) ->
                    $data = $(data).hide()
-                   highlightCodes($data)
                    $form
                      .siblings()
                      .filter('.comments-list')
@@ -121,7 +112,6 @@ $ ->
                       $textarea
                         .hide()
                         .after($previewDiv)
-                      highlightCodes($previewDiv)
       false
 
     $edit.click ->

@@ -1,19 +1,25 @@
-markdown = require('node-markdown').Markdown
+async    = require('async')
+marked = require('marked')
+pygments = require('pygments')
 
-autolink = (html) ->
-  # Auto-link URLs and emails (modified based on github-flavored-markdown)
-  html = html.replace /https?\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!]/g, (wholeMatch,matchIndex) ->
-    left = html.slice(0, matchIndex)
-    right = html.slice(matchIndex)
+highlight = (token, callback) ->
+  if token.type is 'code' and token.lang
+    pygments.colorize token.text, token.lang, 'html', (data) ->
+      token.text = data
+      token.type = 'html'
+      token.escaped = true
+      callback()
+  else
+    callback()
 
-    if left.match(/<[^>]+$/) and right.match(/^[^>]*>/)
-      return wholeMatch
-    '<a href="' + wholeMatch + '">' + wholeMatch + '</a>'
+markdown = (text, colorize, callback) ->
+  tokens = marked.lexer text
+  if colorize
+    async.forEach tokens, highlight, ->
+      html = marked.parser tokens
+      callback html
+  else
+    callback marked.parse(text)
 
-  html.replace /[a-z0-9_\-+=.]+@[a-z0-9\-]+(\.[a-z0-9-]+)+/ig, (wholeMatch) ->
-    '<a href="mailto:' + wholeMatch + '">' + wholeMatch + '</a>'
-
-
-exports.markdown = (raw) ->
-  html = markdown raw, true # filter html tags
-  autolink html
+exports.markdown = (text, callback) ->
+  markdown text, true, callback

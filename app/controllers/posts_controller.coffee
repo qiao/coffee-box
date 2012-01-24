@@ -60,15 +60,16 @@ exports.getPostsController = (app) ->
 
       rawPost = req.body.post
       rawPost.tags = makeTagList rawPost.tags
-      rawPost.content = markdown rawPost.rawContent
-      post = new Post rawPost
-      post.save (err) ->
-        if err
-          req.flash 'error', err
-          res.redirect 'back'
-        else
-          req.flash 'info', 'successfully posted'
-          res.redirect postPath(post)
+      markdown rawPost.rawContent, (html) ->
+        rawPost.content = html
+        post = new Post rawPost
+        post.save (err) ->
+          if err
+            req.flash 'error', err
+            res.redirect 'back'
+          else
+            req.flash 'info', 'successfully posted'
+            res.redirect postPath(post)
 
     # PUT /year/month/day/:slug
     update: (req, res, next) ->
@@ -136,9 +137,7 @@ exports.getPostsController = (app) ->
 
     # POST /posts/preview
     preview: (req, res, next) ->
-      try
-        res.send markdown(req.body.rawContent), 200
-      catch error
-        res.send 400
+      markdown req.body.rawContent or '', (html) ->
+        res.send html, 200
 
   }

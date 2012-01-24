@@ -16,40 +16,41 @@ exports.getCommentsController = (app) ->
 
         # parse comment
         comment = req.body.comment or {}
-        comment.content = markdown(comment.rawContent or '')
+        markdown comment.rawContent or '', (html) ->
+          comment.content = html
 
-        # TODO: detect spam
-        spam = false
-        comment.spam = spam
+          # TODO: detect spam
+          spam = false
+          comment.spam = spam
 
-        # save comment 
-        post.comments.push(comment)
-        post.save (err) ->
-          if req.xhr then createXhr() else createNormal()
+          # save comment 
+          post.comments.push(comment)
+          post.save (err) ->
+            if req.xhr then createXhr() else createNormal()
 
-        # helper function for creating comment with xhr
-        createXhr = ->
-          if err
-            res.send 400
-          else
-            if spam
-              res.partial 'comments/spam'
+          # helper function for creating comment with xhr
+          createXhr = ->
+            if err
+              res.send 400
             else
-              res.partial 'comments/comment'
-                post: post
-                comment: post.comments[post.comments.length - 1]
+              if spam
+                res.partial 'comments/spam'
+              else
+                res.partial 'comments/comment'
+                  post: post
+                  comment: post.comments[post.comments.length - 1]
 
-        # helper function for creating comment without xhr
-        createNormal = ->
-          if err
-            req.flash 'error', err
-            res.redirect 'back'
-          else
-            if spam
-              req.flash 'error', 'your comment is pending for review'
+          # helper function for creating comment without xhr
+          createNormal = ->
+            if err
+              req.flash 'error', err
+              res.redirect 'back'
             else
-              req.flash 'info', 'successfully posted'
-            res.redirect postPath(post)
+              if spam
+                req.flash 'error', 'your comment is pending for review'
+              else
+                req.flash 'info', 'successfully posted'
+              res.redirect postPath(post)
 
     # DEL /year/month/day/:slug/comments/:id
     destroy: (req, res, next) ->
@@ -69,9 +70,6 @@ exports.getCommentsController = (app) ->
    
     # POST /comments/preview
     preview: (req, res, next) ->
-      try
-        res.send markdown(req.body.rawContent), 200
-      catch error
-        res.send 400
-
+      markdown req.body.rawContent or '', (html) ->
+        res.send html, 200
   }
