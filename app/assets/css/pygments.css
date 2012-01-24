@@ -4,7 +4,7 @@ div.highlight {
   margin: 0 0 18px;
 }
 
-div.highlight pre {
+div.highlight pre, pre>code {
   border: medium none;
   margin: 0;
   overflow: auto;
