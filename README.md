@@ -21,7 +21,7 @@ Features
 Getting Started
 ---------------
 
-You may first need to install `Node.js`, `npm` and `MongoDB`, and make sure that `MongoDB` is running.
+You may first need to install `Node.js`, `npm`, `MongoDB`, `python2` and `pygments`, and make sure that `MongoDB` is running.
 
 Then clone this project and install the dependecies.
 
