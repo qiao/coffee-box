@@ -53,11 +53,6 @@ exports.getPostsController = (app) ->
 
     # POST /posts
     create: (req, res, next) ->
-      unless req.body.post
-        res.flash 'error', 'bad request'
-        res.redirect 'back'
-        return
-
       rawPost = req.body.post
       rawPost.tags = makeTagList rawPost.tags
       markdown rawPost.rawContent, (html) ->
@@ -73,26 +68,21 @@ exports.getPostsController = (app) ->
 
     # PUT /year/month/day/:slug
     update: (req, res, next) ->
-
-      unless req.body.post
-        req.flash 'error', 'bad request'
-        res.redirect 'back'
-        return
-
       query = slug: req.params.slug
       Post.findOne query, (err, post) ->
         if post
           newPost = req.body.post
-          newPost.content = markdown newPost.rawContent
-          newPost.updatedAt = Date.now()
-          newPost.tags = makeTagList newPost.tags
-          Post.update query, newPost, (err) ->
-            if err
-              req.flash 'error', err
-              res.redirect 'back'
-            else
-              req.flash 'info', 'successfully updated'
-              res.redirect postPath(newPost)
+          markdown newPost.rawContent, (html) ->
+            newPost.content = html
+            newPost.updatedAt = Date.now()
+            newPost.tags = makeTagList newPost.tags
+            Post.update query, newPost, (err) ->
+              if err
+                req.flash 'error', err
+                res.redirect 'back'
+              else
+                req.flash 'info', 'successfully updated'
+                res.redirect postPath(newPost)
         else
           res.redirect '404'
 
