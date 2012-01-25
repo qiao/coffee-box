@@ -9,9 +9,9 @@ form(method='post', action=(postPath(post) + '/comments'),
     textarea(name='comment[rawContent]')
     .comment-form-meta
       .clearfix
-        input(type='text', name='comment[name]', placeholder='Name')
+        input(type='text', name='comment[name]', placeholder='Name(Required)')
       .clearfix
-        input(type='email', name='comment[email]', placeholder='Email')
+        input(type='email', name='comment[email]', placeholder='Email(Required)')
       .clearfix
         input(type='url', name='comment[website]', placeholder='Website')
       label.keep-notify
