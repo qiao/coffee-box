@@ -74,6 +74,7 @@ exports.getPostsController = (app) ->
           newPost = req.body.post
           markdown newPost.rawContent, (html) ->
             newPost.content = html
+            newPost.createdAt = post.createdAt
             newPost.updatedAt = Date.now()
             newPost.tags = makeTagList newPost.tags
             Post.update query, newPost, (err) ->
