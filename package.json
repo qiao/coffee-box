@@ -23,6 +23,7 @@
     , "openid"           : ">= 0.3.2"
     , "akismet"          : ">= 0.0.6"
     , "async"            : ">= 0.1.15"
+    , "sanitizer"        : ">= 0.0.14"
   }
   , "repository"         : {
       "type"             : "git"

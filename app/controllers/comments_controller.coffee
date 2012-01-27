@@ -1,3 +1,5 @@
+sanitize = require('sanitizer').sanitize
+
 exports.getCommentsController = (app) ->
 
   {Post} = app.settings.models
@@ -71,5 +73,5 @@ exports.getCommentsController = (app) ->
     # POST /comments/preview
     preview: (req, res, next) ->
       markdown req.body.rawContent or '', (html) ->
-        res.send html, 200
+        res.send sanitize(html), 200
   }
