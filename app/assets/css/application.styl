@@ -1,0 +1,177 @@
+container-width = 840px
+
+body
+  background url('/images/fabric_1.png') 
+  font-size 14px
+
+h1, h2, h3, h4, h5, h6
+  color #555
+
+a:focus
+  outline none
+
+li
+  line-height 21px
+
+blockquote p
+  font-style italic
+
+code
+  padding 0px
+
+
+/// header
+
+.topbar 
+  position fixed
+  input
+    margin-top 2px
+
+.nav, .tabs
+  font-size 13px !important
+
+ 
+/// container
+
+.container
+  width container-width
+  clear both
+
+.body-container
+  width container-width
+  margin 0 auto
+  clear both
+  margin-top 90px
+
+.tabs
+  margin 0 !important
+
+/// pagination
+
+.pagination
+  text-align center
+  font-size 13px !important
+  ul
+    float none
+    display inline-block
+    overflow hidden
+    box-shadow none
+    border none
+  a
+    color #777
+    border none
+    background #fff
+    margin 0 5px
+    &:hover
+      background-color #bbb
+      color #fff
+  .active a
+      background-color #bbb
+      color #fff
+  .disabled
+    display none
+
+// button
+
+.btn
+  border none
+  background rgba(0, 100, 200, 0.7)
+  border-radius 0
+  -moz-transition none
+  color #fff
+  text-shadow none
+  font-weight bold
+  &:hover
+    color #fff
+    background rgba(0, 100, 200, 0.8)
+  &:focus, &:active
+    box-shadow none
+
+.btn.cancel
+  background rgba(200, 20, 0, 0.7)
+  &:hover
+    background rgba(200, 20, 0, 0.8)
+ 
+.btn[disabled]
+  background rgba(0, 0, 0, 0.3)
+
+// form
+
+.form-stacked
+  padding-left 0
+  .actions
+    margin-left -30px
+    margin-right -30px
+    margin-bottom -48px
+    padding-bottom 20px
+    padding-left 30px
+    .btn
+      margin-right 5px
+
+.inputs-list
+  margin-left 0 !important
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=url]
+  margin-bottom 5px
+  border-radius 0
+  border 1px solid rgba(0, 0, 0, 0.2)
+  box-shadow none
+  height 15px
+  &:focus
+    border-color rgba(82, 168, 236, 0.8)
+    box-shadow 0 0 5px rgba(82, 168, 236, 0.3)
+  
+textarea
+  border-radius 0
+  border 1px solid rgba(0, 0, 0, 0.2)
+  box-shadow none
+  min-height 400px
+  &:focus
+    border-color rgba(82, 168, 236, 0.8)
+    box-shadow 0 0 5px rgba(82, 168, 236, 0.3)
+
+/// footer
+
+#footer
+  border-top none
+  width 400px
+  margin 50px auto 80px
+  text-align center
+  color #666
+  font-size 13px
+
+#footer a
+  color #117ae7
+
+/// messages
+
+ul.error > li
+  color #f30
+  font-size 16px
+
+ul.info > li
+  color rgba(0, 150, 0, 0.7)
+  font-size 16px
+
+/// code
+
+pre
+  border-top 1px solid rgba(0, 0, 0, 0.15)
+  border-bottom 1px solid rgba(0, 0, 0, 0.15)
+  border-radius 0
+
+code
+  font-family monospace, "consolas", "courier new"
+  background #f5f5f5 !important
+  line-height 16px
+
+p code
+  border 1px solid rgba(0, 0, 0, 0.15)
+  background #fff !important
+  border-radius 0
+
+.clearfix
+  clear both
