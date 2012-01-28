@@ -21,8 +21,12 @@ exports.getCommentsController = (app) ->
         markdown comment.rawContent or '', (html) ->
           comment.content = sanitize html
 
-          # TODO: detect spam
-          spam = false
+          # for all comments not submitted via AJAX, we consider that
+          # it's submitter by spammers. this works for over 99% of the cases.
+          # and for those innocent hams, they have a chance to be reviewd by 
+          # blog owner and mark as `not spam`.
+          # so why bother using akismet :p
+          spam = not req.xhr
           comment.spam = spam
 
           # save comment 
