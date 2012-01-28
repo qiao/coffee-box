@@ -1,5 +1,5 @@
 async    = require('async')
-marked = require('marked')
+marked   = require('./marked')
 pygments = require('pygments')
 
 highlight = (token, callback) ->
@@ -13,8 +13,8 @@ highlight = (token, callback) ->
     callback()
 
 markdown = (text, colorize, callback) ->
-  tokens = marked.lexer text
   if colorize
+    tokens = marked.lexer text
     async.forEach tokens, highlight, ->
       html = marked.parser tokens
       callback html
