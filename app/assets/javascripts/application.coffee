@@ -2,4 +2,4 @@
 #= require jquery.elastic
 #= require jquery.textarea
 #= require bootstrap-tabs
-#= require main
+#= require site
