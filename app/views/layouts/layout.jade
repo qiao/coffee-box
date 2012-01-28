@@ -6,7 +6,7 @@ html
     != css('bundle')
     != js('bundle')
   body
-    != partial('header')
+    include _header
     .body-container 
       != body
-    != partial('footer')
+    include _footer
