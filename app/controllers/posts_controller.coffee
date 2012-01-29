@@ -44,9 +44,8 @@ exports.getPostsController = (app) ->
 
     # POST /posts
     create: (req, res, next) ->
-      params       = req.body.post
-      post         = new Post params
-      post.taglist = params.tags
+      post         = new Post
+      post.data    = req.body.post
       post.save (err) ->
         if err
           req.flash 'error', err
@@ -60,11 +59,7 @@ exports.getPostsController = (app) ->
       Post.findBySlug req.params.slug, (err, post) ->
         return res.redirect '500' if err?
         return res.redirect '404' unless post?
-        params          = req.body.post
-        post.title      = params.title
-        post.rawContent = params.rawContent
-        post.slug       = params.slug
-        post.taglist    = params.tags
+        post.data = req.body.post
         post.save (err) ->
           if err
             req.flash 'error', err

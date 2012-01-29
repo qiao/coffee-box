@@ -44,9 +44,10 @@ PostSchema.pre 'save', (next) ->
     next()
 
 PostSchema
-  .virtual('taglist')
-  .set (str) ->
-    @tags = makeTagList str
+  .virtual('data')
+  .set (data) ->
+    @[k] = v for k, v of data
+    @tags = makeTagList data.tags
 
 PostSchema.statics.countPosts = (callback) ->
   query =
@@ -90,6 +91,7 @@ PostSchema.statics.findBySlug = (slug, callback) ->
 PostSchema.statics.removeBySlug = (slug, callback) ->
   query = slug: slug
   @remove query, callback
+
 
 Post = mongoose.model 'Post', PostSchema
 
