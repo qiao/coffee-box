@@ -1,6 +1,9 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
+{markdown} = require('../../lib/markdown')
+{sanitize} = require('sanitizer')
+
 CommentSchema = new Schema
   name:
     type: String
@@ -27,6 +30,12 @@ CommentSchema = new Schema
     type: Date
     required: true
     default: Date.now
+
+CommentSchema.pre 'save', (next) ->
+  markdown @rawContent, (html) =>
+    @content   = sanitize html
+    @updatedAt = Date.now()
+    next()
 
 Comment = mongoose.model 'Comment', CommentSchema
 

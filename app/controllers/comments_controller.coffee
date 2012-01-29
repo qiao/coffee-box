@@ -1,78 +1,60 @@
-{sanitize} = require 'sanitizer'
-
 exports.getCommentsController = (app) ->
 
-  {Post} = app.settings.models
+  {Post}                     = app.settings.models
+  {markdown}                 = app.settings.utils
+  {sanitize}                 = require 'sanitizer'
   {postPath, commentsAnchor} = app.settings.helpers
-  {markdown} = app.settings.utils
 
   return {
 
     # POST /year/month/day/:slug/comments
     create: (req, res, next) ->
-      Post.findOne { slug: req.params.slug }, (err, post) ->
-        # return 404 if post is not found
-        unless post
-          res.send 404
-          return
+      Post.findBySlug req.params.slug, (err, post) ->
+        return res.redirect '400' if err?
+        return res.redirect '404' unless post?
 
-        # parse comment
-        comment = req.body.comment or {}
-        markdown comment.rawContent or '', (html) ->
-          comment.content = sanitize html
+        comment = req.body.comment
 
-          # for all comments not submitted via AJAX, we consider that
-          # it's submitter by spammers. this works for over 99% of the cases.
-          # and for those innocent hams, they have a chance to be reviewd by 
-          # blog owner and mark as `not spam`.
-          # so why bother using akismet :p
-          spam = not req.xhr
-          comment.spam = spam
+        # for all comments not submitted via AJAX, we consider that
+        # it's submitter by spammers. this works for over 99% of the cases.
+        # and for those innocent hams, they have a chance to be reviewed by 
+        # blog owner and mark as `not spam`.
+        # so why bother using akismet :p
+        spam = not req.xhr
+        comment.spam = spam
 
-          # save comment 
-          post.comments.push(comment)
-          post.save (err) ->
-            if req.xhr then createXhr() else createNormal()
+        # save comment 
+        post.comments.push(comment)
+        post.save (err) ->
+          if req.xhr then createXhr() else createNormal()
 
-          # helper function for creating comment with xhr
-          createXhr = ->
-            if err
-              res.send 400
-            else
-              if spam
-                res.partial 'comments/spam'
-              else
-                res.partial 'comments/comment'
-                  post: post
-                  comment: post.comments[post.comments.length - 1]
+        # helper function for creating comment with xhr
+        createXhr = (err) ->
+          res.partial 'comments/comment'
+            post: post
+            comment: post.comments[post.comments.length - 1]
 
-          # helper function for creating comment without xhr
-          createNormal = ->
-            if err
-              req.flash 'error', err
-              res.redirect 'back'
-            else
-              if spam
-                req.flash 'error', 'your comment is pending for review'
-              else
-                req.flash 'info', 'successfully posted'
-              res.redirect postPath(post)
+        # helper function for creating comment without xhr
+        createNormal = (err) ->
+          if err
+            req.flash 'error', err
+            res.redirect 'back'
+          else
+            return req.flash 'error', 'your comment is pending for review' if spam?
+            req.flash 'info', 'successfully posted'
+            res.redirect postPath(post)
 
     # DEL /year/month/day/:slug/comments/:id
     destroy: (req, res, next) ->
-      post = Post.findOne { slug: req.params.slug }, (err, post) ->
-        if post
-          post.comments.id(req.params.id).remove()
-          post.save (err) ->
-            if err
-              res.send 400
-            else
-              if req.xhr
-                res.send 200
-              else
-                res.redirect postPath(post) + commentsAnchor(post)
-        else
-          res.send 400
+      Post.findBySlug req.params.slug, (err, post) ->
+        return res.redirect '400' if err?
+        return res.redirect '404' unless post?
+        post.comments.id(req.params.id).remove()
+        post.save (err) ->
+          if req.xhr
+            res.send 200
+          else
+            res.redirect postPath(post) + commentsAnchor(post)
    
     # POST /comments/preview
     preview: (req, res, next) ->
