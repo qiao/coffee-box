@@ -1,8 +1,8 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
-{markdown} = require("../../lib/markdown")
-{makeTagList} = require("../../lib/taglist")
+{markdown} = require('../../lib/markdown')
+{makeTagList} = require('../../lib/taglist')
 
 {CommentSchema} = require('./comment')
 
@@ -38,10 +38,10 @@ PostSchema = new Schema
     default: Date.now
 
 PostSchema.pre 'save', (next) ->
-  @set 'tags', makeTagList @tags[0]
+  @tags = makeTagList @tags[0]
   markdown @rawContent, (html) =>
-    @set 'content', html
-    @set 'updatedAt', Date.now()
+    @content   = html
+    @updatedAt = Date.now()
     next()
 
 PostSchema.statics.countPosts = (callback) ->
