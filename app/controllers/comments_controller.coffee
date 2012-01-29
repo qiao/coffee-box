@@ -30,6 +30,7 @@ exports.getCommentsController = (app) ->
 
         # helper function for creating comment with xhr
         createXhr = (err) ->
+          return res.send 400 if err?
           res.partial 'comments/comment'
             post: post
             comment: post.comments[post.comments.length - 1]

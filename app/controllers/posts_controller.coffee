@@ -44,7 +44,9 @@ exports.getPostsController = (app) ->
 
     # POST /posts
     create: (req, res, next) ->
-      post = new Post req.body.post
+      params       = req.body.post
+      post         = new Post params
+      post.taglist = params.tags
       post.save (err) ->
         if err
           req.flash 'error', err
@@ -61,8 +63,8 @@ exports.getPostsController = (app) ->
         params          = req.body.post
         post.title      = params.title
         post.rawContent = params.rawContent
-        post.tags       = params.tags
         post.slug       = params.slug
+        post.taglist    = params.tags
         post.save (err) ->
           if err
             req.flash 'error', err

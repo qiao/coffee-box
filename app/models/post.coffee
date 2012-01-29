@@ -38,11 +38,15 @@ PostSchema = new Schema
     default: Date.now
 
 PostSchema.pre 'save', (next) ->
-  @tags = makeTagList @tags[0]
   markdown @rawContent, (html) =>
     @content   = html
     @updatedAt = Date.now()
     next()
+
+PostSchema
+  .virtual('taglist')
+  .set (str) ->
+    @tags = makeTagList str
 
 PostSchema.statics.countPosts = (callback) ->
   query =
