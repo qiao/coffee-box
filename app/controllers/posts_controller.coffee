@@ -94,7 +94,7 @@ exports.getPostsController = (app) ->
 
     # GET /feed
     feed: (req, res, next) ->
-      Post.findPosts, (err, posts) ->
+      Post.findPosts (err, posts) ->
         feed = new RSS
           title:       app.settings.sitename
           description: app.settings.description
