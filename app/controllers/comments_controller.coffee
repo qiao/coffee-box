@@ -26,7 +26,7 @@ exports.getCommentsController = (app) ->
         # save comment 
         post.comments.push(comment)
         post.save (err) ->
-          if req.xhr then createXhr() else createNormal()
+          if req.xhr then createXhr(err) else createNormal(err)
 
         # helper function for creating comment with xhr
         createXhr = (err) ->
