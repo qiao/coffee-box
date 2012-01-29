@@ -1,7 +1,6 @@
-RSS = require('rss')
-
 exports.getPostsController = (app) ->
 
+  RSS                     = require('rss')
   {Post}                  = app.settings.models
   {postPath}              = app.settings.helpers
   {markdown, makeTagList} = app.settings.utils
