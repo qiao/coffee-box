@@ -2,8 +2,6 @@ RSS = require('rss')
 
 exports.getPostsController = (app) ->
 
-  POSTS_PER_PAGE = 5
-
   {Post}                  = app.settings.models
   {postPath}              = app.settings.helpers
   {markdown, makeTagList} = app.settings.utils
@@ -14,28 +12,23 @@ exports.getPostsController = (app) ->
     index: (req, res, next) ->
       # check pagination param: /posts/?page=2
       pageNo = parseInt(req.query['page'], 10) or 1
-      query = public: true, asPage: false
-      Post.count query, (err, totalPosts) ->
-        totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE)
-        options =
-          skip:   (pageNo - 1) * POSTS_PER_PAGE
-          limit:  POSTS_PER_PAGE
-          sort:   [['createdAt', 'desc']]
-        Post.find query, {}, options, (err, posts) ->
+
+      POSTS_PER_PAGE = 5
+      Post.countPostPages POSTS_PER_PAGE, (err, totalPages) ->
+        Post.getPostsOfPage pageNo, POSTS_PER_PAGE, (err, posts) ->
+          return res.redirect '500' if err?
           res.render 'posts/index'
             posts:      posts
             pageNo:     pageNo
             totalPages: totalPages
 
-
     # GET /year/month/day/:slug.:format?
     show: (req, res, next) ->
-      Post.findOne slug: req.params.slug, (err, post) ->
-        if post
-          res.render 'posts/show'
-            post: post
-        else
-          res.redirect '404'
+      Post.findBySlug req.params.slug, (err, post) ->
+        return res.redirect '500' if err?
+        return res.redirect '404' unless post?
+        res.render 'posts/show'
+          post: post
 
     # GET /posts/new
     new: (req, res, next) ->
@@ -44,73 +37,64 @@ exports.getPostsController = (app) ->
 
     # GET /year/month/day/:slug/edit
     edit: (req, res, next) ->
-      Post.findOne slug: req.params.slug, (err, post) ->
-        if post
-          res.render 'posts/edit'
-            post: post
-        else
-          res.redirect '404'
+      Post.findBySlug req.params.slug, (err, post) ->
+        return res.redirect '500' if err?
+        return res.redirect '404' unless post?
+        res.render 'posts/edit'
+          post: post
 
     # POST /posts
     create: (req, res, next) ->
-      rawPost = req.body.post
-      rawPost.tags = makeTagList rawPost.tags
-      markdown rawPost.rawContent, (html) ->
-        rawPost.content = html
-        post = new Post rawPost
+      post = new Post req.body.post
+      post.save (err) ->
+        if err
+          req.flash 'error', err
+          res.redirect 'back'
+        else
+          req.flash 'info', 'successfully posted'
+          res.redirect postPath(post)
+
+    # PUT /year/month/day/:slug
+    update: (req, res, next) ->
+      Post.findBySlug req.params.slug, (err, post) ->
+        return res.redirect '500' if err?
+        return res.redirect '404' unless post?
+        params          = req.body.post
+        post.title      = params.title
+        post.rawContent = params.rawContent
+        post.tags       = params.tags
+        post.slug       = params.slug
         post.save (err) ->
           if err
             req.flash 'error', err
             res.redirect 'back'
           else
-            req.flash 'info', 'successfully posted'
+            req.flash 'info', 'successfully updated'
             res.redirect postPath(post)
-
-    # PUT /year/month/day/:slug
-    update: (req, res, next) ->
-      query = slug: req.params.slug
-      Post.findOne query, (err, post) ->
-        if post
-          newPost = req.body.post
-          markdown newPost.rawContent, (html) ->
-            newPost.content = html
-            newPost.createdAt = post.createdAt
-            newPost.updatedAt = Date.now()
-            newPost.tags = makeTagList newPost.tags
-            Post.update query, newPost, (err) ->
-              if err
-                req.flash 'error', err
-                res.redirect 'back'
-              else
-                req.flash 'info', 'successfully updated'
-                res.redirect postPath(newPost)
-        else
-          res.redirect '404'
 
     # DELETE /year/month/day/:slug
     destroy: (req, res, next) ->
-      Post.remove slug: req.params.slug, (err) ->
+      Post.removeBySlug req.params.slug, (err) ->
         res.redirect 'back'
 
     # find all posts published as individual pages
     # this is a middleware to apply before all requests
     findPages: (req, res, next) ->
-      Post.find { asPage: true }, (err, pages) ->
+      Post.findPages (err, pages) ->
         res.locals pages: pages
         next()
 
     # GET /:slug
     showPage: (req, res, next) ->
-      Post.findOne { slug: req.params.slug }, (err, post) ->
-        if post
-          res.render 'posts/show'
-            post: post
-        else
-          res.redirect '404'
+      Post.findBySlug req.params.slug, (err, post) ->
+        return res.redirect '500' if err?
+        return res.redirect '404' unless post?
+        res.render 'posts/show'
+          post: post
 
     # GET /feed
     feed: (req, res, next) ->
-      Post.find { public: true }, {}, { sort: [['createdAt', 'desc']] }, (err, posts) ->
+      Post.findPosts, (err, posts) ->
         feed = new RSS
           title:       app.settings.sitename
           description: app.settings.description
