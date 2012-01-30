@@ -23,12 +23,9 @@ exports.getSessionController = (app) ->
       
       id = req.body.id
       relyingParty.authenticate id, false, (error, authUrl) ->
-        if error
-          res.send 'Authentication failed: ' + error.message, 200
-        else if !authUrl
-          res.send 'Authentication failed', 200
-        else
-          res.redirect authUrl
+        return res.send 'Authentication failed: ' + error.message, 200 if error?
+        return res.send 'Authentication failed', 200 unless authUrl
+        res.redirect authUrl
 
     # GET /verify
     verify: (req, res, next) ->
@@ -53,9 +50,7 @@ exports.getSessionController = (app) ->
 
     # middleware for requiring login
     requireLogin: (req, res, next) ->
-      if req.session.loggedIn
-        next()
-      else
-        res.redirect '/login'
+      return res.rediret '/login' unless req.session.loggedIn
+      next()
 
   }

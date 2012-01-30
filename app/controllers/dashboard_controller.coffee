@@ -5,7 +5,7 @@ exports.getDashboardController = (app) ->
   return {
 
     index: (req, res, next) ->
-      Post.find {}, {}, sort: [['createdAt', 'desc']], (err, posts) ->
+      Post.findAll (err, posts) ->
         res.render 'dashboard/index'
           posts: posts
           newPost: new Post

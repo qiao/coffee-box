@@ -84,6 +84,10 @@ PostSchema.statics.findPosts = (callback) ->
     asPage: false
   @find query, callback
 
+PostSchema.statics.findAll = (callback) ->
+  options = sort: [['createdAt', 'desc']]
+  @find {}, {}, options, callback
+
 PostSchema.statics.findBySlug = (slug, callback) ->
   query = slug: slug
   @findOne query, callback
