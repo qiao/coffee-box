@@ -22,6 +22,7 @@ PostSchema = new Schema
     type: [CommentSchema]
   tags:
     type: [String]
+    index: true
   public:
     type: Boolean
     default: true
