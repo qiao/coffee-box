@@ -52,7 +52,7 @@ exports.getSessionController = (app) ->
 
     # middleware for requiring login
     requireLogin: (req, res, next) ->
-      return res.rediret '/login' unless req.session.loggedIn
+      return res.redirect '/login' unless req.session.loggedIn
       next()
 
   }
