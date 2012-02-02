@@ -22,6 +22,10 @@ CommentSchema = new Schema
     type: Boolean
     required: true
     default: false
+  read:
+    type: Boolean
+    required: true
+    default: false
   createdAt:
     type: Date
     required: true
@@ -36,6 +40,14 @@ CommentSchema.pre 'save', (next) ->
     @content   = sanitize html
     @updatedAt = Date.now()
     next()
+
+CommentSchema.statics.findRead = (callback) ->
+  query = read: true
+  @find query, callback
+
+CommentSchema.statics.findUnread = (callback) ->
+  query = read: false
+  @find query, callback
 
 Comment = mongoose.model 'Comment', CommentSchema
 

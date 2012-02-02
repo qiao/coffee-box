@@ -31,6 +31,8 @@ for i in [1..20]
     comment.website     = Faker.Internet.domainName()
     comment.rawContent = Faker.Lorem.paragraphs(2)
     comment.content     = markdown comment.rawContent
+    comments.spam       = Math.random() > 0.7
+    comments.read       = false
     comments.push comment
   post.comments = comments
 
