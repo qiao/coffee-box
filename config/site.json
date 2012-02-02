@@ -3,7 +3,7 @@
   , "description" : "The description of your site will be included in rss feeds"
   , "url"         : "http://your.url.withoud.trailing.slash"
   , "author"      : "Your name, will be included in rss feeds"
-  , "openIds"     : ["http://yourid.myopenid.com", "http://can.have.multiple.ids"]
+  , "openId"      : "http://yourid.myopenid.com"
   , "dbpath"      : "mongodb://localhost/coffee-box-db"
   , "secretKey"   : "Please replace this string with a random one and keep it secret"
 }

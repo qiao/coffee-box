@@ -35,11 +35,11 @@ exports.getSessionController = (app) ->
           message = error
         else
           if result.authenticated
-            if result.claimedIdentifier in app.settings.openIds
+            if result.claimedIdentifier is app.settings.openId
               req.session.loggedIn = true
               return res.redirect '/admin'
             else
-              message = 'account not in admin list'
+              message = 'invalide account'
         res.send 'Authentication failed: ' + message
 
 
