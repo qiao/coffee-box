@@ -3,22 +3,19 @@
 
 DB_URL     = 'mongodb://localhost/coffee-box-db'
 
+async      = require 'async'
 mongoose   = require 'mongoose'
 Faker      = require 'Faker'
-{Post}     = require('../app/models/post')
-{markdown} = require('../lib/markdown')
+{Post}     = require '../app/models/post'
 
 mongoose.connect DB_URL
 
-savedNum = 0
-
-for i in [1..20]
+populatePost = (index, callback) ->
   post = {}
   post.title       = Faker.Lorem.sentence()
   post.slug        = Faker.Lorem.words(3).join '-'
-  post.rawContent = Faker.Lorem.paragraphs(4)
-  post.content     = markdown post.rawContent
-  post.asPage      = i > 17
+  post.rawContent  = Faker.Lorem.paragraphs(4)
+  post.asPage      = index > 17
   if post.asPage
     post.title = post.title.slice(0, 5)
 
@@ -29,15 +26,16 @@ for i in [1..20]
     comment.name        = Faker.Name.firstName()
     comment.email       = Faker.Internet.email()
     comment.website     = Faker.Internet.domainName()
-    comment.rawContent = Faker.Lorem.paragraphs(2)
-    comment.content     = markdown comment.rawContent
-    comments.spam       = Math.random() > 0.7
-    comments.read       = false
+    comment.rawContent  = Faker.Lorem.paragraphs(2)
+    comment.spam        = Math.random() > 0.7
+    comment.read        = false
     comments.push comment
   post.comments = comments
 
-  (new Post(post)).save ->
-    savedNum += 1
-    if savedNum is 20
-      mongoose.disconnect()
-      process.exit()
+  (new Post(post)).save (err)->
+    callback err
+
+async.forEach [1..20], populatePost, (err) ->
+  console.log err if err
+  mongoose.disconnect()
+  process.exit()
