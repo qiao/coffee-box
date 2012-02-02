@@ -23,8 +23,9 @@ exports.getSessionController = (app) ->
       
       id = req.body.id
       relyingParty.authenticate id, false, (error, authUrl) ->
-        return res.send 'Authentication failed: ' + error.message, 200 if error?
-        return res.send 'Authentication failed', 200 unless authUrl
+        if error or not authUrl
+          req.flash 'error', error.message
+          return res.redirect '/login'
         res.redirect authUrl
 
     # GET /verify
@@ -40,7 +41,8 @@ exports.getSessionController = (app) ->
               return res.redirect '/admin'
             else
               message = 'invalide account'
-        res.send 'Authentication failed: ' + message
+        req.flash 'error', message
+        res.redirect '/login'
 
 
     # GET /logout
