@@ -1,7 +1,7 @@
 {
     "sitename"    : "Name of your site"
   , "description" : "The description of your site will be included in rss feeds"
-  , "url"         : "http://your.url.withoud.trailing.slash"
+  , "url"         : "http://your.url.without.trailing.slash"
   , "author"      : "Your name, will be included in rss feeds"
   , "openId"      : "http://yourid.myopenid.com"
   , "dbpath"      : "mongodb://localhost/coffee-box-db"
