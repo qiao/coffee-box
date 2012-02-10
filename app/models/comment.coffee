@@ -37,14 +37,6 @@ CommentSchema.pre 'save', (next) ->
     @updatedAt = Date.now()
     next()
 
-CommentSchema.statics.findRead = (callback) ->
-  query = read: true
-  @find query, callback
-
-CommentSchema.statics.findUnread = (callback) ->
-  query = read: false
-  @find query, callback
-
 Comment = mongoose.model 'Comment', CommentSchema
 
 module.exports =

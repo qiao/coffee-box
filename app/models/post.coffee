@@ -97,6 +97,16 @@ PostSchema.statics.removeBySlug = (slug, callback) ->
   query = slug: slug
   @remove query, callback
 
+# XXX: This static method is really ugly.
+# It's better to seperate comments to an individual collection
+PostSchema.statics.findUnreadComments = (callback) ->
+  @find { 'comments.read': false }, { comments: 1 }, (err, posts) ->
+    return callback err, null if err
+    unreadComments = []
+    posts.forEach (post) ->
+      unreadComments = unreadComments.concat post.comments.filter (comment) ->
+        not comment.read
+    callback null, unreadComments
 
 Post = mongoose.model 'Post', PostSchema
 

@@ -14,8 +14,7 @@ table
   margin 0
   padding 0
 
-.post-delete-link,
-.comment-delete-link
+.post-delete-link
   line-height 18px
   padding 0
   background none
@@ -30,11 +29,18 @@ table
   &:focus
     box-shadow none
 
-.comment-delete-link
-  margin-top -10px
-  color rgba(0, 0, 0, 0.6)
-  font-weight normal
-  position relative
-  top -5px
-  &:hover
-    color rgba(0, 0, 0, 0.7)
+.dashboard-comment
+  margin-top 20px
+  .comment-header
+    padding 5px 0
+    margin-bottom 3px
+    border-top 1px solid #ccc
+  .comment-name
+    float left
+    width 20%
+  .comment-email
+    float left
+    width 30%
+  .comment-website
+    float left
+    width 50%
