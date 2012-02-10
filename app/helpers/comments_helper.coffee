@@ -16,3 +16,7 @@ module.exports =
 
   commentDate: (comment) ->
     moment(comment.createdAt).format 'YYYY-MM-DD'
+
+  commentWebsite: (comment) ->
+    website = comment.website
+    website = "http://#{website}" unless /^https?:\/\//.test website

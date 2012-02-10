@@ -2,7 +2,11 @@ li.comment(id=commentAnchor(comment))
   article
     .comment-author
       img(src=gravatarUrl(comment), alt='gravatar').gravatar
-      .comment-name= comment.name
+      .comment-name
+        if comment.website
+          a(href=commentWebsite(comment))= comment.name
+        else
+          = comment.name
     .comment-body
       .comment-meta= commentMeta(comment)
       .comment-content!= comment.content
