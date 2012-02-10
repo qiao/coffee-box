@@ -5,12 +5,13 @@ table.zebra-striped
       th Email
       th Content
       th Date
-      th Edit
+      //-th // Edit
+      //-th // Delete
   tbody
-    //-for comment in comments
-      //-tr
-        //-td= comment.name
-        //-td= comment.email
-        //-td!= comment.content
-        //-td= commentDate(comment)
-        //-td
+    for comment in comments
+      tr
+        td= comment.name
+        td= comment.email
+        td!= comment.content
+        td= commentDate(comment)
+        //-td= comment.

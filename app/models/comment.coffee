@@ -18,10 +18,6 @@ CommentSchema = new Schema
     required: true
   content:
     type: String
-  spam:
-    type: Boolean
-    required: true
-    default: false
   read:
     type: Boolean
     required: true

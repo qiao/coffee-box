@@ -9,47 +9,24 @@ exports.getCommentsController = (app) ->
 
     # POST /year/month/day/:slug/comments
     create: (req, res, next) ->
+      # only allow comments created by ajax requests
+      return res.send 400 unless req.xhr
+
       Post.findBySlug req.params.slug, (err, post) ->
-        return res.redirect '400' if err?
-        return res.redirect '404' unless post?
-
-        comment = req.body.comment
-
-        # for all comments not submitted via AJAX, we consider that
-        # it's submitter by spammers. this works for over 99% of the cases.
-        # and for those innocent hams, they have a chance to be reviewed by 
-        # blog owner and mark as `not spam`.
-        # so why bother using akismet :p
-        spam = not req.xhr
-        comment.spam = spam
-
-        # save comment 
-        post.comments.push(comment)
+        return res.send 400 if err
+        return res.send 404 unless post
+        post.comments.push req.body.comment
         post.save (err) ->
-          if req.xhr then createXhr(err) else createNormal(err)
-
-        # helper function for creating comment with xhr
-        createXhr = (err) ->
-          return res.send 400 if err?
+          return res.send(err, 400) if err
           res.partial 'comments/comment'
             post: post
             comment: post.comments[post.comments.length - 1]
 
-        # helper function for creating comment without xhr
-        createNormal = (err) ->
-          if err
-            req.flash 'error', err
-            res.redirect 'back'
-          else
-            return req.flash 'error', 'your comment is pending for review' if spam?
-            req.flash 'info', 'successfully posted'
-            res.redirect postPath(post)
-
     # DEL /year/month/day/:slug/comments/:id
     destroy: (req, res, next) ->
       Post.findBySlug req.params.slug, (err, post) ->
-        return res.redirect '400' if err?
-        return res.redirect '404' unless post?
+        return res.redirect '400' if err
+        return res.redirect '404' unless post
         post.comments.id(req.params.id).remove()
         post.save (err) ->
           if req.xhr
