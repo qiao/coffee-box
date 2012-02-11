@@ -1,5 +1,6 @@
+async    = require 'async'
 mongoose = require 'mongoose'
-Schema = mongoose.Schema
+Schema   = mongoose.Schema
 
 {markdown} = require('../../lib/markdown')
 {makeTagList} = require('../../lib/taglist')
@@ -98,15 +99,28 @@ PostSchema.statics.removeBySlug = (slug, callback) ->
   @remove query, callback
 
 # XXX: This static method is really ugly.
-# It's better to seperate comments to an individual collection
 PostSchema.statics.findUnreadComments = (callback) ->
-  @find { 'comments.read': false }, { comments: 1 }, (err, posts) ->
+  @find { 'comments.read': false }, (err, posts) ->
     return callback err, null if err
-    unreadComments = []
+    comments = []
     posts.forEach (post) ->
-      unreadComments = unreadComments.concat post.comments.filter (comment) ->
-        not comment.read
-    callback null, unreadComments
+      post.comments.forEach (comment) ->
+        unless comment.read
+          comment.post = post
+          comments.push comment
+    comments.sort (a, b) ->
+      b.createdAt.getTime() - a.createdAt.getTime()
+    callback null, comments
+
+PostSchema.statics.markAllAsRead = (callback) ->
+  @find { 'comments.read': false }, (err, posts) ->
+    return callback err if err
+    update = (post, done) ->
+      post.comments.forEach (comment) ->
+        comment.read = true
+      post.save (err) ->
+        done()
+    async.forEach posts, update, callback
 
 Post = mongoose.model 'Post', PostSchema
 

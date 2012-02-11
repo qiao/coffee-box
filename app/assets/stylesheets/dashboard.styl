@@ -29,18 +29,56 @@ table
   &:focus
     box-shadow none
 
+#comments-tab>ul
+  margin-left 0
+
+.comment-read-form
+  text-align right
+  margin-top 5px
+  margin-bottom 0
+  padding-bottom 5px
+  border-bottom 1px solid #ddd
+  .comment-read-link
+    margin-right 7px
+    line-height 18px
+    padding 0
+    background none
+    border none
+    box-shadow none
+    font-size 13px
+    color #0069d6
+    height 18px !important
+    &:hover
+      color #00438a
+      text-decoration underline
+    &:focus
+      box-shadow none
+
 .dashboard-comment
-  margin-top 20px
-  .comment-header
-    padding 5px 0
-    margin-bottom 3px
-    border-top 1px solid #ccc
-  .comment-name
+  border-bottom 1px solid #ddd
+  .comment-author
+    margin-top 7px
     float left
-    width 20%
+    width 15%
+  .comment-content
+    float left
+    width 85%
+  .comment-header
+    font-size 12px
+    border-bottom 1px solid #ddd
   .comment-email
     float left
     width 30%
-  .comment-website
+  .comment-time
     float left
-    width 50%
+    width 30%
+  .comment-delete-form
+    margin-bottom 0
+  .comment-delete-link
+    float right
+    margin-top 0
+    margin-right 10px
+    top 3px
+    color #0069D6
+    &:hover
+      color #00438a

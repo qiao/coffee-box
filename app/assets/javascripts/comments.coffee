@@ -82,7 +82,9 @@ $(document).ready ->
   if window.location.pathname is '/'
     Comments.hide()
 
+  unless window.location.pathname is '/admin'
+    Comments.hideDeleteLink()
+
   Comments
-    .hideDeleteLink()
     .hookSubmit()
     .hookDelete()

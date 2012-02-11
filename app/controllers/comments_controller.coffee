@@ -33,9 +33,13 @@ exports.getCommentsController = (app) ->
             res.send 200
           else
             res.redirect postPath(post) + commentsAnchor(post)
-   
+
     # POST /comments/preview
     preview: (req, res, next) ->
       markdown req.body.rawContent or '', (html) ->
         res.send sanitize(html), 200
+
+    mark: (req, res, next) ->
+      Post.markAllAsRead (err) ->
+        res.redirect '/admin'
   }
