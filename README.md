@@ -42,6 +42,6 @@ Developing
 
 Some notices:
 
-* The layout of CoffeeBox's code base follows Rails' convention. 
+* The layout of CoffeeBox's codebase follows Rails' convention. 
 * All assets will be compiled when the first request comes, thus it will take longer time to wait for the first response, but the subsequent requests will be handled normally. 
-* For convenience, when the server is running in developement environment, the OpenId login is not enabled and you can login to the dashboard with even empt password. So be sure to add `NODE_ENV=production` when deploying the site.
+* For convenience, when the server is running in developement environment, the OpenId login is not enabled and you can login to the dashboard with even empty account. So be sure to add `NODE_ENV=production` when deploying the site.
