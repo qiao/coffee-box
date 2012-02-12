@@ -19,4 +19,4 @@ module.exports =
 
   commentWebsite: (comment) ->
     website = comment.website
-    website = "http://#{website}" unless /^https?:\/\//.test website
+    if /^https?:\/\//.test website then website else "http://#{website}"
