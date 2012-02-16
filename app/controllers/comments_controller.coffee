@@ -2,8 +2,8 @@ exports.getCommentsController = (app) ->
 
   {Post}                     = app.settings.models
   {markdown}                 = app.settings.utils
-  {sanitize}                 = require 'sanitizer'
   {postPath, commentsAnchor} = app.settings.helpers
+  {sanitize}                 = require 'validator'
 
   return {
 
@@ -37,7 +37,7 @@ exports.getCommentsController = (app) ->
     # POST /comments/preview
     preview: (req, res, next) ->
       markdown req.body.rawContent or '', (html) ->
-        res.send sanitize(html), 200
+        res.send sanitize(html).xss(), 200
 
     mark: (req, res, next) ->
       Post.markAllAsRead (err) ->

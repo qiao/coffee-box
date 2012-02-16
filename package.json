@@ -21,7 +21,7 @@
     , "rss"              : ">= 0.0.3"
     , "openid"           : ">= 0.3.2"
     , "async"            : ">= 0.1.15"
-    , "sanitizer"        : ">= 0.0.14"
+    , "validator"        : ">= 0.4.1"
   }
   , "repository"         : {
       "type"             : "git"

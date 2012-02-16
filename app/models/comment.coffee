@@ -2,7 +2,7 @@ mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
 {markdown} = require('../../lib/markdown')
-{sanitize} = require('sanitizer')
+{sanitize} = require('validator')
 
 CommentSchema = new Schema
   name:
@@ -33,7 +33,7 @@ CommentSchema = new Schema
 
 CommentSchema.pre 'save', (next) ->
   markdown @rawContent, (html) =>
-    @content   = sanitize html
+    @content   = sanitize(html).xss()
     @updatedAt = Date.now()
     next()
 
