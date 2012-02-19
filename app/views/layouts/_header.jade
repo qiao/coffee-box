@@ -6,7 +6,7 @@
         for page in pages
           li: a(href='/' + page.slug)= page.title
         li: a(href='/feed') Feed
-      form(action='/search').pull-left
+      form(id='search', action='/search').pull-left
         input(type='text', placeholder='Search')
       ul.nav.secondary-nav
         if session.loggedIn

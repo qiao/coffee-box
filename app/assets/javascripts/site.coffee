@@ -19,3 +19,12 @@ $(document).ready ->
 
   # tabs
   $('.tabs').tabs()
+
+  # search
+  $('#search').submit ->
+    keyword = $('input', @).val()
+    console.log(keyword)
+    hostname = window.location.hostname
+    url = "http://www.google.com/search?q=site:#{hostname}%20#{keyword}"
+    window.open url, '_blank'
+    false
