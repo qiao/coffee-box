@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/qiao/coffee-box.png)](http://travis-ci.org/qiao/coffee-box)
 CoffeeBox
 =========
 
