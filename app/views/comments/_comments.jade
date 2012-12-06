@@ -6,6 +6,7 @@ a(href=postPath(post) + commentsAnchor(post)).comments-info
 
 div(id='comments-#{post._id}').comments
   ul.comments-list.unstyled
-    != partial('comment', comments)
+    for comment in comments
+     include _comment
 
-  != partial('form')
+  include _form
