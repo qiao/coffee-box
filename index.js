@@ -1,5 +1,5 @@
 require('coffee-script');
-var server=require('./server')
+var server=require('./coffee-box')
   , http = require('http');
 
 http.createServer(server).listen(server.get('port'),function(){
