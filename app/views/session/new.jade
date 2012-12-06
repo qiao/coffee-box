@@ -1,5 +1,7 @@
-form(action='/login', method='post')#login-form
-  != messages()
-  label(for='id') Login with OpenID
-  input(type='text', name='id')
-  input(type='submit', value='Submit').btn
+extends ../layouts/layout
+block content
+  form(action='/login', method='post')#login-form
+    != messages()
+    label(for='id') Login with OpenID
+    input(type='text', name='id')
+    input(type='submit', value='Submit').btn

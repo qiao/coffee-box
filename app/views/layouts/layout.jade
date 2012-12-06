@@ -9,6 +9,6 @@ html
   body
     include _header
     .body-container 
-      != body
+      block content
     include _footer
     != js('/javascripts/application')
