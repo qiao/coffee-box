@@ -18,7 +18,7 @@ exports.getCommentsController = (app) ->
         post.comments.push req.body.comment
         post.save (err) ->
           return res.send(err, 400) if err
-          res.render 'comments/comment'
+          res.render 'comments/_comment'
             post: post
             comment: post.comments[post.comments.length - 1]
 

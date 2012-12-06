@@ -19,7 +19,7 @@ exports.getSessionController = (app) ->
       # don't auth with OpenID if in dev mode
       if app.settings.env is 'development'
         req.session.loggedIn = true
-        return res.redirect '/admin'
+        return res.redirect '/admin/'
       
       id = req.body.id
       relyingParty.authenticate id, false, (error, authUrl) ->
@@ -48,7 +48,7 @@ exports.getSessionController = (app) ->
     # GET /logout
     destroy: (req, res, next) ->
       req.session.destroy (err) ->
-        res.redirect 'home'
+        res.redirect '/'
 
     # middleware for requiring login
     requireLogin: (req, res, next) ->

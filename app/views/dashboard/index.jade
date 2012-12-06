@@ -1,21 +1,6 @@
-extends ../layouts/layout
-block content
-  .entry#dashboard
-    != messages()
-    ul.tabs(data-tabs='tabs')
-      li.active: a(href='#posts-tab') Posts
-      li: a(href='#comments-tab') Comments
-      li: a(href='#new-post-tab') New Post
-      li: a(href='#config-tab') Config
-
-    .tab-content
-      #posts-tab.active.tab-pane
-        include _posts
-      #comments-tab.tab-pane
-        include _comments
-      #new-post-tab.tab-pane
-        post = newPost
-        include ../posts/_form
-      #config-tab.tab-pane
-        config = app.settings
-        include ../config/_form
+extends ../layouts/dashboard
+block dashboardContent
+  h2 Statistics
+  ul
+    li: a(href='posts') Posts #{posts.length}
+    li: a(href='comments') Comments: #{comments.length}

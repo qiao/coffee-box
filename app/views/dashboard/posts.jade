@@ -1,0 +1,23 @@
+extends ../layouts/dashboard
+block dashboardContent
+  table.zebra-striped
+    thead
+      tr
+        th Title
+        th Comments
+        th Public
+        th Date
+        th // Edit
+        th // Del
+    tbody
+      for post in posts
+        tr
+          td: a(href=postPath(post))= post.title
+          td= post.comments.length
+          td= post.public
+          td= postDate(post)
+          td: a(href=postPath(post) + '/edit') Edit
+          td
+            form(action=postPath(post), method='post').post-delete-form
+              input(type='hidden', name='_method', value='delete')
+              input(type='submit', value='Del', data-confirm='true').post-delete-link

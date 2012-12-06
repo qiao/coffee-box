@@ -46,7 +46,12 @@ module.exports = (app) ->
   app.get  '/logout'                                        , SessionController.destroy
   app.get  '/verify'                                        , SessionController.verify
 
-  app.get  '/admin'              , requireLogin , findPages , DashboardController.index
+  app.get  '/admin/*'            , requireLogin , findPages
+  app.get  '/admin/'                                        , DashboardController.index
+  app.get  '/admin/posts'                                   , DashboardController.posts
+  app.get  '/admin/comments'                                , DashboardController.comments
+  app.get  '/admin/config'                                  , DashboardController.config
+  app.get  '/admin/new-post'                                , DashboardController.newPost
 
   app.get  '/feed'                                          , PostsController.feed
 

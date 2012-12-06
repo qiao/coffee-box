@@ -1,0 +1,27 @@
+extends ../layouts/dashboard
+block dashboardContent
+  form(action='/mark-all-as-read', method='post').comment-read-form
+    input(type='hidden', name='_method', value='put')
+    input(type='submit', value='Mark All As Read').comment-read-link
+
+  ul.unstyled.zebra-striped
+    for comment in comments
+      li.dashboard-comment.comment
+        .comment-author
+          img(src=gravatarUrl(comment), alt='gravatar').gravatar
+          .comment-name
+            if comment.website
+              a(href=commentWebsite(comment))= comment.name
+            else
+              = comment.name
+        .comment-content
+          .comment-header
+            .comment-time= commentMeta(comment)
+            .comment-email= comment.email
+            form(action=postPath(comment.post) + '/comments/' + comment._id, method='post').comment-delete-form
+              input(type='hidden', name='_method', value='delete')
+              input(type='submit', value='Del', data-confirm='true').comment-delete-link
+            .clearfix
+          .comment-body
+            != comment.content
+        .clearfix
