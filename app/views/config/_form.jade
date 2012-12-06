@@ -1,0 +1,17 @@
+form(method='post', action='/config',accept-charset='utf-8')
+  fieldset
+    .clearfix
+      label(for='config[sitename]') Sitename (required)
+      .input
+        input(type='text', name='config[sitename]',value=config.sitename)
+    .clearfix
+      label(for='config[description]') Description (required)
+      .input
+        input(type='text', name='config[description]', value=config.description)
+    .clearfix
+      label(for='config[author]') Author (required)
+      .input
+        input(type='text', name='config[author]',value=config.author)
+    .clearfix
+      .input
+        button(type='submit').btn Submit
