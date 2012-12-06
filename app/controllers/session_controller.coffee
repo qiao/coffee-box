@@ -1,5 +1,5 @@
 exports.getSessionController = (app) ->
-  exceptions = require 'exceptions'
+  exceptions = require '../../lib/exceptions'
   openid = require('openid')
   relyingParty = new openid.RelyingParty(
       app.settings.url + '/verify' # verification url
