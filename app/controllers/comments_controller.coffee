@@ -18,7 +18,7 @@ exports.getCommentsController = (app) ->
         post.comments.push req.body.comment
         post.save (err) ->
           return res.send(err, 400) if err
-          res.partial 'comments/comment'
+          res.render 'comments/comment'
             post: post
             comment: post.comments[post.comments.length - 1]
 
@@ -41,5 +41,5 @@ exports.getCommentsController = (app) ->
 
     mark: (req, res, next) ->
       Post.markAllAsRead (err) ->
-        res.redirect '/admin'
+        res.redirect 'back'
   }
