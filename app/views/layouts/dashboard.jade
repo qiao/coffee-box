@@ -1,0 +1,17 @@
+extends layout
+block content
+  .entry#dashboard
+    h1 #{app.settings.sitename}
+    != messages()
+    ul.tabs
+      li(class=dashboardEntry=='index'?'active':'')
+        a(href='.') Dashboard
+      li(class=dashboardEntry=='posts'?'active':'')
+        a(href='posts') Posts
+      li(class=dashboardEntry=='comments'?'active':'')
+        a(href='comments') Comments
+      li(class=dashboardEntry=='new-post'?'active':'')
+        a(href='new-post') New Post
+      li(class=dashboardEntry=='config'?'active':'')
+        a(href='config') Config
+    block dashboardContent

@@ -84,7 +84,7 @@ exports.getPostsController = (app) ->
     showPage: (req, res, next) ->
       Post.findBySlug req.params.slug, (err, post) ->
         return res.redirect '500' if err?
-        return res.redirect '404' unless post?
+        return next() unless post?
         res.render 'posts/show'
           post: post
 
