@@ -1,0 +1,1 @@
+exports.getMessage (err)->String err
