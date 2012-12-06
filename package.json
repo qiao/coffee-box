@@ -24,6 +24,9 @@
     , "async"            : ">= 0.1.15"
     , "validator"        : ">= 0.4.1"
   }
+  , "devDependencies"    : {
+      "Faker"           : ">= 0.1.3"
+  }
   , "repository"         : {
       "type"             : "git"
     , "url"              : "git@github.com:qiao/coffee-box.git"
