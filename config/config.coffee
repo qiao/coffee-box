@@ -1,5 +1,6 @@
 express      = require 'express'
 assets       = require 'connect-assets'
+flash        = require 'connect-flash'
 mongoose     = require 'mongoose'
 {requireDir} = require '../lib/require_dir'
 
@@ -9,6 +10,7 @@ module.exports = (app) ->
   app.configure ->
     app.set 'version', require("#{ROOT_DIR}/package.json").version
     app.set k, v for k, v of require("#{ROOT_DIR}/config/site.json")
+    app.locals.app = app
     app.set 'utils', requireDir("#{ROOT_DIR}/lib")
     app.set 'helpers', requireDir("#{ROOT_DIR}/app/helpers")
     app.set 'models', requireDir("#{ROOT_DIR}/app/models")
@@ -17,8 +19,6 @@ module.exports = (app) ->
         console.error err
         return process.exit 1
       app.set k, v for k, v of config
-
-
     app.set 'controllersGetter', requireDir("#{ROOT_DIR}/app/controllers")
     app.set 'views', "#{ROOT_DIR}/app/views"
     app.set 'view engine', 'jade'
@@ -28,12 +28,16 @@ module.exports = (app) ->
     app.use express.methodOverride()
     app.use express.cookieParser()
     app.use express.session(secret: app.settings.secretKey)
+    app.use flash()
     app.use assets(src: 'app/assets', build: true, detectChanges: false, buildDir: false)
     app.use express.static("#{ROOT_DIR}/public")
+    app.locals[k]=v for k,v of app.settings.helpers
+    app.use (req,res,next)->
+      res.locals.messages = require('express-messages')(req,res)
+      res.locals.session = req.session
+      next()
+
     app.use app.router
-    app.helpers app.settings.helpers
-    app.dynamicHelpers messages: require('express-messages')
-    app.dynamicHelpers session: (req, res) -> req.session
 
   app.configure 'development', ->
     app.use express.errorHandler(dumpException: true, showStack: true)
