@@ -48,7 +48,7 @@ exports.getPostsController = (app) ->
       post.data    = req.body.post
       post.save (err) ->
         if err
-          req.flash 'error', exceptions.getMesage err
+          req.flash 'error', exceptions.getMessage err
           res.redirect 'back'
         else
           req.flash 'info', 'successfully posted'
@@ -62,7 +62,7 @@ exports.getPostsController = (app) ->
         post.data = req.body.post
         post.save (err) ->
           if err
-            req.flash 'error', exceptions.getMesage err
+            req.flash 'error', exceptions.getMessage err
             res.redirect 'back'
           else
             req.flash 'info', 'successfully updated'

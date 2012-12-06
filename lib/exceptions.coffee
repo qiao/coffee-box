@@ -1,1 +1,1 @@
-exports.getMessage = (err)->String err
+exports.getMessage = (err)->err.message
