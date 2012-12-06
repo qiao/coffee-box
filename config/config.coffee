@@ -10,7 +10,6 @@ module.exports = (app) ->
   app.configure ->
     app.set 'version', require("#{ROOT_DIR}/package.json").version
     app.set k, v for k, v of require("#{ROOT_DIR}/config/site.json")
-    app.locals.app = app
     app.set 'utils', requireDir("#{ROOT_DIR}/lib")
     app.set 'helpers', requireDir("#{ROOT_DIR}/app/helpers")
     app.set 'models', requireDir("#{ROOT_DIR}/app/models")
@@ -31,6 +30,9 @@ module.exports = (app) ->
     app.use flash()
     app.use assets(src: 'app/assets', build: true, detectChanges: false, buildDir: false)
     app.use express.static("#{ROOT_DIR}/public")
+
+    # make some 2.x-style compatible helpers
+    app.locals.app = app
     app.locals[k]=v for k,v of app.settings.helpers
     app.use (req,res,next)->
       res.locals.messages = require('express-messages')(req,res)
