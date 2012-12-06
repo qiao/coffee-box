@@ -1,5 +1,5 @@
 exports.getSessionController = (app) ->
-
+  exceptions = require 'exceptions'
   openid = require('openid')
   relyingParty = new openid.RelyingParty(
       app.settings.url + '/verify' # verification url
@@ -24,7 +24,7 @@ exports.getSessionController = (app) ->
       id = req.body.id
       relyingParty.authenticate id, false, (error, authUrl) ->
         if error or not authUrl
-          req.flash 'error', error.message
+          req.flash 'error', exceptions.getMessage error
           return res.redirect '/login'
         res.redirect authUrl
 
