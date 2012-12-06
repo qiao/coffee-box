@@ -52,5 +52,5 @@ module.exports = (app) ->
 
   app.get  '/:slug.:format?'     , findPages                , PostsController.showPage
 
-  app.redirect '404'             , '/404.html'
-  app.redirect '500'             , '/500.html'
+  # app.redirect '404'             , '/404.html'
+  # app.redirect '500'             , '/500.html'

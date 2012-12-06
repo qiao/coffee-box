@@ -1,3 +1,5 @@
-.entry
-  != messages()
-  != partial('form', { post: post })
+extends ../layouts/layout
+block content
+  .entry
+    != messages()
+    include _form
