@@ -14,7 +14,8 @@ form(method='post', action=(postPath(post) + '/comments'),
         input(type='email', name='comment[email]', placeholder='Email (required)')
       .clearfix
         input(type='url', name='comment[website]', placeholder='Website')
-      label.keep-notify
-        input(type='checkbox', name='comment[notify]', checked)
-        span Keep notified
-      input(type='submit', value='Submit').btn
+      .clearfix
+        label.keep-notify
+          input(type='checkbox', name='comment[notify]', checked)
+          span Keep notified
+        input(type='submit', value='Submit').btn
