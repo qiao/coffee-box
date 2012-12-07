@@ -1,7 +1,7 @@
 .topbar
   .topbar-inner
     .container
-      a(href='/').brand= app.settings.sitename
+      a(href='/').brand= config.sitename
       ul.nav
         for page in pages
           li: a(href='/' + page.slug)= page.title

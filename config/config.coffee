@@ -17,7 +17,11 @@ module.exports = (app) ->
       if err
         console.error err
         return process.exit 1
-      app.set k, v for k, v of config
+      app.locals.config = config.toJSON()
+      app.locals.coffeeBox =
+        version: app.settings.version
+        nodejsVersion: process.version
+
     app.set 'controllersGetter', requireDir("#{ROOT_DIR}/app/controllers")
     app.set 'views', "#{ROOT_DIR}/app/views"
     app.set 'view engine', 'jade'
@@ -32,7 +36,6 @@ module.exports = (app) ->
     app.use express.static("#{ROOT_DIR}/public")
 
     # make some 2.x-style compatible helpers
-    app.locals.app = app
     app.locals[k]=v for k,v of app.settings.helpers
     app.use (req,res,next)->
       res.locals.messages = require('express-messages')(req,res)

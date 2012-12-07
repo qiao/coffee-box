@@ -1,7 +1,7 @@
 extends layout
 block content
   .entry#dashboard
-    h1 #{app.settings.sitename}
+    h1 #{config.sitename}
     != messages()
     ul.tabs
       li(class=dashboardEntry=='index'?'active':'')
