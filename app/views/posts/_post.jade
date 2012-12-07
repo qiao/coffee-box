@@ -1,0 +1,10 @@
+header.entry-header
+  h2.entry-title
+    a(href=postPath(post))= post.title
+  .entry-meta 
+    .entry-day= postDay(post)
+    .entry-month= postMonth(post)
+.entry-content
+  != post.content
+comments = post.comments
+include ../comments/_comments
