@@ -25,7 +25,6 @@ app.configure ->
   app.set 'controllersGetter', requireDir("#{ROOT_DIR}/coffee-box/controllers")
   app.set 'views', "#{ROOT_DIR}/coffee-box/views"
   app.set 'view engine', 'jade'
-  app.set 'view options', layout: "#{ROOT_DIR}/coffee-box/views/layouts/layout"
   app.use express.logger('dev')
   app.use express.bodyParser()
   app.use express.methodOverride()
