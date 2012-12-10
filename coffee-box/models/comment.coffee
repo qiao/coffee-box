@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
-{markdown} = require('../../lib/markdown')
+{markdown} = require('../lib/markdown')
 {sanitize} = require('validator')
 
 CommentSchema = new Schema

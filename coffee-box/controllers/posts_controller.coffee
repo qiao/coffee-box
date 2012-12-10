@@ -1,5 +1,4 @@
 exports.getPostsController = (app) ->
-  exceptions              = require '../../lib/exceptions'
   RSS                     = require('rss')
   {Post}                  = app.settings.models
   {postPath}              = app.settings.helpers
@@ -48,10 +47,6 @@ exports.getPostsController = (app) ->
       post.data    = req.body.post
       post.save (err) ->
         return next err if err
-        # if err
-        #   req.flash 'error', exceptions.getMessage err
-        #   res.redirect 'back'
-        # else
         req.flash 'info', 'successfully posted'
         res.redirect postPath(post)
 

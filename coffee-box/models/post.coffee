@@ -2,8 +2,8 @@ async    = require 'async'
 mongoose = require 'mongoose'
 Schema   = mongoose.Schema
 
-{markdown} = require('../../lib/markdown')
-{makeTagList} = require('../../lib/taglist')
+{markdown} = require('../lib/markdown')
+{makeTagList} = require('../lib/taglist')
 
 {CommentSchema} = require('./comment')
 
