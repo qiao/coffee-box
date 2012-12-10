@@ -2,3 +2,7 @@
 *.tmp
 builtAssets/
 node_modules/
+
+*.js
+!/index.js
+!/coffee-box/lib/marked.js

@@ -27,7 +27,7 @@ Then clone this project and install the dependecies.
 
     git clone https://github.com/qiao/coffee-box
     cd coffee-box
-    npm install
+    make
 
 The site configuration file is `config/site.json`, you will need to modify it accordingly. Note that you will need an OpenID in order to login. You may register one at http://www.myopenid.com.
 
