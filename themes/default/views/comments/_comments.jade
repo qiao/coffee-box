@@ -4,7 +4,7 @@ a(href=postPath(post) + commentsAnchor(post)).comments-info
   else
     #{comments.length + (comments.length == 1 ? ' comment' : ' comments')}
 
-div(id='comments-#{post._id}').comments
+div(id='comments-#{post._id}',class=comments.fold?'hide':'').comments
   ul.comments-list.unstyled
     for comment in comments
      include _comment
