@@ -12,6 +12,9 @@ ConfigSchema = new Schema
   author:
     type: String
     default: 'unamed hero'
+  theme:
+    type: String
+    default: 'default'
 
 ConfigSchema.statics.Load = (callback) ->
   query = {}

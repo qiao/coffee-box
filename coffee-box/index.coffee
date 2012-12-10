@@ -3,6 +3,7 @@ app           = module.exports = express()
 assets        = require 'connect-assets'
 flash         = require 'connect-flash'
 mongoose      = require 'mongoose'
+path          = require 'path'
 {requireDir}  = require './lib/require_dir'
 
 ROOT_DIR = "#{__dirname}/.."
@@ -21,9 +22,10 @@ app.configure ->
     app.locals.coffeeBox =
       version: app.settings.version
       nodejsVersion: process.version
+    app.set 'views', path.join __dirname,'..','themes',config.theme,'views'
+    
 
   app.set 'controllersGetter', requireDir("#{ROOT_DIR}/coffee-box/controllers")
-  app.set 'views', "#{ROOT_DIR}/coffee-box/views"
   app.set 'view engine', 'jade'
   app.use express.logger('dev')
   app.use express.bodyParser()
