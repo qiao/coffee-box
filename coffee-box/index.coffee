@@ -1,6 +1,5 @@
 express       = require 'express'
 app           = module.exports = express()
-assets        = require 'connect-assets'
 flash         = require 'connect-flash'
 mongoose      = require 'mongoose'
 path          = require 'path'
@@ -22,7 +21,7 @@ app.configure ->
     app.locals.coffeeBox =
       version: app.settings.version
       nodejsVersion: process.version
-    app.set 'views', path.join __dirname,'..','themes',config.theme,'views'
+    config.Apply app
     
 
   app.set 'controllersGetter', requireDir("#{ROOT_DIR}/coffee-box/controllers")
@@ -33,8 +32,9 @@ app.configure ->
   app.use express.cookieParser()
   app.use express.session(secret: app.settings.secretKey)
   app.use flash()
-  app.use assets(src: 'coffee-box/assets', build: true, detectChanges: false, buildDir: false)
-  app.use express.static("#{ROOT_DIR}/coffee-box/public")
+  
+  app.use (req,res,next)-> app.get('assetsRoute') req,res,next
+  app.use (req,res,next)-> app.get('publicRoute') req,res,next
 
   # make some 2.x-style compatible helpers
   app.locals[k]=v for k,v of app.settings.helpers
