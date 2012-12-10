@@ -3,6 +3,6 @@
 builtAssets/
 node_modules/
 
-*.js
-!/index.js
+/coffee-box/*.js
+/coffee-box/*/*.js
 !/coffee-box/lib/marked.js
