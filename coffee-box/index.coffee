@@ -17,12 +17,12 @@ app.configure ->
     if err
       console.error err
       return process.exit 1
-    app.locals.config = config.toJSON()
-    app.locals.coffeeBox =
-      version: app.settings.version
-      nodejsVersion: process.version
     config.Apply app
     
+    
+  app.locals.coffeeBox =
+    version: app.settings.version
+    nodejsVersion: process.version
 
   app.set 'controllersGetter', requireDir("#{ROOT_DIR}/coffee-box/controllers")
   app.set 'view engine', 'jade'

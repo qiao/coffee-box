@@ -33,6 +33,7 @@ ConfigSchema.methods.Apply = (app) ->
     buildDir: false
   app.set 'publicRoute', express.static path.join themePath,'public'
   app.set 'views', path.join themePath,'views'
+  app.locals.config = this.toJSON()
 
 Config = mongoose.model 'Config', ConfigSchema
 

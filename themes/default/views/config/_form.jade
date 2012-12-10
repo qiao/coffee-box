@@ -13,5 +13,9 @@ form(method='post', action='/config/',accept-charset='utf-8')
       .input
         input(type='text', name='config[author]',value=config.author)
     .clearfix
+      label(for='config[theme]') Theme (required)
+      .input
+        input(type='text', name='config[theme]',value=config.theme)
+    .clearfix
       .input
         button(type='submit').btn Submit
