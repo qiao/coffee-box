@@ -27,7 +27,7 @@ Then clone this project and install the dependecies.
 
     git clone https://github.com/qiao/coffee-box
     cd coffee-box
-    make
+    npm install
 
 The site configuration file is `config/site.json`, you will need to modify it accordingly. Note that you will need an OpenID in order to login. You may register one at http://www.myopenid.com.
 
@@ -45,7 +45,7 @@ Some notices:
 * The layout of CoffeeBox's codebase follows Rails' convention. 
 * All assets will be compiled when the first request comes, thus it will take longer time to wait for the first response, but the subsequent requests will be handled normally. 
 * For convenience, when the server is running in developement environment, the OpenId login is not enabled and you can login to the dashboard with even empty account. So be sure to add `NODE_ENV=production` when deploying the site.
-* Run ```make populate```, then you can got hell lots of *lorem ipsum* into database.
+* Run ```coffee populate```, then you can got hell lots of *lorem ipsum* into database.
 
 License
 -------

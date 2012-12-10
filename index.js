@@ -1,3 +1,4 @@
+require('coffee-script');
 var server=require('./coffee-box')
   , http = require('http');
 
