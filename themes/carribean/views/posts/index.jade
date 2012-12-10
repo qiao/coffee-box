@@ -1,0 +1,6 @@
+extends ../layout
+
+block content
+  ul
+    for post in posts
+      li=JSON.stringify(post)
