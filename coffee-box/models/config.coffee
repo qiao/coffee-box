@@ -27,12 +27,12 @@ ConfigSchema.statics.Load = (callback) ->
 ConfigSchema.methods.Apply = (app) ->
   themePath = path.join __dirname,'..','..','themes',this.theme
   app.set 'assetsRoute', assets
-    src: path.join themePath,'assets'
-    build: true
-    detectChanges: false
-    buildDir: false
+    src                     : path.join themePath,'assets'
+    build                   : true
+    detectChanges           : false
+    buildDir                : false
+    helperContext           : app.get 'themeAssetsContext'
   app.set 'publicRoute', express.static path.join themePath,'public'
-  app.set 'views', path.join themePath,'views'
   app.locals.config = this.toJSON()
 
 Config = mongoose.model 'Config', ConfigSchema
