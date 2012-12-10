@@ -43,6 +43,7 @@ module.exports = (app) ->
       next()
 
     app.use app.router
+    app.use require '../lib/exceptions'
 
   app.configure 'development', ->
     app.use express.errorHandler(dumpException: true, showStack: true)
