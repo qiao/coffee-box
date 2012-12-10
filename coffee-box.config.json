@@ -5,4 +5,3 @@
   , "dbpath"      : "mongodb://localhost/coffee-box-db"
   , "secretKey"   : "Please replace this string with a random one and keep it secret"
 }
-
