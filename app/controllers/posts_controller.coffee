@@ -15,7 +15,7 @@ exports.getPostsController = (app) ->
       POSTS_PER_PAGE = 5
       Post.countPostPages POSTS_PER_PAGE, (err, totalPages) ->
         Post.getPostsOfPage pageNo, POSTS_PER_PAGE, (err, posts) ->
-          return res.redirect '500' if err?
+          return next err if err
           res.render 'posts/index'
             posts:      posts
             pageNo:     pageNo
@@ -24,7 +24,7 @@ exports.getPostsController = (app) ->
     # GET /year/month/day/:slug.:format?
     show: (req, res, next) ->
       Post.findBySlug req.params.slug, (err, post) ->
-        return res.redirect '500' if err?
+        return next err if err
         return res.redirect '404' unless post?
         res.render 'posts/show'
           post: post
@@ -37,7 +37,7 @@ exports.getPostsController = (app) ->
     # GET /year/month/day/:slug/edit
     edit: (req, res, next) ->
       Post.findBySlug req.params.slug, (err, post) ->
-        return res.redirect '500' if err?
+        return next err if err
         return res.redirect '404' unless post?
         res.render 'posts/edit'
           post: post
@@ -47,26 +47,24 @@ exports.getPostsController = (app) ->
       post         = new Post
       post.data    = req.body.post
       post.save (err) ->
-        if err
-          req.flash 'error', exceptions.getMessage err
-          res.redirect 'back'
-        else
-          req.flash 'info', 'successfully posted'
-          res.redirect postPath(post)
+        return next err if err
+        # if err
+        #   req.flash 'error', exceptions.getMessage err
+        #   res.redirect 'back'
+        # else
+        req.flash 'info', 'successfully posted'
+        res.redirect postPath(post)
 
     # PUT /year/month/day/:slug
     update: (req, res, next) ->
       Post.findBySlug req.params.slug, (err, post) ->
-        return res.redirect '500' if err?
+        return next err if err
         return res.redirect '404' unless post?
         post.data = req.body.post
         post.save (err) ->
-          if err
-            req.flash 'error', exceptions.getMessage err
-            res.redirect 'back'
-          else
-            req.flash 'info', 'successfully updated'
-            res.redirect postPath(post)
+          return next err if err
+          req.flash 'info', 'successfully updated'
+          res.redirect postPath(post)
 
     # DELETE /year/month/day/:slug
     destroy: (req, res, next) ->
@@ -83,7 +81,7 @@ exports.getPostsController = (app) ->
     # GET /:slug
     showPage: (req, res, next) ->
       Post.findBySlug req.params.slug, (err, post) ->
-        return res.redirect '500' if err?
+        return next err if err
         return next() unless post?
         res.render 'posts/show'
           post: post
