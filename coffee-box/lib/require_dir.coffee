@@ -5,7 +5,7 @@ path = require 'path'
 exports.requireDir = (dirname) ->
   bundle = {}
   for filename in fs.readdirSync dirname
-    if path.extname(filename) is '.js'
+    if path.extname(filename) is '.coffee'
       for k, v of require path.resolve(path.join(dirname, filename))
         bundle[k] = v
   bundle
