@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+    .post-new
+            form.form-horizontal.post-new-form(method="post",id="postsNewForm",name="postsNewForm",action='posts/')
+                .control-group
+                    .container
+                        label.control-label(for="postTitle") 主题
+                        .controls
+                            input.form-text.span10(type="text",id="postTitle",name="postTitle",placeholder="新的文章标题")
+                .tools-bar
+                    .tools.container.clearfix
+                        ul.clearfix.unstyled
+                            li
+                                a(href="#")
+                                    i.icon-font
+                            li
+                                a(href="#")
+                                    i.icon-list-ol
+                            li
+                                a(href="#")
+                                    i.icon-list-ul
+                            li
+                                a(href="#")
+                                    i.icon-picture
+                            li
+                                a(href="#")
+                                    i.icon-file
+                            li
+                                a(href="#")
+                                    i.icon-tasks
+                        a.close-bar(href="javascript:void(0);")
+                            i.icon-minus-sign
+                .control-group
+                    .container
+                        label.control-label(for="postArea") 内容
+                        .controls
+                            textarea.span11(rows="10",name="postArea",id="postArea",placeholder="想说什么...")
+                .control-group 
+                    //- 需要实现这些控件的布局
+                    input(type='text',name='postPermalink')
+                    button(type='submit') 提交
