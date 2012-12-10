@@ -6,6 +6,9 @@ all: $(COFFEE:.coffee=.js)
 run: all node_modules
 	node .
 
+populate:
+	$(COFFEEC) scripts/populate
+
 %.js: %.coffee node_modules
 	$(COFFEEC) -c $<
 
