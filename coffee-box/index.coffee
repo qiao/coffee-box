@@ -28,7 +28,10 @@ app.configure ->
 
   app.set 'controllersGetter', requireDir("#{ROOT_DIR}/coffee-box/controllers")
   app.engine 'jade',(p,options,cb)->
-    options.templateData = JSON.stringify options,null,'  '
+
+    
+    if app.settings.env=='development'
+      options.templateData = JSON.stringify options,null,'  '
     jade.__express p,options,cb
   app.set 'views',"#{ROOT_DIR}"
   app.use express.bodyParser()
@@ -66,10 +69,12 @@ app.configure ->
       viewPath = path.join(ROOT_DIR,'themes',app.locals.config.theme,'views',view+'.jade')
       path.exists viewPath,(exists)->
         if exists
-          res.locals.assets = app.get 'themeAssetsContext'
+          res.locals.cssAssets = app.get('themeAssetsContext').css('/stylesheets/application')
+          res.locals.jsAssets = app.get('themeAssetsContext').js('/javascripts/application')
           res.expressRender viewPath,data
         else
-          res.locals.assets = app.get 'defaultAssetsContext'
+          res.locals.cssAssets = app.get('defaultAssetsContext').css('/stylesheets/application')
+          res.locals.jsAssets = app.get('defaultAssetsContext').js('/javascripts/application')
           res.expressRender path.join(ROOT_DIR,'themes','default','views',view),data
     next()
 

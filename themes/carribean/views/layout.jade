@@ -2,7 +2,7 @@ doctype 5
 html
   head
     title SiteTitle
-    != assets.css('/stylesheets/style')
+    != cssAssets
   body
     #wrap
         #hd
@@ -21,7 +21,7 @@ html
                         li: a(href="#") <i class="icon-home"></i> 主题
         #cnt
             block content
-        != assets.js('/javascripts/application')
+        != jsAssets
         #ft
             #ift.container.clearfix
               .ft-copyright.row
