@@ -28,7 +28,6 @@ app.configure ->
   app.set 'controllersGetter', requireDir("#{ROOT_DIR}/coffee-box/controllers")
   app.set 'view engine', 'jade'
   app.set 'views',"#{ROOT_DIR}"
-  app.use express.logger('dev')
   app.use express.bodyParser()
   app.use express.methodOverride()
   app.use express.cookieParser()
@@ -76,9 +75,11 @@ app.configure ->
   app.use require './lib/exceptions'
 
 app.configure 'development', ->
+  app.use express.logger('dev')
   app.use express.errorHandler(dumpException: true, showStack: true)
 
 app.configure 'production', ->
+  app.use express.logger()
   app.use express.errorHandler()
 
 mongoose.connect app.settings.dbpath, (err) ->
