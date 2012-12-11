@@ -2,7 +2,7 @@ extends layout
 block content
   .entry#dashboard
     h1 #{config.sitename}
-    != messages()
+    mixin messages
     ul.tabs
       li(class=dashboardEntry=='index'?'active':'')
         a(href='.') Dashboard

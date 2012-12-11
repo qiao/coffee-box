@@ -1,5 +1,12 @@
 !!! 5
-- messages=function(){return '';}
+mixin messages
+  #messages
+    ul.error
+      for error in messages.error
+        li=error
+    ul.info
+      for info in messages.info
+        li=info
 html
   head
     meta(charset='utf-8')

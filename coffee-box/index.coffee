@@ -46,9 +46,12 @@ app.configure ->
   # Allow we to flash simple message like in express 2.x
   app.use flash()
 
-  # Expose session to templates
+  # Expose session,and req.flash() to templates
   app.use (req,res,next)->
-    res.locals.session  = req.session
+    res.locals.session            = req.session
+    res.locals.messages           = req.flash()
+    res.locals.messages.error   ||= []
+    res.locals.messages.info   ||= []
     next()
 
   app.set 'themeAssetsContext',{}
