@@ -29,6 +29,7 @@ app.configure ->
   app.set 'controllersGetter', requireDir("#{ROOT_DIR}/coffee-box/controllers")
   app.engine 'jade',(p,options,cb)->
 
+    options = JSON.parse JSON.stringify options
     
     if app.settings.env=='development'
       options.templateData = JSON.stringify options,null,'  '
