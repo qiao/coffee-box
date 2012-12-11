@@ -8,7 +8,7 @@ jade          = require 'jade'
 moment        = require 'moment'
 {requireDir}  = require './lib/require_dir'
 
-ROOT_DIR = "#{__dirname}/.."
+ROOT_DIR = path.join __dirname,'..'
 
 app.configure ->
   app.set 'version', require("#{ROOT_DIR}/coffee-box.config.json").version
@@ -27,6 +27,7 @@ app.configure ->
     nodejsVersion: process.version
 
   app.set 'controllersGetter', requireDir("#{ROOT_DIR}/coffee-box/controllers")
+  app.set 'view engine','jade'
   app.engine 'jade',(p,options,cb)->
     # Express bound `settings` there, but we don't need it.
     options.settings = undefined
@@ -58,7 +59,7 @@ app.configure ->
     detectChanges           : false
     buildDir                : false
     helperContext           : app.get 'defaultAssetsContext'
-  app.use express.static path.join ROOT_DIR,'themes','public'
+  app.use express.static path.join ROOT_DIR,'themes','default','public'
 
   app.use (req,res,next)-> app.get('assetsRoute') req,res,next
   app.use (req,res,next)-> app.get('publicRoute') req,res,next
@@ -69,16 +70,19 @@ app.configure ->
   app.use (req,res,next)->
     res.expressRender = res.render
     res.render  = (view,data)->
-      viewPath = path.join(ROOT_DIR,'themes',app.locals.config.theme,'views',view+'.jade')
-      path.exists viewPath,(exists)->
-        if exists
-          res.locals.cssAssets = app.get('themeAssetsContext').css('/stylesheets/application')
-          res.locals.jsAssets = app.get('themeAssetsContext').js('/javascripts/application')
-          res.expressRender viewPath,data
-        else
-          res.locals.cssAssets = app.get('defaultAssetsContext').css('/stylesheets/application')
-          res.locals.jsAssets = app.get('defaultAssetsContext').js('/javascripts/application')
-          res.expressRender path.join(ROOT_DIR,'themes','default','views',view),data
+      viewPath = path.join('themes',app.locals.config.theme,'views',view)
+      path.exists path.join(ROOT_DIR, viewPath+'.jade'),(exists)->
+        try
+          if !exists
+            viewPath =  path.join('themes','default','views',view)
+            res.locals.cssAssets = app.get('defaultAssetsContext').css('/stylesheets/application')
+            res.locals.jsAssets = app.get('defaultAssetsContext').js('/javascripts/application')
+          else
+            res.locals.cssAssets = app.get('themeAssetsContext').css('/stylesheets/application')
+            res.locals.jsAssets = app.get('themeAssetsContext').js('/javascripts/application')
+        catch err
+          return res.send '500',err.message
+        res.expressRender viewPath,data
     next()
 
 
