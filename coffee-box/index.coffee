@@ -11,7 +11,7 @@ moment        = require 'moment'
 ROOT_DIR = path.join __dirname,'..'
 
 app.configure ->
-  app.set 'version', require("#{ROOT_DIR}/coffee-box.config.json").version
+  app.set 'version', require("#{ROOT_DIR}/package.json").version
   app.set k, v for k, v of require("#{ROOT_DIR}/coffee-box.config.json")
   app.set 'utils', requireDir("#{ROOT_DIR}/coffee-box/lib")
   app.set 'models', requireDir("#{ROOT_DIR}/coffee-box/models")
