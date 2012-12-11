@@ -10,7 +10,7 @@ li.comment(id=comment.anchor)
     .comment-body
       .comment-meta= comment.meta
       .comment-content!= comment.content
-    if session.loggedIn
+    if loggedIn
       form(action=post.path + '/comments/' + comment._id, method='post').comment-delete-form
         input(type='hidden', name='_method', value='delete')
         input(type='submit', value='&times;', data-confirm='true').comment-delete-link
