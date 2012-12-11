@@ -1,7 +1,7 @@
 async    = require 'async'
 mongoose = require 'mongoose'
 Schema   = mongoose.Schema
-
+moment   = require 'moment'
 {markdown} = require('../lib/markdown')
 {makeTagList} = require('../lib/taglist')
 
@@ -50,6 +50,15 @@ PostSchema
   .set (data) ->
     @[k] = v for k, v of data
     @tags = makeTagList data.tags
+
+PostSchema.virtual('path').get ->"/#{moment(@createdAt).format 'YYYY/MM/DD'}/#{@slug}"
+PostSchema.virtual('day').get ->moment(@createdAt).format 'DD'
+PostSchema.virtual('month').get ->moment(@createdAt).format 'MMM'
+PostSchema.virtual('commentsAnchor').get ->"#comments-#{@_id}"
+
+PostSchema.set 'toJSON'
+  getters     : true
+  virtuals    : true
 
 PostSchema.statics.countPosts = (callback) ->
   query =

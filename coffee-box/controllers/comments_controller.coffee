@@ -2,7 +2,6 @@ exports.getCommentsController = (app) ->
 
   {Post}                     = app.settings.models
   {markdown}                 = app.settings.utils
-  {postPath, commentsAnchor} = app.settings.helpers
   {sanitize}                 = require 'validator'
 
   return {

@@ -1,4 +1,4 @@
-a(href=postPath(post) + commentsAnchor(post)).comments-info
+a(href=post.path + post.commentsAnchor).comments-info
   if comments.length == 0
     = 'Leave a comment'
   else

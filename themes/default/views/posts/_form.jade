@@ -3,7 +3,7 @@ div(id='toolbar-#{post._id}').form-toolbar
     li.active: a(href='#').toolbar-edit Edit
     li: a(href='#').toolbar-preview Preview
 
-form(method='post', action=(post.title ? postPath(post) : '/posts'), 
+form(method='post', action=(post.title ? post.path : '/posts'), 
   accept-charset='utf-8').form-stacked
   fieldset
     input(type='hidden', name='_method', value=(post.title ? 'put' : 'post'))

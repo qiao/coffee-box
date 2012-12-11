@@ -1,9 +1,9 @@
 header.entry-header
   h2.entry-title
-    a(href=postPath(post))= post.title
+    a(href=post.path)= post.title
   .entry-meta 
-    .entry-day= postDay(post)
-    .entry-month= postMonth(post)
+    .entry-day= post.day
+    .entry-month= post.month
 .entry-content
   != post.content
 comments = post.comments

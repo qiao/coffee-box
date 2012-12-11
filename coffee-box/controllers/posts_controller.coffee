@@ -1,7 +1,6 @@
 exports.getPostsController = (app) ->
   RSS                     = require('rss')
   {Post}                  = app.settings.models
-  {postPath}              = app.settings.helpers
   {markdown, makeTagList} = app.settings.utils
 
   return {
@@ -48,7 +47,7 @@ exports.getPostsController = (app) ->
       post.save (err) ->
         return next err if err
         req.flash 'info', 'successfully posted'
-        res.redirect postPath(post)
+        res.redirect post.path
 
     # PUT /year/month/day/:slug
     update: (req, res, next) ->
