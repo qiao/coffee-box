@@ -10,5 +10,28 @@ html
     include _header
     .body-container 
       block content
+      if typeof(templateData)!='undefined'
+        #templateData
+          a.btn(href='#templateData').btn-show show template data ↓
+          a.btn(href='#').btn-hide hide template data ↑
+          pre=templateData
+        :stylus
+          #templateData
+            >pre
+              display none
+            >.btn
+              display block
+              &.btn-hide
+                display none
+
+            &:target
+              >pre
+                display block
+              >.btn-hide
+                display block
+              >.btn-show
+                display none
+
+
     include _footer
     != assets.js('/javascripts/application')

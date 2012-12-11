@@ -4,6 +4,7 @@ flash         = require 'connect-flash'
 assets        = require 'connect-assets'
 mongoose      = require 'mongoose'
 path          = require 'path'
+jade          = require 'jade'
 {requireDir}  = require './lib/require_dir'
 
 ROOT_DIR = "#{__dirname}/.."
@@ -26,7 +27,9 @@ app.configure ->
     nodejsVersion: process.version
 
   app.set 'controllersGetter', requireDir("#{ROOT_DIR}/coffee-box/controllers")
-  app.set 'view engine', 'jade'
+  app.engine 'jade',(p,options,cb)->
+    options.templateData = JSON.stringify options,null,'  '
+    jade.__express p,options,cb
   app.set 'views',"#{ROOT_DIR}"
   app.use express.bodyParser()
   app.use express.methodOverride()
