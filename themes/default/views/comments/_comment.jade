@@ -1,0 +1,17 @@
+li.comment(id=comment.anchor)
+  article
+    .comment-author
+      img(src=comment.gravatarUrl, alt='gravatar').gravatar
+      .comment-name
+        if comment.website
+          a(href=comment.website)= comment.name
+        else
+          = comment.name
+    .comment-body
+      .comment-meta= comment.meta
+      .comment-content!= comment.content
+    if loggedIn
+      form(action=post.path + '/comments/' + comment._id, method='post').comment-delete-form
+        input(type='hidden', name='_method', value='delete')
+        input(type='submit', value='&times;', data-confirm='true').comment-delete-link
+  .clearfix

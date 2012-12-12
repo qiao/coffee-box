@@ -1,0 +1,28 @@
+extends ../layouts/layout
+block content
+  // entry list
+  ul.unstyled#entry-list
+    each post in posts
+      - post.comments.fold = true
+      li
+        .entry
+          include _post.jade
+
+  // pagination
+  if totalPages
+    .pagination
+      ul
+        if pageNo === 1
+          li.disabled.prev: a(href='#') &larr; Previous
+        else
+          li: a(rel='prev', href='./?page=' + (pageNo - 1)).prev &larr; Previous
+        - for (var i = 1; i <= totalPages; ++i) {
+            if i === pageNo
+              li.active: a(href='#')= i
+            else
+              li: a(href='./?page=' + i)= i
+        - }
+        if pageNo === totalPages
+          li.disabled.next: a(href='#') Next &rarr;
+        else
+          li: a(rel='next', href='./?page=' + (pageNo + 1)).next Next &rarr;

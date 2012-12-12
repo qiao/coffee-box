@@ -1,0 +1,151 @@
+// nodelog main stylesheet
+
+@import url(lib/bootstrap.less);
+@import url(font-awesome.less);
+@import url(http://fonts.googleapis.com/css?family=Merienda);
+
+body {
+	font-size: 14px;
+}
+
+a {
+	color: #999;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+#hd {
+	background-color: #f5f5f5;
+	#ihd {
+		#logo {
+			h1 {
+				margin-bottom: 0;
+				a {
+					font-size: 30px;
+					color: #999;
+					font-weight: normal;
+					font-family: 'Merienda', cursive;
+					.icon-star {
+						font-size: 25px;
+						color: #AED7DB;
+					}
+				}
+			}
+		}
+		#nav {
+			ul {
+				margin-bottom: 0;
+				float: right;
+			}
+			li {
+				display: block;
+				float: left;
+				margin-right: 1px;
+				a {
+					display: block;
+					padding: 20px 20px;
+					background-color: #f5f5f5;
+					&:hover {
+						background-color: #444;
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+}
+
+#cnt {
+	.posts {
+
+	}
+	.posts-lists {
+		.title {
+			font-size: 20px;
+			font-weight: normal;
+			color: #999;
+		}
+	}
+	.post-new {
+		.post-new-form {
+			.control-group {
+				padding: 30px 0;
+				margin-bottom: 0;
+				background-color: #fff;
+				border-top: 1px solid #ddd;
+			}
+			.control-label {
+				width: 100px !important;
+				font-size: 24px;
+				color: #999;
+				text-align: left;
+			}
+			.controls {
+				margin-left: 100px;
+			}
+			.form-text {
+				border: 0;
+				.box-shadow(none);
+				font-size: 16px;
+			}
+			textarea {
+				.border-radius(0);
+				.box-shadow(none);
+				border: 0;
+				line-height: 2;
+			}
+		}
+		.tools-bar {
+			background-color: #f5f5f5;
+			border-top: 1px solid #ddd;
+			padding: 10px 0;
+			.tools {
+				position: relative;
+				ul {
+					margin-bottom: 0;
+					padding-left: 105px;
+					li {
+						display: block;
+						float: left;
+						margin-right: 15px;
+						a {
+							display: block;
+							font-size: 22px;
+							line-height: 1;
+							padding: 10px 0;
+							i {
+								display: block;
+							}
+						}
+					}
+				}
+				.close-bar {
+					position: absolute;
+					right: 0px;
+					top: 10px;
+					z-index: 99;
+					font-size: 20px;
+					line-height: 1;
+					color: #ddd;
+					&:hover {
+						color: #444;
+					}
+				}
+			}
+		}
+	}
+}
+
+#ft {
+	border-top: 1px solid #efefef;
+	padding-top: 10px;
+	margin-top: 20px;
+	#ift {
+		.ft-copyright {
+			font-size: 12px;
+			color: #999;
+			text-align: right;
+		}
+	}
+}

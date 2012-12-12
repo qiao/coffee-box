@@ -1,0 +1,12 @@
+a(href=post.path + post.commentsAnchor).comments-info
+  if comments.length == 0
+    = 'Leave a comment'
+  else
+    #{comments.length + (comments.length == 1 ? ' comment' : ' comments')}
+
+div(id='comments-#{post._id}',class=comments.fold?'hide':'').comments
+  ul.comments-list.unstyled
+    for comment in comments
+     include _comment
+
+  include _form

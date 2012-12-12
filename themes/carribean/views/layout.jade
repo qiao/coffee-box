@@ -1,0 +1,28 @@
+doctype 5
+html
+  head
+    title SiteTitle
+    != cssAssets
+  body
+    #wrap
+        #hd
+            #ihd.container.clearfix
+              .top-nav.row
+                #logo.span4
+                    h1
+                        a(href="/") NodeLog
+                            i.icon-star
+                #nav.span8
+                    ul.clearfix
+                        li: a(href="new-post.html") <i class="icon-home"></i> 新文章
+                        li: a(href="#") <i class="icon-sitemap"></i> 站点
+                        li: a(href="#") <i class="icon-home"></i> 网络
+                        li: a(href="#") <i class="icon-home"></i> 插件
+                        li: a(href="#") <i class="icon-home"></i> 主题
+        #cnt
+            block content
+        != jsAssets
+        #ft
+            #ift.container.clearfix
+              .ft-copyright.row
+                p.span12 &copy; 2012 SiteName

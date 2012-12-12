@@ -1,12 +1,12 @@
 #!/usr/bin/env coffee
 # Populate database with faked data
 
-DB_URL     = 'mongodb://localhost/coffee-box-db'
+DB_URL     = require('../coffee-box.config.json').dbpath
 
 async      = require 'async'
 mongoose   = require 'mongoose'
 Faker      = require 'Faker'
-{Post}     = require '../app/models/post'
+{Post}     = require '../coffee-box/models/post'
 
 mongoose.connect DB_URL
 

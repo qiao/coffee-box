@@ -1,1 +1,0 @@
-exports.getMessage = (err)->err.message
