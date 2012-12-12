@@ -2,3 +2,5 @@
 *.tmp
 builtAssets/
 node_modules/
+
+coffee-box.config.json
