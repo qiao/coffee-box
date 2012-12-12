@@ -1,0 +1,7 @@
+{
+    "url"         : "http://your.url.without.trailing.slash"
+  , "port"        : 3000
+  , "openId"      : "http://yourid.myopenid.com"
+  , "dbpath"      : "mongodb://localhost/coffee-box-db"
+  , "secretKey"   : "Please replace this string with a random one and keep it secret"
+}
